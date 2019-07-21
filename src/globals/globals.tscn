@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/globals/globals.gd" type="Script" id=1]
+[ext_resource path="res://asset/img/ui/grey_button.res" type="Texture" id=2]
+[ext_resource path="res://asset/img/font/mago1_96.res" type="DynamicFont" id=3]
+[ext_resource path="res://asset/img/ui/bar_under.png" type="Texture" id=4]
+[ext_resource path="res://asset/img/ui/bar_progress.png" type="Texture" id=5]
+
+[sub_resource type="AudioStreamSample" id=1]
+
+[sub_resource type="StreamTexture" id=2]
+
+[node name="globals" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause", "Rect" ]
+
+[node name="snd" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 1 )
+volume_db = -10.0
+
+[node name="progress_bar" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bg" type="TextureRect" parent="progress_bar"]
+margin_left = 96.0
+margin_top = 552.0
+margin_right = 624.0
+margin_bottom = 728.0
+rect_min_size = Vector2( 528, 176 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="m" type="CenterContainer" parent="progress_bar"]
+margin_left = 195.0
+margin_top = 576.0
+margin_right = 525.0
+margin_bottom = 704.0
+
+[node name="v" type="VBoxContainer" parent="progress_bar/m"]
+margin_right = 330.0
+margin_bottom = 128.0
+
+[node name="label" type="Label" parent="progress_bar/m/v"]
+margin_right = 330.0
+margin_bottom = 76.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+text = "Loading..."
+align = 1
+valign = 2
+
+[node name="bar" type="TextureProgress" parent="progress_bar/m/v"]
+self_modulate = Color( 1, 0, 0, 1 )
+margin_top = 80.0
+margin_right = 330.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 330, 35 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_under = ExtResource( 4 )
+texture_over = SubResource( 2 )
+texture_progress = ExtResource( 5 )
+

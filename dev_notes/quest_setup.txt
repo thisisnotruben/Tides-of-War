@@ -1,0 +1,49 @@
+Quest_objective example formats:
+
+when killing a unit and want to drop a particular item
+------------------------------------------
+*value: Dictionary
+    
+    world_name:{
+        amount:
+               [(int) tracker,
+               (int) amount to completion],
+    
+        item:{
+            level: (int) (range) 1-10,
+            type: (get from enum),
+            sub_type: (get from enum),  
+            }
+    
+    }
+    
+when talking to a very specific unit, can have generic name or specifc name
+------------------------------------------
+*value: Dictionary, can have item value here
+    
+    world_name:{
+        unit_path:(node_path) (path to unit starting from root),
+        spoken: (bool) false 
+    }
+       
+when killing units
+------------------------------------------
+*value: Array
+
+    world_name:
+               [(int) tracker,
+               (int) amount to completion]
+    
+
+
+when talking to units, mostly aimed at generic names
+------------------------------------------
+*value: Array
+
+    world_name:
+               [(int) tracker,
+               (int) amount to completion,
+               [*an empty array for making sure units dob't
+               get spoken to twice and still count towards quest]]
+    
+

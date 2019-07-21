@@ -1,0 +1,397 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/spell/effects/effect_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/spell/effects/color_ramp.shader" type="Shader" id=2]
+[ext_resource path="res://asset/img/light/fire_gradient.res" type="Texture" id=3]
+[ext_resource path="res://asset/img/light/fire_scale.res" type="Texture" id=4]
+[ext_resource path="res://asset/img/missile-spell/meteor.png" type="Texture" id=5]
+
+
+
+[sub_resource type="ShaderMaterial" id=1]
+
+resource_local_to_scene = true
+resource_name = "color_ramp"
+render_priority = 0
+shader = ExtResource( 2 )
+shader_param/color_speed = 1.0
+shader_param/scale_speed = 0.5
+shader_param/energy = 1.0
+shader_param/scale = Vector2( 0.9, 1 )
+shader_param/gradient = ExtResource( 3 )
+_sections_unfolded = [ "Resource", "shader_param" ]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 10, 4, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 8.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 3.0
+scale_random = 0.0
+scale_curve = ExtResource( 4 )
+color = Color( 0.2, 0.199219, 0.199219, 0.5 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Animation", "Color", "Emission Shape", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
+
+[sub_resource type="Curve" id=4]
+
+min_value = 0.5
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+
+flags = 4
+width = 2048
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 10, 4, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 16.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 3.0
+scale_random = 0.0
+scale_curve = SubResource( 5 )
+color_ramp = ExtResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Scale" ]
+
+[sub_resource type="CanvasItemMaterial" id=7]
+
+render_priority = 0
+blend_mode = 4
+light_mode = 0
+
+[sub_resource type="ParticlesMaterial" id=8]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 10, 4, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 8.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 3.0
+scale_random = 0.0
+scale_curve = ExtResource( 4 )
+color_ramp = ExtResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Animation", "Color", "Emission Shape", "Hue Variation", "Initial Velocity", "Orbit Velocity", "Scale", "Spread" ]
+
+[sub_resource type="ParticlesMaterial" id=9]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 2.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 120.0
+angle_random = 0.0
+scale = 2.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Initial Velocity", "Orbit Velocity", "Scale" ]
+
+[node name="meteor" index="0" instance=ExtResource( 1 )]
+
+rotation = 1.5708
+z_index = 1
+
+[node name="light" parent="." index="3"]
+
+material = SubResource( 1 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="idle" parent="." index="4"]
+
+material = SubResource( 2 )
+_sections_unfolded = [ "Material", "Transform" ]
+
+[node name="smoke" type="Particles2D" parent="idle" index="0"]
+
+use_parent_material = true
+position = Vector2( -4, 0 )
+rotation = -1.5708
+emitting = true
+amount = 48
+lifetime = 2.0
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Transform", "Visibility" ]
+
+[node name="fire" type="Particles2D" parent="idle" index="1"]
+
+use_parent_material = true
+position = Vector2( -4, 0 )
+rotation = -1.5708
+emitting = true
+amount = 32
+lifetime = 0.5
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 6 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Transform" ]
+
+[node name="fireball" type="Particles2D" parent="idle" index="2"]
+
+material = SubResource( 7 )
+use_parent_material = true
+position = Vector2( -4, 0 )
+rotation = -1.5708
+emitting = true
+amount = 64
+lifetime = 1.0
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 8 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material" ]
+
+[node name="bolt" type="Particles2D" parent="idle" index="3"]
+
+use_parent_material = true
+emitting = true
+amount = 1
+lifetime = 2.0
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 9 )
+texture = ExtResource( 5 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
+
+[node name="smoke2" type="Particles2D" parent="explode" index="0"]
+
+use_parent_material = true
+rotation = -1.5708
+emitting = false
+amount = 48
+lifetime = 2.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="fire2" type="Particles2D" parent="explode" index="1"]
+
+use_parent_material = true
+rotation = -1.5708
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 6 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="fireball2" type="Particles2D" parent="explode" index="2"]
+
+use_parent_material = true
+rotation = -1.5708
+emitting = false
+amount = 64
+lifetime = 2.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 8 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+
+

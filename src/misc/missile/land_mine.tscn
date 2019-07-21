@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/misc/missile/land_mine.gd" type="Script" id=1]
+[ext_resource path="res://asset/img/missile-spell/land_mine.res" type="Texture" id=2]
+[ext_resource path="res://asset/img/light/fire_scale.res" type="Texture" id=3]
+[ext_resource path="res://asset/img/light/fire_gradient.res" type="Texture" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 16.0
+angular_velocity = 6.01853e-36
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_curve = ExtResource( 3 )
+color = Color( 0.2, 0.199219, 0.199219, 0.5 )
+
+[sub_resource type="Curve" id=3]
+min_value = 0.5
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 22.0
+angular_velocity = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_curve = SubResource( 4 )
+color_ramp = ExtResource( 4 )
+
+[sub_resource type="Curve" id=6]
+min_value = 0.5
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 22.0
+angular_velocity = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_curve = SubResource( 7 )
+color_ramp = ExtResource( 4 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 24.0
+
+[node name="land_mine" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="tween" type="Tween" parent="."]
+
+[node name="img" type="Sprite" parent="."]
+position = Vector2( 0, -2 )
+texture = ExtResource( 2 )
+
+[node name="snd" type="AudioStreamPlayer2D" parent="img"]
+max_distance = 125.0
+attenuation = 0.0
+
+[node name="explode" type="Node2D" parent="img"]
+visible = false
+material = SubResource( 1 )
+
+[node name="smoke2" type="Particles2D" parent="img/explode"]
+use_parent_material = true
+rotation = 3.14159
+emitting = false
+amount = 48
+one_shot = true
+explosiveness = 0.6
+local_coords = false
+process_material = SubResource( 2 )
+
+[node name="fire2" type="Particles2D" parent="img/explode"]
+use_parent_material = true
+rotation = 3.14159
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 0.6
+local_coords = false
+process_material = SubResource( 5 )
+
+[node name="fireball2" type="Particles2D" parent="img/explode"]
+use_parent_material = true
+rotation = -1.5708
+emitting = false
+amount = 48
+one_shot = true
+explosiveness = 0.6
+local_coords = false
+process_material = SubResource( 8 )
+
+[node name="combustible" type="Area2D" parent="img"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="blast_circle" type="CollisionShape2D" parent="img/combustible"]
+shape = SubResource( 9 )
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="img/combustible" to="." method="_on_body_entered"]

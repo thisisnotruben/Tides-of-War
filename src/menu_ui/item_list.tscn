@@ -1,0 +1,183 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/menu_ui/item_list.gd" type="Script" id=1]
+[ext_resource path="res://src/menu_ui/item_slot.tscn" type="PackedScene" id=2]
+
+[node name="item_list" type="GridContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 5
+script = ExtResource( 1 )
+_sections_unfolded = [ "Rect", "custom_constants" ]
+__meta__ = {
+"_edit_vertical_guides_": [ -565.501, -73.9145 ]
+}
+allow_cooldown = true
+item_max = 25
+
+[node name="item_slot1" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="item_slot2" parent="." index="1" instance=ExtResource( 2 )]
+
+margin_left = 112.0
+margin_right = 224.0
+
+[node name="item_slot3" parent="." index="2" instance=ExtResource( 2 )]
+
+margin_left = 224.0
+margin_right = 336.0
+
+[node name="item_slot4" parent="." index="3" instance=ExtResource( 2 )]
+
+margin_left = 336.0
+margin_right = 448.0
+
+[node name="item_slot5" parent="." index="4" instance=ExtResource( 2 )]
+
+margin_left = 448.0
+margin_right = 560.0
+
+[node name="item_slot6" parent="." index="5" instance=ExtResource( 2 )]
+
+margin_top = 112.0
+margin_bottom = 224.0
+
+[node name="item_slot7" parent="." index="6" instance=ExtResource( 2 )]
+
+margin_left = 112.0
+margin_top = 112.0
+margin_right = 224.0
+margin_bottom = 224.0
+
+[node name="item_slot8" parent="." index="7" instance=ExtResource( 2 )]
+
+margin_left = 224.0
+margin_top = 112.0
+margin_right = 336.0
+margin_bottom = 224.0
+
+[node name="item_slot9" parent="." index="8" instance=ExtResource( 2 )]
+
+margin_left = 336.0
+margin_top = 112.0
+margin_right = 448.0
+margin_bottom = 224.0
+
+[node name="item_slot10" parent="." index="9" instance=ExtResource( 2 )]
+
+margin_left = 448.0
+margin_top = 112.0
+margin_right = 560.0
+margin_bottom = 224.0
+
+[node name="item_slot11" parent="." index="10" instance=ExtResource( 2 )]
+
+margin_top = 224.0
+margin_bottom = 336.0
+
+[node name="item_slot12" parent="." index="11" instance=ExtResource( 2 )]
+
+margin_left = 112.0
+margin_top = 224.0
+margin_right = 224.0
+margin_bottom = 336.0
+
+[node name="item_slot13" parent="." index="12" instance=ExtResource( 2 )]
+
+margin_left = 224.0
+margin_top = 224.0
+margin_right = 336.0
+margin_bottom = 336.0
+
+[node name="item_slot14" parent="." index="13" instance=ExtResource( 2 )]
+
+margin_left = 336.0
+margin_top = 224.0
+margin_right = 448.0
+margin_bottom = 336.0
+
+[node name="item_slot15" parent="." index="14" instance=ExtResource( 2 )]
+
+margin_left = 448.0
+margin_top = 224.0
+margin_right = 560.0
+margin_bottom = 336.0
+
+[node name="item_slot16" parent="." index="15" instance=ExtResource( 2 )]
+
+margin_top = 336.0
+margin_bottom = 448.0
+
+[node name="item_slot17" parent="." index="16" instance=ExtResource( 2 )]
+
+margin_left = 112.0
+margin_top = 336.0
+margin_right = 224.0
+margin_bottom = 448.0
+
+[node name="item_slot18" parent="." index="17" instance=ExtResource( 2 )]
+
+margin_left = 224.0
+margin_top = 336.0
+margin_right = 336.0
+margin_bottom = 448.0
+
+[node name="item_slot19" parent="." index="18" instance=ExtResource( 2 )]
+
+margin_left = 336.0
+margin_top = 336.0
+margin_right = 448.0
+margin_bottom = 448.0
+
+[node name="item_slot20" parent="." index="19" instance=ExtResource( 2 )]
+
+margin_left = 448.0
+margin_top = 336.0
+margin_right = 560.0
+margin_bottom = 448.0
+
+[node name="item_slot21" parent="." index="20" instance=ExtResource( 2 )]
+
+margin_top = 448.0
+margin_bottom = 560.0
+
+[node name="item_slot22" parent="." index="21" instance=ExtResource( 2 )]
+
+margin_left = 112.0
+margin_top = 448.0
+margin_right = 224.0
+margin_bottom = 560.0
+
+[node name="item_slot23" parent="." index="22" instance=ExtResource( 2 )]
+
+margin_left = 224.0
+margin_top = 448.0
+margin_right = 336.0
+margin_bottom = 560.0
+
+[node name="item_slot24" parent="." index="23" instance=ExtResource( 2 )]
+
+margin_left = 336.0
+margin_top = 448.0
+margin_right = 448.0
+margin_bottom = 560.0
+
+[node name="item_slot25" parent="." index="24" instance=ExtResource( 2 )]
+
+margin_left = 448.0
+margin_top = 448.0
+margin_right = 560.0
+margin_bottom = 560.0
+
+

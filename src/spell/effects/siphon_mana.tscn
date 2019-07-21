@@ -1,0 +1,220 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/spell/effects/effect_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/spell/effects/color_ramp.shader" type="Shader" id=2]
+[ext_resource path="res://asset/img/missile-spell/siphon_mana.res" type="Texture" id=3]
+[ext_resource path="res://asset/img/missile-spell/line2.png" type="Texture" id=4]
+
+
+
+[sub_resource type="ShaderMaterial" id=1]
+
+resource_local_to_scene = true
+resource_name = "color_ramp"
+render_priority = 0
+shader = ExtResource( 2 )
+shader_param/color_speed = 1.0
+shader_param/scale_speed = 1.25
+shader_param/energy = 0.8
+shader_param/scale = Vector2( 0.8, 1 )
+shader_param/gradient = ExtResource( 3 )
+_sections_unfolded = [ "Resource", "shader_param" ]
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = true
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 19.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = ExtResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Flags", "Gravity", "Initial Velocity", "Orbit Velocity", "Spread", "Trail" ]
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 4.0
+initial_velocity_random = 0.0
+angular_velocity = 360.0
+angular_velocity_random = 0.0
+orbit_velocity = 2.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = ExtResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angular Velocity", "Color", "Gravity", "Initial Velocity", "Orbit Velocity", "Spread" ]
+
+[sub_resource type="StreamTexture" id=4]
+
+flags = 0
+load_path = "res://.import/ball.png-4773b37de75a1ab90ed99dec5a19bcf2.stex"
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = true
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 32.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 1.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = ExtResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Flags", "Gravity", "Initial Velocity", "Orbit Velocity", "Spread", "Trail" ]
+
+[node name="siphon_mana" instance=ExtResource( 1 )]
+
+light_fade_delay = 1.0
+
+[node name="light" parent="." index="3"]
+
+material = SubResource( 1 )
+scale = Vector2( 0.2, 0.2 )
+
+[node name="persistant" type="Particles2D" parent="idle" index="0"]
+
+emitting = true
+amount = 32
+lifetime = 0.6
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 2 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+[node name="bolt" type="Particles2D" parent="idle" index="1"]
+
+emitting = true
+amount = 1
+lifetime = 0.5
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = SubResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material" ]
+
+[node name="explosion" type="Particles2D" parent="explode" index="0"]
+
+emitting = false
+amount = 32
+lifetime = 1.0
+one_shot = true
+preprocess = 0.3
+speed_scale = 1.0
+explosiveness = 0.8
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+

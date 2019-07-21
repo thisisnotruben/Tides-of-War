@@ -1,0 +1,152 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://asset/img/font/mago1_144.res" type="DynamicFont" id=1]
+[ext_resource path="res://asset/img/font/mago1_64.res" type="DynamicFont" id=2]
+[ext_resource path="res://asset/img/ui/brown_button.res" type="Texture" id=3]
+[ext_resource path="res://asset/img/ui/brown_button_pressed.res" type="Texture" id=4]
+[ext_resource path="res://asset/img/font/mago1_96.res" type="DynamicFont" id=5]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Container
+
+func _on_back_pressed():
+	globals.play_sample('click3')
+	hide()
+	get_owner().menu.show()"
+
+[node name="about" type="Container" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="v" type="VBoxContainer" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 2
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="label" type="Label" parent="v" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 720.0
+margin_bottom = 114.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+text = "About"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags", "custom_colors" ]
+
+[node name="label2" type="Label" parent="v" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 118.0
+margin_right = 720.0
+margin_bottom = 1176.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+text = "Fonts by:
+https://magodev.itch.io/magosfonts"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "Size Flags", "custom_colors" ]
+
+[node name="back" type="TextureButton" parent="v" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1180.0
+margin_right = 720.0
+margin_bottom = 1280.0
+rect_min_size = Vector2( 380, 100 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+_sections_unfolded = [ "Rect", "Textures" ]
+
+[node name="label" type="Label" parent="v/back" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+text = "Back"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors", "custom_fonts" ]
+
+[connection signal="pressed" from="v/back" to="." method="_on_back_pressed"]
+
+

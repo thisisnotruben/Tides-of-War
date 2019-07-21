@@ -1,0 +1,772 @@
+{
+  "weapon": {
+    "1": {
+      "sword": [
+        "Shortsword",
+        1713
+      ],
+      "dagger": [
+        "Carving Knife",
+        1551
+      ],
+      "spear": [
+        "Farmer's Pike",
+        1643
+      ],
+      "axe": [
+        "Primal Axe",
+        1461
+      ],
+      "claw": [
+        "Pincers",
+        1521
+      ],
+      "mace": [
+        "Large Club",
+        1607
+      ],
+      "staff": [
+        "Walking Cane",
+        1663
+      ],
+      "bow": [
+        "Needle Threader",
+        1491
+      ]
+    },
+    "2": {
+      "sword": [
+        "Champion's Greatsword",
+        1717
+      ],
+      "dagger": [
+        "Fine Shanker",
+        1555
+      ],
+      "spear": [
+        "Jagged Pike",
+        1647
+      ],
+      "axe": [
+        "Chef's Cleaver",
+        1465
+      ],
+      "claw": [
+        "Wolf's Paw",
+        1525
+      ],
+      "mace": [
+        "Warmaul",
+        1611
+      ],
+      "staff": [
+        "Fighting Stick",
+        1667
+      ],
+      "bow": [
+        "Hunter's Bow",
+        1495
+      ]
+    },
+    "3": {
+      "sword": [
+        "Steelforged Sword",
+        1719
+      ],
+      "dagger": [
+        "Backstabber's Knife",
+        1557
+      ],
+      "spear": [
+        "Piercing Spear",
+        1649
+      ],
+      "axe": [
+        "Battle Axe",
+        1467
+      ],
+      "claw": [
+        "Spiked Knuckles",
+        1527
+      ],
+      "mace": [
+        "Warhammer",
+        1613
+      ],
+      "staff": [
+        "War Staff",
+        1669
+      ],
+      "bow": [
+        "Repeating Longbow",
+        1497
+      ]
+    },
+    "4": {
+      "sword": [
+        "Corrupted Sword",
+        1720
+      ],
+      "dagger": [
+        "Blackfire Dagger",
+        1558
+      ],
+      "spear": [
+        "Shadowstrike",
+        1650
+      ],
+      "axe": [
+        "Soul Hacker",
+        1468
+      ],
+      "claw": [
+        "Death's Grip",
+        1528
+      ],
+      "mace": [
+        "Grave Maker",
+        1614
+      ],
+      "staff": [
+        "Scept of the Dead",
+        1670
+      ],
+      "bow": [
+        "Widowmaker",
+        1498
+      ]
+    },
+    "5": {
+      "sword": [
+        "Crusader's Warblade",
+        1721
+      ],
+      "dagger": [
+        "Divine Toothpick",
+        1559
+      ],
+      "spear": [
+        "Peacemaker",
+        1651
+      ],
+      "axe": [
+        "Head Chopper",
+        1469
+      ],
+      "claw": [
+        "Holy Fist",
+        1529
+      ],
+      "mace": [
+        "Oathkeeoper",
+        1615
+      ],
+      "staff": [
+        "Lightbringer",
+        1671
+      ],
+      "bow": [
+        "Angel's Harp",
+        1499
+      ]
+    },
+    "6": {
+      "sword": [
+        "Bloodforged Sword",
+        1722
+      ],
+      "dagger": [
+        "Gut Ripper",
+        1560
+      ],
+      "spear": [
+        "Bloodpike ",
+        1652
+      ],
+      "axe": [
+        "Decapitater",
+        1470
+      ],
+      "claw": [
+        "Tenderizer",
+        1530
+      ],
+      "mace": [
+        "Painbringer",
+        1616
+      ],
+      "staff": [
+        "Tormented Scepter",
+        1672
+      ],
+      "bow": [
+        "Bloodseeker",
+        1500
+      ]
+    },
+    "7": {
+      "sword": [
+        "Crystal forged Sword",
+        1723
+      ],
+      "dagger": [
+        "Enchanted Dagger",
+        1561
+      ],
+      "spear": [
+        "Hope Killer",
+        1653
+      ],
+      "axe": [
+        "Bone Chiller",
+        1471
+      ],
+      "claw": [
+        "Cold Hands",
+        1531
+      ],
+      "mace": [
+        "Celestial Rod",
+        1617
+      ],
+      "staff": [
+        "Spire of Hope",
+        1673
+      ],
+      "bow": [
+        "Chord of Justice",
+        1501
+      ]
+    },
+    "8": {
+      "sword": [
+        "Heart Stopper",
+        1724
+      ],
+      "dagger": [
+        "Devil's Mercy",
+        1562
+      ],
+      "spear": [
+        "Dreaded Stick",
+        1654
+      ],
+      "axe": [
+        "Howling Reaper",
+        1472
+      ],
+      "claw": [
+        "Boneshredder",
+        1532
+      ],
+      "mace": [
+        "Sorrow's End",
+        1618
+      ],
+      "staff": [
+        "Scept of Ancients",
+        1674
+      ],
+      "bow": [
+        "Last Kiss",
+        1502
+      ]
+    },
+    "9": {
+      "sword": [
+        "Blade of Angels",
+        1725
+      ],
+      "dagger": [
+        "Skull Carver",
+        1563
+      ],
+      "spear": [
+        "Warlord's Glaive",
+        1655
+      ],
+      "axe": [
+        "Butcher's Friend",
+        1473
+      ],
+      "claw": [
+        "Claws of Agony",
+        1533
+      ],
+      "mace": [
+        "Breath Taker",
+        1619
+      ],
+      "staff": [
+        "Staff of Damnation",
+        1675
+      ],
+      "bow": [
+        "High Strung",
+        1506
+      ]
+    },
+    "10": {
+      "sword": [
+        "Apocalypse",
+        1732
+      ],
+      "dagger": [
+        "Skin Shredder",
+        1564
+      ],
+      "spear": [
+        "Bloodfall",
+        1656
+      ],
+      "axe": [
+        "Executioner's Final Word",
+        1476
+      ],
+      "claw": [
+        "Devil's Hand",
+        1549
+      ],
+      "mace": [
+        "Annihilation",
+        1621
+      ],
+      "staff": [
+        "The Reckoning",
+        1683
+      ],
+      "bow": [
+        "Throat Needler",
+        1508
+      ]
+    }
+  },
+  "armor": {
+    "1": {
+      "t1": [
+        "Linen Robe",
+        56,
+        "cloth"
+      ],
+      "t2": [
+        "Scout's Cloak",
+        88,
+        "cloth"
+      ]
+    },
+    "2": {
+      "t1": [
+        "Chainvest",
+        91,
+        "metal0"
+      ],
+      "t2": [
+        "Leather Vest",
+        59,
+        "cloth"
+      ]
+    },
+    "3": {
+      "t1": [
+        "Leather Breastplate",
+        60,
+        "cloth"
+      ],
+      "t2": [
+        "Studded Leather Tunic",
+        72,
+        "cloth"
+      ]
+    },
+    "4": {
+      "t1": [
+        "Tarnished Plate Vest",
+        61,
+        "metal0"
+      ],
+      "t2": [
+        "Embroidered Leather Armor",
+        161,
+        "cloth"
+      ]
+    },
+    "5": {
+      "t1": [
+        "Platemail Armor",
+        73,
+        "metal0"
+      ],
+      "t2": [
+        "Metal Tunic",
+        68,
+        "metal0"
+      ]
+    },
+    "6": {
+      "t1": [
+        "Vanguard Breastplate ",
+        62,
+        "metal0"
+      ],
+      "t2": [
+        "Steelforged Chestguard",
+        124,
+        "metal0"
+      ]
+    },
+    "7": {
+      "t1": [
+        "Warlord's Cuirass",
+        64,
+        "metal0"
+      ],
+      "t2": [
+        "Embroidered Armor",
+        148,
+        "metal0"
+      ]
+    },
+    "8": {
+      "t1": [
+        "Ceremonial Breastplate",
+        63,
+        "metal0"
+      ],
+      "t2": [
+        "Heavy Plated Armor",
+        76,
+        "metal0"
+      ]
+    },
+    "9": {
+      "t1": [
+        "Ancient Oriental Breastplate",
+        75,
+        "metal0"
+      ],
+      "t2": [
+        "Polished Chestplate",
+        151,
+        "metal0"
+      ]
+    },
+    "10": {
+      "t1": [
+        "Immortal's Armor",
+        78,
+        "metal0"
+      ],
+      "t2": [
+        "Juggernaut Breastplate",
+        67,
+        "metal0"
+      ]
+    }
+  },
+  "potion": {
+    "1": {
+      "name": "Minor",
+      "healing": 800,
+      "mana": 805,
+      "stamina": 801,
+      "intellect": 806,
+      "agility": 803,
+      "strength": 802,
+      "defense": 809
+    },
+    "2": {
+      "Name": "Lesser",
+      "healing": 786,
+      "mana": 791,
+      "stamina": 787,
+      "intellect": 792,
+      "agility": 789,
+      "strength": 788,
+      "defense": 795
+    },
+    "3": {
+      "name": "",
+      "healing": 604,
+      "mana": 609,
+      "stamina": 605,
+      "intellect": 610,
+      "agility": 607,
+      "strength": 606,
+      "defense": 613
+    },
+    "4": {
+      "name": "Greater",
+      "healing": 646,
+      "mana": 651,
+      "stamina": 647,
+      "intellect": 652,
+      "agility": 649,
+      "strength": 648,
+      "defense": 655
+    },
+    "5": {
+      "name": "Superior",
+      "healing": 618,
+      "mana": 623,
+      "stamina": 619,
+      "intellect": 624,
+      "agility": 621,
+      "strength": 620,
+      "defense": 627
+    },
+    "6": {
+      "name": "Major",
+      "healing": 744,
+      "mana": 749,
+      "stamina": 745,
+      "intellect": 750,
+      "agility": 747,
+      "strength": 746,
+      "defense": 753
+    },
+    "7": {
+      "name": "Master",
+      "healing": 772,
+      "mana": 777,
+      "stamina": 773,
+      "intellect": 778,
+      "agility": 775,
+      "strength": 774,
+      "defense": 781
+    },
+    "8": {
+      "name": "Legendary",
+      "healing": 590,
+      "mana": 595,
+      "stamina": 591,
+      "intellect": 596,
+      "agility": 593,
+      "strength": 592,
+      "defense": 599
+    },
+    "9": {
+      "name": "Mythical",
+      "healing": 688,
+      "mana": 693,
+      "stamina": 689,
+      "intellect": 694,
+      "agility": 691,
+      "strength": 690,
+      "defense": 697
+    },
+    "10": {
+      "name": "Ancient",
+      "healing": 758,
+      "mana": 763,
+      "stamina": 759,
+      "intellect": 764,
+      "agility": 761,
+      "strength": 760,
+      "defense": 767
+    }
+  },
+  "food": {
+    "1": {
+      "t1": [
+        "Macho Banana",
+        262
+      ],
+      "t2": [
+        "Roasted Carrot",
+        305
+      ]
+    },
+    "2": {
+      "t1": [
+        "Angel Peach",
+        260
+      ],
+      "t2": [
+        "Juicy Apple",
+        257
+      ]
+    },
+    "3": {
+      "t1": [
+        "Moonberry",
+        263
+      ],
+      "t2": [
+        "Grizzly Grapes",
+        308
+      ]
+    },
+    "4": {
+      "t1": [
+        "Ripe Watermelon",
+        264
+      ],
+      "t2": [
+        "Sweet Pineapple",
+        261
+      ]
+    },
+    "5": {
+      "t1": [
+        "Corn on the Cob",
+        313
+      ],
+      "t2": [
+        "Nutty Acorn",
+        321
+      ]
+    },
+    "6": {
+      "t1": [
+        "Sun Dried Mushroom",
+        310
+      ],
+      "t2": [
+        "Herb Baked Egg",
+        291
+      ]
+    },
+    "7": {
+      "t1": [
+        "Hard Cheese",
+        289
+      ],
+      "t2": [
+        "Spice Bread",
+        297
+      ]
+    },
+    "8": {
+      "t1": [
+        "Oatmeal Muffin",
+        327
+      ],
+      "t2": [
+        "Chocolate Chip Cookie",
+        273
+      ]
+    },
+    "9": {
+      "t1": [
+        "Queenfish",
+        292
+      ],
+      "t2": [
+        "Massive Chicken Leg",
+        293
+      ]
+    },
+    "10": {
+      "t1": [
+        "Marinated Steak",
+        304
+      ],
+      "t2": [
+        "Bowl Of Honey",
+        280
+      ]
+    }
+  },
+  "misc": {
+    "1": {
+      "t1": [
+        "Spider Fang",
+        217
+      ],
+      "t2": [
+        "Light Feather",
+        213
+      ]
+    },
+    "2": {
+      "t1": [
+        "Brown Button",
+        230
+      ],
+      "t2": [
+        "Petrified Bone",
+        201
+      ]
+    },
+    "3": {
+      "t1": [
+        "Seashell",
+        214
+      ],
+      "t2": [
+        "Bat Ear",
+        204
+      ]
+    },
+    "4": {
+      "t1": [
+        "Crab Pincer",
+        205
+      ],
+      "t2": [
+        "Cat Eye",
+        218
+      ]
+    },
+    "5": {
+      "t1": [
+        "Blue Feather",
+        197
+      ],
+      "t2": [
+        "Candle",
+        240
+      ]
+    },
+    "6": {
+      "t1": [
+        "Rugged Leather",
+        195
+      ],
+      "t2": [
+        "Course Leather",
+        210
+      ]
+    },
+    "7": {
+      "t1": [
+        "Wolf Tail",
+        222
+      ],
+      "t2": [
+        "Shattered Mirror",
+        243
+      ]
+    },
+    "8": {
+      "t1": [
+        "Cat Claw",
+        196
+      ],
+      "t2": [
+        "Metal Plate",
+        225
+      ]
+    },
+    "9": {
+      "t1": [
+        "Canine",
+        193
+      ],
+      "t2": [
+        "Ruined Pelt",
+        194
+      ]
+    },
+    "10": {
+      "t1": [
+        "Red Yarn",
+        229
+      ],
+      "t2": [
+        "Broken Glass",
+        813
+      ]
+    }
+  }
+}

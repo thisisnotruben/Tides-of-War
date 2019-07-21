@@ -1,0 +1,27 @@
+INGAME
+    For non-critters:
+        race-ID
+            or
+        character_name-ID<*>
+            or
+        character_race-ID<#>
+            or 
+        character_name
+
+    for critters:
+        critter-critter_race-weapon-swing_type-ID
+        (weapon and swing type don't do anything here)
+        
+                    
+        -ID is irrelevant and never used in-game, just makes sure every character is named uniquely in the node tree
+        -<*> is used to denote that this unit will have this "Character Name" that is used multiple times in game
+        -<#> defines that this unit is a commoner (non-combative, doesn't have attack animations)
+        -When just character name, it is a unique name only used once in the map defined
+        *ALL ABOVE MUST BE DEFINED IN meta/unit_meta.json
+
+FILE-SYSTEM
+    for non-critters:
+        weapon_type-swing_type-frames_in_img-misc_info
+    for critters:
+        critter_race-weapon_type-swing_type-frames_in_img-misc_info
+    

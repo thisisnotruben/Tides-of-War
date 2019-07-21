@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://asset/img/light/fire_anim.res" type="Material" id=1]
+[ext_resource path="res://asset/img/light/fire_smoke.res" type="Material" id=2]
+
+[node name="fire" type="Particles2D" index="0"]
+
+use_parent_material = true
+position = Vector2( 0, -3 )
+rotation = -1.5708
+emitting = true
+amount = 8
+lifetime = 2.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 0.5
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = ExtResource( 1 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
+
+[node name="smoke" type="Particles2D" parent="." index="0"]
+
+show_behind_parent = true
+use_parent_material = true
+position = Vector2( 0.0305634, 1.10639e-07 )
+emitting = true
+amount = 6
+lifetime = 3.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 0.5
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = ExtResource( 2 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Visibility" ]
+
+

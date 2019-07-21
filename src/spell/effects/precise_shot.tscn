@@ -1,0 +1,231 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/spell/effects/effect_template.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/spell/effects/color_ramp.shader" type="Shader" id=2]
+[ext_resource path="res://asset/img/missile-spell/precise_shot.res" type="Texture" id=3]
+[ext_resource path="res://asset/img/light/fire_scale.res" type="Texture" id=4]
+
+
+
+[sub_resource type="Gradient" id=12]
+
+offsets = PoolRealArray( 0, 0.5, 1 )
+colors = PoolColorArray( 0.356863, 0.658824, 1, 1, 0.596078, 0.862745, 1, 1, 0.00784314, 0.290196, 0.792157, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+
+flags = 4
+gradient = SubResource( 12 )
+width = 2048
+
+[sub_resource type="ShaderMaterial" id=7]
+
+resource_local_to_scene = true
+resource_name = "color_ramp"
+render_priority = 0
+shader = ExtResource( 2 )
+shader_param/color_speed = 1.5
+shader_param/scale_speed = 1.0
+shader_param/energy = 0.8
+shader_param/scale = Vector2( 0.8, 1 )
+shader_param/gradient = SubResource( 6 )
+_sections_unfolded = [ "Resource", "shader_param" ]
+
+[sub_resource type="Curve" id=8]
+
+min_value = 0.5
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+
+flags = 4
+width = 2048
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 4.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 8.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 2.0
+scale_random = 0.0
+scale_curve = SubResource( 9 )
+color = Color( 0.2, 0.199219, 0.199219, 0.5 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=11]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 3.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 8.0
+initial_velocity_random = 0.0
+angular_velocity = 1.38729e-43
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 2.0
+scale_random = 0.0
+scale_curve = ExtResource( 4 )
+color_ramp = ExtResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color" ]
+
+[node name="precise_shot" instance=ExtResource( 1 )]
+
+play_sound = true
+
+[node name="light" parent="." index="3"]
+
+material = SubResource( 7 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="smoke" type="Particles2D" parent="idle" index="0"]
+
+use_parent_material = true
+rotation = 3.14159
+emitting = true
+amount = 32
+lifetime = 2.0
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 10 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material" ]
+
+[node name="pers1" type="Particles2D" parent="idle" index="1"]
+
+rotation = -1.5708
+emitting = true
+amount = 64
+lifetime = 2.0
+one_shot = false
+preprocess = 10.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 11 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="smoke2" type="Particles2D" parent="explode" index="0"]
+
+use_parent_material = true
+rotation = 3.14159
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 10 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+
+[node name="explode" type="Particles2D" parent="explode" index="1"]
+
+rotation = -1.5708
+emitting = false
+amount = 64
+lifetime = 1.25
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 11 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+

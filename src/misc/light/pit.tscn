@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/misc/light/torch.tscn" type="PackedScene" id=1]
+[ext_resource path="res://asset/img/light/fire_pit.res" type="Texture" id=2]
+
+[node name="light" index="0" instance=ExtResource( 1 )]
+
+texture = ExtResource( 2 )
+offset = Vector2( 0, -4 )
+
+[node name="fire" parent="." index="3"]
+
+position = Vector2( 0, -4 )
+scale = Vector2( 2, 2 )
+
+

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/spell/effects/spell_effects.gd" type="Script" id=1]
+[ext_resource path="res://src/spell/effects/color_ramp.tres" type="Material" id=2]
+[ext_resource path="res://asset/img/light/light.png" type="Texture" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[sub_resource type="AudioStreamSample" id=2]
+
+[node name="effect_template" type="Node2D"]
+material = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="tween" type="Tween" parent="."]
+
+[node name="snd" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 2 )
+max_distance = 125.0
+attenuation = 0.0
+
+[node name="light" type="Sprite" parent="."]
+material = ExtResource( 2 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+
+[node name="idle" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="explode" type="Node2D" parent="."]
+use_parent_material = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

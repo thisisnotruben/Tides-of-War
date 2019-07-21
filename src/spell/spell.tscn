@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/misc/pickable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/spell/spell.gd" type="Script" id=2]
+[ext_resource path="res://asset/img/missile-spell/spell_area.png" type="Texture" id=3]
+
+[node name="spell" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="distance" parent="sight" index="0"]
+disabled = true
+
+[node name="spell_area" type="TouchScreenButton" parent="." index="7"]
+visible = false
+modulate = Color( 0, 0.6, 1, 0.74902 )
+normal = ExtResource( 3 )
+[connection signal="body_entered" from="sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="sight" to="." method="_on_sight_body_exited"]
+[connection signal="pressed" from="spell_area" to="." method="_on_spell_area_pressed"]
+[connection signal="released" from="spell_area" to="." method="_on_spell_area_released"]

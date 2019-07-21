@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/misc/other/footstep.gd" type="Script" id=1]
+
+[node name="footstep" type="Node2D" index="0"]
+
+use_parent_material = true
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="timer" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="tween" type="Tween" parent="." index="1"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
+
+

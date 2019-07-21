@@ -1,0 +1,200 @@
+{
+  "devastate": {
+    "icon": 1788,
+    "cooldown": "0.05",
+    "level": 1,
+    "range": 32,
+    "des": "Strike the target for 10% damage."
+  },
+  "intimidating_shout": {
+    "icon": 1780,
+    "cooldown": "0.45",
+    "level": 2,
+    "range": 0,
+    "des": "Unleash a terrifying roar, disorienting foes around you for 20 sec."
+  },
+  "cleave": {
+    "icon": 1242,
+    "cooldown": "0.15",
+    "level": 3,
+    "range": 32,
+    "des": "Strikes all enemies in an area for a sweeping attack for 10% of damage."
+  },
+  "fortify": {
+    "icon": 1248,
+    "cooldown": "2",
+    "level": 4,
+    "range": 0,
+    "des": "Temporarily increases your armor by 25%, reducing damage dealt to you for 60 sec."
+  },
+  "bash": {
+    "icon": 1249,
+    "cooldown": "0.15",
+    "level": 5,
+    "range": 32,
+    "des": "Stuns opponent for 5 sec, and deals 10% damage."
+  },
+  "hemorrhage": {
+    "icon": 1227,
+    "cooldown": "1.50",
+    "level": 6,
+    "range": 32,
+    "des": "Tears open target, deals up to 25 damage in 1 min."
+  },
+  "stomp": {
+    "icon": 1253,
+    "cooldown": "0.30",
+    "level": 7,
+    "range": 0,
+    "des": "Slams the ground, dealing damage to nearby enemy units with a 20% chance to stun for each unit."
+  },
+  "overpower": {
+    "icon": 1240,
+    "cooldown": "0.25",
+    "level": 9,
+    "range": 32,
+    "des": "Strike at the opponent for 15% of damage. Cannot be blocked, dodged, or parried."
+  },
+  "frenzy": {
+    "icon": 1345,
+    "cooldown": "0.03",
+    "level": 10,
+    "range": 0,
+    "des": "Increases attack speed by 50% and movement by 25%, but deals 5 damage every 5 sec to you. Lasts 30 sec"
+  },
+  "searing_arrow": {
+    "icon": 1785,
+    "cooldown": "0.05",
+    "level": 1,
+    "range": 64,
+    "des": "Shoot a flaming arrow at target that deals 5 damage for 15 sec."
+  },
+  "concussive_shot": {
+    "icon": 1779,
+    "cooldown": "0.10",
+    "level": 2,
+    "range": 64,
+    "des": "Dazes the target, slowing target's movement by 50% for 5 sec."
+  },
+  "piercing_shot": {
+    "icon": 1341,
+    "cooldown": "0.20",
+    "level": 3,
+    "range": 64,
+    "des": "A powerful shot at deals 10% damage that ignores target's armor."
+  },
+  "stinging_shot": {
+    "icon": 1786,
+    "cooldown": "0.10",
+    "level": 4,
+    "range": 64,
+    "des": "Fire a poison tipped arrow that deals 5 damage every 2 sec for 30 sec."
+  },
+  "explosive_arrow": {
+    "icon": 1245,
+    "cooldown": "0.15",
+    "level": 5,
+    "range": 64,
+    "des": "Fire a dynamite tipped arrow at target. When detonated, damages all unit in blast radius"
+  },
+  "precise_shot": {
+    "icon": 1243,
+    "cooldown": "0.45",
+    "level": 6,
+    "range": 64,
+    "des": "Aimed shot that deals 10% damage with a +10% chance of a critical strike."
+  },
+  "sniper_shot": {
+    "icon": 1417,
+    "cooldown": "1.50",
+    "level": 7,
+    "range": 80,
+    "des": "Fires a well-aimed shot dealing 15% damage. Range of shot increased by 25%"
+  },
+  "explosive_trap": {
+    "icon": 1783,
+    "cooldown": "0.30",
+    "level": 8,
+    "range": 0,
+    "des": "Plant an explosive trap, that'll explode when a unit passes near it. Arms itself in 5 sec, and self-destructs in 30 sec after."
+  },
+  "volley": {
+    "icon": 1244,
+    "cooldown": "2",
+    "level": 9,
+    "range": 64,
+    "des": "Rapidly launch 3 arrows at target dealing 5% damage each arrow."
+  },
+  "fireball": {
+    "icon": 1179,
+    "cooldown": "0.05",
+    "level": 1,
+    "range": 64,
+    "des": "Hurls a fiery ball that deals 10% of damage."
+  },
+  "shadow_bolt": {
+    "icon": 1782,
+    "cooldown": "0.10",
+    "level": 2,
+    "range": 64,
+    "des": "Sends a shadowy bolt at target, dealing 12% damage."
+  },
+  "frost_bolt": {
+    "icon": 1784,
+    "cooldown": "0.15",
+    "level": 3,
+    "range": 64,
+    "des": "Launches a bolt of frost at enemy. Deals 10% damage and slows target's movement by 30% for 10 sec."
+  },
+  "rejuvenate": {
+    "icon": 1207,
+    "cooldown": "0.30",
+    "level": 4,
+    "range": 0,
+    "des": "Restores 10%-30% of health."
+  },
+  "siphon_mana": {
+    "icon": 1425,
+    "cooldown": "0.20",
+    "level": 5,
+    "range": 40,
+    "des": "Drain up to 20% mana from enemy over 10 sec."
+  },
+  "haste": {
+    "icon": 1423,
+    "cooldown": "1",
+    "level": 6,
+    "range": 0,
+    "des": "Increase your movement speed by 50% for 10 sec."
+  },
+  "slow": {
+    "icon": 1787,
+    "cooldown": "0.30",
+    "level": 7,
+    "range": 32,
+    "des": "Slows target's movement and attack speed by 50% for 15 sec."
+  },
+  "lightning_bolt": {
+    "icon": 1194,
+    "cooldown": "0.20",
+    "level": 8,
+    "range": 64,
+    "des": "Hurl a lightning bolt at the enemy, dealing 12%, and then a 50% chance to jump to nearby enemies. Affects up to 3 units."
+  },
+  "mind_blast": {
+    "icon": 1339,
+    "cooldown": "1.50",
+    "level": 9,
+    "range": 48,
+    "des": "Blast the target's mind for 20% damage."
+  },
+  "meteor": {
+    "icon": 1781,
+    "cooldown": "3",
+    "level": 10,
+    "range": 64,
+    "des": "Rain down a meteror at target location, dealing 20% damage at target and 5% damage to units within the blast radius."
+  }
+}
+
+

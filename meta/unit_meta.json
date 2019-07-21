@@ -1,0 +1,219 @@
+
+{
+  "meta": {
+    "gnoll": {
+      "enemy": true,
+      "bow-null-16-b": "Gnoll Scout",
+      "bow-null-16-g": "Gnoll Scout",
+      "axe-swing_medium-17-b": "Gnoll Butcher",
+      "axe-swing_medium-17-g": "Gnoll Butcher",
+      "club-swing_small-17-b": "Gnoll Brute",
+      "club-swing_small-17-g": "Gnoll Brute",
+      "hatchet-swing_medium-17-b": "Gnoll Enforcer",
+      "hatchet-swing_medium-17-g": "Gnoll Enforcer",
+      "sickle-swing_small-17-b": "Gnoll Assasin",
+      "sickle-swing_small-17-g": "Gnoll Assasin"
+    },
+    "warthog": {
+      "enemy": true,
+      "axe-swing_medium-17-b": "Warthog Brute",
+      "axe-swing_medium-17-w": "Warthog Brute",
+      "mace-swing_medium-17-b": "Warthog Savage",
+      "mace-swing_medium-17-w": "Warthog Savage",
+      "rock-null-17-b": "Warthog Thrower",
+      "rock-null-17-w": "Warthog Thrower"
+    },
+    "orc": {
+      "enemy": false,
+      "axe-swing_medium-17": "Grunt",
+      "mace-swing_medium-17": "Grunt",
+      "magic-null-17": "Shaman",
+      "comm-0-10": "Peon",
+      "comm-1-10": "Peon",
+      "comm-2-10": "Peon",
+      "comm-3-10": "Peon",
+      "comm-4-10": "Peon",
+      "comm-5-10": "Peon",
+      "comm-6-10": "Peon"
+    },
+    "critter": {
+      "enemy": true,
+      "crab-club-swing_medium-16-blue": "Tide Crawler",
+      "crab-club-swing_medium-16-red": "Tide Crawler",
+      "snake-club-swing_medium-16": "Desert Serpant"
+    }
+  },
+  "map-1": {
+    "Gragor": {
+      "world_name": "Gragor",
+      "img": "orc/comm-3-10.png",
+      "enemy": false,
+      "bbcode": "[center]Wassup bro[/center]",
+      "level": 1,
+      "quest": [
+        "plug",
+        "make_friends"
+      ]
+    },
+    "Dur": {
+      "world_name": "Dur",
+      "img": "orc/comm-0-10.png",
+      "enemy": false
+    },
+    "Otoll": {
+      "world_name": "Otoll",
+      "img": "orc/comm-0-10.png",
+      "enemy": false,
+      "bbcode": "[center]Want to see my flesh wand [b]hobbits?[/b][/center]",
+      "level": 1
+    },
+    "Oglub": {
+      "world_name": "Oglub",
+      "img": "orc/comm-5-10.png",
+      "enemy": false,
+      "bbcode": "[center]Do you require healing? I offer my services for a fee of %s gold.[/center]",
+      "level": 1,
+      "type": 5
+    },
+    "Zog": {
+      "world_name": "Zog",
+      "img": "orc/comm-2-10.png",
+      "enemy": false
+    },
+    "Veek": {
+      "world_name": "Veek",
+      "img": "goblin/dagger-swing_small-17.png",
+      "enemy": false
+    },
+    "Bigi": {
+      "world_name": "Bigi",
+      "img": "goblin/dagger-swing_small-17.png",
+      "enemy": false
+    },
+    "Jimi": {
+      "world_name": "Jimi",
+      "img": "goblin/dagger-swing_small-17.png",
+      "enemy": false
+    },
+    "Jugog": {
+      "world_name": "Jugog",
+      "img": "orc/comm-4-10.png",
+      "enemy": false
+    },
+    "Gnoth": {
+      "world_name": "Gnoth",
+      "img": "orc/comm-4-10.png",
+      "enemy": false
+    },
+    "Xorag": {
+      "world_name": "Xorag",
+      "img": "orc/comm-5-10.png",
+      "enemy": false
+    },
+    "Darfu": {
+      "world_name": "Darfu",
+      "img": "orc/comm-4-10.png",
+      "enemy": false
+    },
+    "Golag": {
+      "world_name": "Golag",
+      "img": "orc/axe-swing_medium-17.png",
+      "enemy": false
+    },
+    "Mokral": {
+      "world_name": "Mokral",
+      "img": "orc/mace-swing_medium-17.png",
+      "enemy": false
+    },
+    "Bugdal": {
+      "world_name": "Bugdal",
+      "img": "orc/comm-4-10.png",
+      "enemy": false,
+      "type": "trainer",
+      "spell": [
+        {
+          "type": "fortify"
+        },
+        {
+          "type": "bash"
+        },
+        {
+          "type": "frenzy"
+        }
+      ]
+    },
+    "Nogugh": {
+      "world_name": "Nogugh",
+      "img": "orc/comm-3-10.png",
+      "enemy": false,
+      "type": "merchant",
+      "item": [
+        {
+          "type": "Weapon",
+          "sub_type": "Claw",
+          "level": 2
+        },
+        {
+          "type": "Weapon",
+          "sub_type": "Sword",
+          "level": 8
+        },
+        {
+          "type": "Armor",
+          "sub_type": "T1",
+          "level": 4
+        },
+        {
+          "type": "Food",
+          "sub_type": "T1",
+          "level": 1
+        },
+        {
+          "type": "Potion",
+          "sub_type": "Defense",
+          "level": 3
+        }
+      ]
+    },
+    "Nuruk": {
+      "world_name": "Nuruk",
+      "img": "orc/magic-null-17.png",
+      "enemy": false
+    },
+    "Shab": {
+      "world_name": "Shab",
+      "img": "orc/magic-null-17.png",
+      "enemy": false
+    },
+    "Detzar": {
+      "world_name": "Detzar",
+      "img": "orc/magic-null-17.png",
+      "enemy": false
+    },
+    "Tharg": {
+      "world_name": "Tharg",
+      "img": "orc/comm-4-10.png",
+      "enemy": false
+    },
+    "Ogrill": {
+      "world_name": "Ogrill",
+      "img": "orc/comm-5-10.png",
+      "enemy": false
+    },
+    "Drak": {
+      "world_name": "Drak",
+      "img": "orc/comm-6-10.png",
+      "enemy": false
+    },
+    "Grunt": {
+      "world_name": "Grunt",
+      "img": "orc/axe-swing_medium-17.png",
+      "enemy": false
+    },
+    "Guard": {
+      "world_name": "Guard",
+      "img": "orc/mace-swing_medium-17.png",
+      "enemy": false
+    }
+  }
+}

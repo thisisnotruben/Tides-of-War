@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://asset/img/ui/arrow_move.png" type="Texture" id=1]
+[ext_resource path="res://src/menu_ui/move_cursor.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "feedback"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.75, 0.75 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 3 ]
+}
+
+[node name="move_cursor" type="Sprite"]
+use_parent_material = true
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 2
+script = ExtResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "feedback"
+anims/feedback = SubResource( 1 )
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_finished"]

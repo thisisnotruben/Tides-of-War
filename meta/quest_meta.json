@@ -1,0 +1,37 @@
+{
+  "test": {
+    "active": false,
+    "completed": false,
+    "delivered": false,
+    "keep_items": false,
+    "quest_giver": "map-1/zed/z1/Darfu",
+    "chain_quest": [
+      "test2"
+    ],
+    "reward": {
+      "type": "food",
+      "sub_type": "t1",
+      "level": 2
+    },
+    "objective": {
+      "Desert Serpant": [
+        0,
+        1
+      ]
+    }
+  },
+  "test2": {
+    "active": false,
+    "completed": false,
+    "delivered": false,
+    "keep_items": false,
+    "quest_giver": "map-1/zed/z1/Darfu",
+    "objective": {
+      "Desert Serpant": [
+        0,
+        1
+      ]
+    }
+  }
+}
+

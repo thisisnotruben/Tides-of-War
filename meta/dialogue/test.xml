@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialogue>
+
+    <start>
+        Hello, fellow traveler. would you mind to help me for a quick moment?
+        You see, I have lost a precious trinket over at the oasis. Some Gnoll by the name
+        of Ackbar stole. Please return my ring before my wife finds out!
+    </start>
+
+    <active>
+        Hello again, have you got it yet?
+    </active>
+
+    <completed>
+        Ah thank you traveler, you have saved me from despair and a divorce!
+    </completed>
+
+    <delivered>
+        I'm forever in your debt!
+    </delivered>
+
+    <r_completed>
+    </r_completed>
+
+    <r_delivered>
+    </r_delivered>
+
+</dialogue>

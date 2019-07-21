@@ -1,0 +1,2457 @@
+[gd_scene load_steps=43 format=2]
+
+[ext_resource path="res://src/menu_ui/in_game_menu.gd" type="Script" id=1]
+[ext_resource path="res://src/menu_ui/mini_map.gd" type="Script" id=2]
+[ext_resource path="res://asset/img/ui/mini_map_mask.png" type="Texture" id=3]
+[ext_resource path="res://asset/img/map/tilesets/world.png" type="Texture" id=4]
+[ext_resource path="res://asset/img/ui/unit_hud_bg.res" type="Texture" id=5]
+[ext_resource path="res://asset/img/font/mago1_64.res" type="DynamicFont" id=6]
+[ext_resource path="res://asset/img/ui/bar_under.png" type="Texture" id=7]
+[ext_resource path="res://asset/img/ui/bar_progress.png" type="Texture" id=8]
+[ext_resource path="res://src/menu_ui/hud_slot.tscn" type="PackedScene" id=9]
+[ext_resource path="res://asset/img/ui/grey_button.res" type="Texture" id=10]
+[ext_resource path="res://asset/img/ui/brown_button.res" type="Texture" id=11]
+[ext_resource path="res://asset/img/ui/brown_button_pressed.res" type="Texture" id=12]
+[ext_resource path="res://asset/img/font/mago1_96.res" type="DynamicFont" id=13]
+[ext_resource path="res://src/menu_ui/item_slot.tscn" type="PackedScene" id=14]
+[ext_resource path="res://asset/img/ui/on_screen_button.res" type="Texture" id=15]
+[ext_resource path="res://asset/img/ui/spell_book_buttons.png" type="Texture" id=16]
+[ext_resource path="res://asset/img/ui/map.res" type="Texture" id=17]
+[ext_resource path="res://asset/img/ui/menu.res" type="Texture" id=18]
+[ext_resource path="res://src/menu_ui/hotkeys.gd" type="Script" id=19]
+[ext_resource path="res://asset/img/ui/grey2_bg.res" type="Texture" id=20]
+[ext_resource path="res://asset/img/font/mago1_144.res" type="DynamicFont" id=21]
+[ext_resource path="res://asset/img/ui/black_bg_icon.res" type="Texture" id=22]
+[ext_resource path="res://src/menu_ui/item_list.tscn" type="PackedScene" id=23]
+[ext_resource path="res://asset/img/font/mago1_112.res" type="DynamicFont" id=24]
+[ext_resource path="res://src/menu_ui/about.tscn" type="PackedScene" id=25]
+[ext_resource path="res://src/menu_ui/save_load.tscn" type="PackedScene" id=26]
+[ext_resource path="res://asset/img/font/mago1_80.res" type="DynamicFont" id=27]
+[ext_resource path="res://asset/img/ui/black_bg_icon_used0.res" type="Texture" id=28]
+[ext_resource path="res://asset/img/ui/arrow_left.res" type="Texture" id=29]
+[ext_resource path="res://asset/img/ui/arrow_left_pressed.res" type="Texture" id=30]
+[ext_resource path="res://asset/img/ui/arrow_left_disabled.res" type="Texture" id=31]
+[ext_resource path="res://asset/img/ui/arrow_right.res" type="Texture" id=32]
+[ext_resource path="res://asset/img/ui/arrow_right_pressed.res" type="Texture" id=33]
+[ext_resource path="res://asset/img/ui/arrow_right_disabled.res" type="Texture" id=34]
+[ext_resource path="res://src/menu_ui/popup.tscn" type="PackedScene" id=35]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 1648, 1008, 16, 16 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+[sub_resource type="Theme" id=4]
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )
+ButtonGroup/styles/panel = null
+CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = null
+CheckBox/icons/checked = null
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/unchecked = null
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = null
+CheckBox/styles/normal = null
+CheckBox/styles/pressed = null
+CheckButton/colors/font_color = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = null
+CheckButton/icons/on = null
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+ColorPicker/constants/h_width = 30
+ColorPicker/constants/label_width = 10
+ColorPicker/constants/margin = 4
+ColorPicker/constants/sv_height = 256
+ColorPicker/constants/sv_width = 256
+ColorPicker/icons/add_preset = null
+ColorPicker/icons/color_hue = null
+ColorPicker/icons/color_sample = null
+ColorPicker/icons/preset_bg = null
+ColorPicker/icons/screen_picker = null
+ColorPickerButton/colors/font_color = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ColorPickerButton/constants/hseparation = 2
+ColorPickerButton/fonts/font = null
+ColorPickerButton/icons/bg = null
+ColorPickerButton/styles/disabled = null
+ColorPickerButton/styles/focus = null
+ColorPickerButton/styles/hover = null
+ColorPickerButton/styles/normal = null
+ColorPickerButton/styles/pressed = null
+Dialogs/constants/button_margin = 32
+Dialogs/constants/margin = 8
+FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
+FileDialog/icons/folder = null
+FileDialog/icons/parent_folder = null
+FileDialog/icons/reload = null
+Fonts/fonts/large = null
+Fonts/fonts/normal = null
+GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
+GraphEdit/colors/grid_minor = Color( 0, 0, 0, 1 )
+GraphEdit/constants/bezier_len_neg = 160
+GraphEdit/constants/bezier_len_pos = 80
+GraphEdit/icons/minus = null
+GraphEdit/icons/more = null
+GraphEdit/icons/reset = null
+GraphEdit/icons/snap = null
+GraphEdit/styles/bg = null
+GraphNode/colors/title_color = Color( 0, 0, 0, 1 )
+GraphNode/constants/close_offset = 18
+GraphNode/constants/port_offset = 3
+GraphNode/constants/separation = 1
+GraphNode/constants/title_offset = 20
+GraphNode/fonts/title_font = null
+GraphNode/icons/close = null
+GraphNode/icons/port = null
+GraphNode/icons/resizer = null
+GraphNode/styles/breakpoint = null
+GraphNode/styles/comment = null
+GraphNode/styles/commentfocus = null
+GraphNode/styles/defaultfocus = null
+GraphNode/styles/defaultframe = null
+GraphNode/styles/frame = null
+GraphNode/styles/position = null
+GraphNode/styles/selectedframe = null
+GridContainer/constants/hseparation = 4
+GridContainer/constants/vseparation = 4
+HBoxContainer/constants/separation = 4
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = null
+HScrollBar/styles/grabber_highlight = null
+HScrollBar/styles/grabber_pressed = null
+HScrollBar/styles/scroll = null
+HScrollBar/styles/scroll_focus = null
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = null
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/focus = null
+HSlider/styles/grabber_area = null
+HSlider/styles/grabber_disabled = null
+HSlider/styles/grabber_highlight = null
+HSlider/styles/slider = null
+HSplitContainer/constants/autohide = 1
+HSplitContainer/constants/separation = 12
+HSplitContainer/icons/grabber = null
+HSplitContainer/styles/bg = null
+Icons/icons/close = null
+Icons/icons/logo = null
+ItemList/colors/font_color = Color( 0, 0, 0, 1 )
+ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 1 )
+ItemList/constants/hseparation = 4
+ItemList/constants/icon_margin = 4
+ItemList/constants/line_separation = 2
+ItemList/constants/vseparation = 2
+ItemList/fonts/font = null
+ItemList/styles/bg = null
+ItemList/styles/bg_focus = null
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
+ItemList/styles/selected = null
+ItemList/styles/selected_focus = null
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+LineEdit/colors/cursor_color = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/selection_color = Color( 0, 0, 0, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = null
+LineEdit/styles/read_only = null
+LinkButton/colors/font_color = Color( 0, 0, 0, 1 )
+LinkButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+LinkButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+LinkButton/constants/underline_spacing = 2
+LinkButton/fonts/font = null
+LinkButton/styles/focus = null
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+MenuButton/colors/font_color = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+MenuButton/constants/hseparation = 3
+MenuButton/fonts/font = null
+MenuButton/styles/disabled = null
+MenuButton/styles/focus = null
+MenuButton/styles/hover = null
+MenuButton/styles/normal = null
+MenuButton/styles/pressed = null
+OptionButton/colors/font_color = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+OptionButton/constants/arrow_margin = 2
+OptionButton/constants/hseparation = 2
+OptionButton/fonts/font = null
+OptionButton/icons/arrow = null
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = null
+Panel/styles/panelf = null
+Panel/styles/panelnc = null
+PanelContainer/styles/panel = null
+PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_accel = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_hover = Color( 0, 0, 0, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 4
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = null
+PopupMenu/styles/panel = null
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = null
+ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = null
+ProgressBar/styles/fg = null
+ReferenceRect/styles/border = null
+RichTextLabel/colors/default_color = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/selection_color = Color( 0, 0, 0, 1 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
+SpinBox/icons/updown = null
+TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/constants/hseparation = 4
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 8
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = null
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = null
+TabContainer/styles/tab_bg = null
+TabContainer/styles/tab_fg = null
+Tabs/colors/font_color_bg = Color( 0, 0, 0, 1 )
+Tabs/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Tabs/colors/font_color_fg = Color( 0, 0, 0, 1 )
+Tabs/constants/hseparation = 4
+Tabs/constants/label_valign_bg = 2
+Tabs/constants/label_valign_fg = 0
+Tabs/constants/top_margin = 24
+Tabs/fonts/font = null
+Tabs/icons/close = null
+Tabs/icons/decrement = null
+Tabs/icons/decrement_highlight = null
+Tabs/icons/increment = null
+Tabs/icons/increment_highlight = null
+Tabs/styles/button = null
+Tabs/styles/button_pressed = null
+Tabs/styles/panel = null
+Tabs/styles/tab_bg = null
+Tabs/styles/tab_fg = null
+TextEdit/colors/background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/brace_mismatch_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/breakpoint_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/code_folding_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_existing_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_font_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_scroll_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_selected_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/current_line_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+TextEdit/colors/function_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/line_number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/mark_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/member_variable_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/selection_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/symbol_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/word_highlighted_color = Color( 0, 0, 0, 1 )
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = null
+TextEdit/styles/read_only = null
+ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ToolButton/constants/hseparation = 3
+ToolButton/fonts/font = null
+ToolButton/styles/disabled = null
+ToolButton/styles/focus = null
+ToolButton/styles/hover = null
+ToolButton/styles/normal = null
+ToolButton/styles/pressed = null
+TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/fonts/font = null
+TooltipPanel/styles/panel = null
+Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
+Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
+Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color_selected = Color( 0, 0, 0, 1 )
+Tree/colors/guide_color = Color( 0, 0, 0, 1 )
+Tree/colors/relationship_line_color = Color( 0, 0, 0, 1 )
+Tree/colors/selection_color = Color( 0, 0, 0, 1 )
+Tree/colors/title_button_color = Color( 0, 0, 0, 1 )
+Tree/constants/button_margin = 4
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/guide_width = 2
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 4
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = null
+Tree/styles/bg_focus = null
+Tree/styles/button_pressed = null
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null
+VBoxContainer/constants/separation = 4
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = null
+VScrollBar/styles/scroll_focus = null
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = null
+VSlider/icons/grabber = null
+VSlider/icons/grabber_disabled = null
+VSlider/icons/grabber_highlight = null
+VSlider/icons/tick = null
+VSlider/styles/focus = null
+VSlider/styles/grabber_area = null
+VSlider/styles/grabber_disabled = null
+VSlider/styles/grabber_highlight = null
+VSlider/styles/slider = null
+VSplitContainer/constants/autohide = 1
+VSplitContainer/constants/separation = 12
+VSplitContainer/icons/grabber = null
+VSplitContainer/styles/bg = null
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = null
+
+[sub_resource type="StreamTexture" id=5]
+
+[sub_resource type="StreamTexture" id=6]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 112, 112, 112 )
+filter_clip = true
+
+[node name="in_game_menu" type="Node" groups=[
+"save",
+]]
+script = ExtResource( 1 )
+
+[node name="tween" type="Tween" parent="."]
+
+[node name="c" type="CanvasLayer" parent="."]
+
+[node name="mini_map" type="Node2D" parent="c"]
+editor/display_folded = true
+visible = false
+light_mask = 2
+z_as_relative = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="color_bg" type="ColorRect" parent="c/mini_map"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 181.0
+margin_top = 321.0
+margin_right = 477.0
+margin_bottom = 617.0
+color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="map_mask" type="Light2D" parent="c/mini_map"]
+light_mask = 2
+z_as_relative = false
+texture = ExtResource( 3 )
+offset = Vector2( 360, 640 )
+mode = 3
+range_layer_max = 1
+range_item_cull_mask = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="map" type="Sprite" parent="c/mini_map"]
+modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+show_behind_parent = true
+light_mask = 2
+scale = Vector2( 1.75, 1.75 )
+z_as_relative = false
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player_pos" type="Position2D" parent="c/mini_map"]
+position = Vector2( 360, 501 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg" type="TextureRect" parent="c/mini_map"]
+show_behind_parent = true
+margin_left = 181.0
+margin_top = 321.0
+margin_right = 541.0
+margin_bottom = 681.0
+texture = SubResource( 1 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hp_mana" type="MarginContainer" parent="c"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -1095.0
+mouse_filter = 1
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="h" type="HBoxContainer" parent="c/hp_mana"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 710.0
+margin_bottom = 175.0
+custom_constants/separation = 10
+
+[node name="p" type="VBoxContainer" parent="c/hp_mana/h"]
+editor/display_folded = true
+margin_right = 345.0
+margin_bottom = 165.0
+theme = SubResource( 4 )
+custom_constants/separation = 5
+
+[node name="c" type="Container" parent="c/hp_mana/h/p"]
+editor/display_folded = true
+margin_right = 345.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 345, 160 )
+mouse_filter = 1
+size_flags_horizontal = 0
+
+[node name="bg" type="TextureRect" parent="c/hp_mana/h/p/c"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 345, 120 )
+size_flags_horizontal = 0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/hp_mana/h/p/c/bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 3
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="v" type="VBoxContainer" parent="c/hp_mana/h/p/c/bg/m"]
+margin_left = 10.0
+margin_top = 3.0
+margin_right = 335.0
+margin_bottom = 150.0
+custom_constants/separation = 0
+
+[node name="label" type="Label" parent="c/hp_mana/h/p/c/bg/m/v"]
+margin_right = 325.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 325, 51 )
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+text = "Player Name"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="hp_bar" type="TextureProgress" parent="c/hp_mana/h/p/c/bg/m/v"]
+self_modulate = Color( 1, 0, 0, 1 )
+margin_top = 51.0
+margin_right = 325.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 325, 35 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_over = SubResource( 5 )
+texture_progress = ExtResource( 8 )
+
+[node name="label" type="Label" parent="c/hp_mana/h/p/c/bg/m/v/hp_bar"]
+margin_right = 330.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 330, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.75, 0.75, 0.75, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 0
+text = "Health"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="mana_bar" type="TextureProgress" parent="c/hp_mana/h/p/c/bg/m/v"]
+self_modulate = Color( 0, 0.686275, 1, 1 )
+margin_top = 99.0
+margin_right = 325.0
+margin_bottom = 147.0
+rect_min_size = Vector2( 325, 35 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_over = SubResource( 6 )
+texture_progress = ExtResource( 8 )
+
+[node name="label" type="Label" parent="c/hp_mana/h/p/c/bg/m/v/mana_bar"]
+margin_right = 330.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 330, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.74902, 0.74902, 0.74902, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/line_spacing = 0
+custom_constants/shadow_offset_y = 0
+text = "Mana"
+align = 1
+
+[node name="h" type="HBoxContainer" parent="c/hp_mana/h/p"]
+margin_top = 165.0
+margin_right = 345.0
+margin_bottom = 165.0
+
+[node name="g" type="GridContainer" parent="c/hp_mana/h/p/h"]
+columns = 2
+
+[node name="hud_slot1" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot2" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot3" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot4" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot5" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot6" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot7" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot8" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot9" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot10" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot11" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot12" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot13" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot14" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot15" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot16" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot17" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot18" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot19" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="hud_slot20" parent="c/hp_mana/h/p/h/g" instance=ExtResource( 9 )]
+visible = false
+mouse_filter = 1
+
+[node name="u" type="VBoxContainer" parent="c/hp_mana/h"]
+editor/display_folded = true
+visible = false
+margin_left = 355.0
+margin_right = 700.0
+margin_bottom = 1260.0
+custom_constants/separation = 5
+
+[node name="c" type="Container" parent="c/hp_mana/h/u"]
+editor/display_folded = true
+margin_right = 345.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 345, 160 )
+size_flags_horizontal = 0
+
+[node name="bg" type="TextureRect" parent="c/hp_mana/h/u/c"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 345, 120 )
+size_flags_horizontal = 0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/hp_mana/h/u/c/bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 3
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="v" type="VBoxContainer" parent="c/hp_mana/h/u/c/bg/m"]
+margin_left = 10.0
+margin_top = 3.0
+margin_right = 335.0
+margin_bottom = 150.0
+custom_constants/separation = 0
+
+[node name="label" type="Label" parent="c/hp_mana/h/u/c/bg/m/v"]
+margin_right = 325.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 325, 51 )
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+text = "Mokral"
+align = 1
+valign = 1
+
+[node name="hp_bar" type="TextureProgress" parent="c/hp_mana/h/u/c/bg/m/v"]
+editor/display_folded = true
+self_modulate = Color( 1, 0, 0, 1 )
+margin_top = 51.0
+margin_right = 325.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 325, 35 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_over = SubResource( 5 )
+texture_progress = ExtResource( 8 )
+
+[node name="label" type="Label" parent="c/hp_mana/h/u/c/bg/m/v/hp_bar"]
+margin_right = 330.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 330, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.75, 0.75, 0.75, 1 )
+custom_constants/line_spacing = 0
+text = "Health"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="mana_bar" type="TextureProgress" parent="c/hp_mana/h/u/c/bg/m/v"]
+editor/display_folded = true
+self_modulate = Color( 0, 0.686275, 1, 1 )
+margin_top = 99.0
+margin_right = 325.0
+margin_bottom = 147.0
+rect_min_size = Vector2( 325, 35 )
+mouse_filter = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_over = SubResource( 6 )
+texture_progress = ExtResource( 8 )
+
+[node name="label" type="Label" parent="c/hp_mana/h/u/c/bg/m/v/mana_bar"]
+margin_right = 330.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 330, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.74902, 0.74902, 0.74902, 1 )
+custom_constants/line_spacing = 0
+text = "Mana"
+align = 1
+
+[node name="unit_hud" type="Button" parent="c/hp_mana/h/u/c"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="h" type="HBoxContainer" parent="c/hp_mana/h/u"]
+margin_top = 165.0
+margin_right = 345.0
+margin_bottom = 165.0
+alignment = 2
+
+[node name="g" type="GridContainer" parent="c/hp_mana/h/u/h"]
+margin_left = 345.0
+margin_right = 345.0
+columns = 2
+
+[node name="hud_slot1" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot2" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot3" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot4" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot5" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot6" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot7" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot8" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot9" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot10" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot11" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot12" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot13" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot14" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot15" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot16" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot17" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot18" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot19" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="hud_slot20" parent="c/hp_mana/h/u/h/g" instance=ExtResource( 9 )]
+visible = false
+
+[node name="osb" type="TextureRect" parent="c"]
+editor/display_folded = true
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -460.0
+margin_bottom = -332.0
+rect_min_size = Vector2( 0, 128 )
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="m" type="MarginContainer" parent="c/osb"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 0
+custom_constants/margin_top = 16
+custom_constants/margin_left = 0
+custom_constants/margin_bottom = 16
+
+[node name="cast" type="TextureButton" parent="c/osb/m"]
+margin_top = 16.0
+margin_right = 720.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="label" type="Label" parent="c/osb/m/cast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Cast"
+align = 1
+valign = 1
+
+[node name="controls" type="Control" parent="c"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1019.0
+mouse_filter = 1
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="m" type="MarginContainer" parent="c/controls"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="left" type="HBoxContainer" parent="c/controls/m"]
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 710.0
+margin_bottom = 251.0
+mouse_filter = 2
+custom_constants/separation = 10
+
+[node name="v" type="VBoxContainer" parent="c/controls/m/left"]
+margin_right = 112.0
+margin_bottom = 241.0
+mouse_filter = 0
+custom_constants/separation = 10
+alignment = 2
+
+[node name="1" parent="c/controls/m/left/v" groups=[
+"HUD-shortcut",
+] instance=ExtResource( 14 )]
+margin_top = 7.0
+margin_bottom = 119.0
+
+[node name="2" parent="c/controls/m/left/v" groups=[
+"HUD-shortcut",
+] instance=ExtResource( 14 )]
+margin_top = 129.0
+margin_bottom = 241.0
+
+[node name="v2" type="VBoxContainer" parent="c/controls/m/left"]
+margin_left = 122.0
+margin_right = 234.0
+margin_bottom = 241.0
+mouse_filter = 0
+custom_constants/separation = 10
+alignment = 2
+
+[node name="3" parent="c/controls/m/left/v2" groups=[
+"HUD-shortcut",
+] instance=ExtResource( 14 )]
+margin_top = 129.0
+margin_bottom = 241.0
+
+[node name="right" type="HBoxContainer" parent="c/controls/m"]
+editor/display_folded = true
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 710.0
+margin_bottom = 251.0
+mouse_filter = 2
+custom_constants/separation = 10
+alignment = 2
+
+[node name="v2" type="VBoxContainer" parent="c/controls/m/right"]
+editor/display_folded = true
+margin_left = 466.0
+margin_right = 578.0
+margin_bottom = 241.0
+mouse_filter = 0
+custom_constants/separation = 10
+alignment = 2
+
+[node name="spell_book" type="TextureRect" parent="c/controls/m/right/v2"]
+editor/display_folded = true
+margin_top = 129.0
+margin_right = 112.0
+margin_bottom = 241.0
+rect_min_size = Vector2( 112, 112 )
+texture = ExtResource( 15 )
+expand = true
+
+[node name="icon" type="TextureButton" parent="c/controls/m/right/v2/spell_book"]
+margin_right = 112.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 112, 112 )
+rect_pivot_offset = Vector2( 56, 56 )
+toggle_mode = true
+texture_normal = SubResource( 7 )
+expand = true
+
+[node name="v" type="VBoxContainer" parent="c/controls/m/right"]
+editor/display_folded = true
+margin_left = 588.0
+margin_right = 700.0
+margin_bottom = 241.0
+mouse_filter = 0
+custom_constants/separation = 10
+alignment = 2
+
+[node name="mini_map" type="TextureRect" parent="c/controls/m/right/v"]
+editor/display_folded = true
+margin_top = 7.0
+margin_right = 112.0
+margin_bottom = 119.0
+rect_min_size = Vector2( 112, 112 )
+texture = ExtResource( 15 )
+expand = true
+
+[node name="icon" type="TextureButton" parent="c/controls/m/right/v/mini_map"]
+margin_right = 112.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 112, 112 )
+rect_pivot_offset = Vector2( 56, 56 )
+texture_normal = ExtResource( 17 )
+expand = true
+
+[node name="pause" type="TextureRect" parent="c/controls/m/right/v"]
+editor/display_folded = true
+margin_top = 129.0
+margin_right = 112.0
+margin_bottom = 241.0
+rect_min_size = Vector2( 112, 112 )
+texture = ExtResource( 15 )
+expand = true
+
+[node name="icon" type="TextureButton" parent="c/controls/m/right/v/pause"]
+margin_right = 112.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 112, 112 )
+rect_pivot_offset = Vector2( 56, 56 )
+texture_normal = ExtResource( 18 )
+expand = true
+
+[node name="game_menu" type="Control" parent="c"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="bg" type="ColorRect" parent="c/game_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+
+[node name="list_of_menus" type="Container" parent="c/game_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bg" type="TextureRect" parent="c/game_menu/list_of_menus"]
+margin_right = 720.0
+margin_bottom = 1280.0
+texture = ExtResource( 20 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus"]
+margin_right = 720.0
+margin_bottom = 1280.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+
+[node name="main_menu" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/main_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="resume" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_right = 656.0
+margin_bottom = 170.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/resume"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Resume"
+align = 1
+valign = 1
+
+[node name="inventory" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_top = 174.0
+margin_right = 656.0
+margin_bottom = 344.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Inventory"
+align = 1
+valign = 1
+
+[node name="stats" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_top = 348.0
+margin_right = 656.0
+margin_bottom = 518.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/stats"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Stats"
+align = 1
+valign = 1
+
+[node name="quest_log" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_top = 522.0
+margin_right = 656.0
+margin_bottom = 692.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/quest_log"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Quest Log"
+align = 1
+valign = 1
+
+[node name="about" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_top = 696.0
+margin_right = 656.0
+margin_bottom = 866.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/about"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "About"
+align = 1
+valign = 1
+
+[node name="save_load" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_top = 870.0
+margin_right = 656.0
+margin_bottom = 1040.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/save_load"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Save/Load"
+align = 1
+valign = 1
+
+[node name="exit" type="TextureButton" parent="c/game_menu/list_of_menus/m/main_menu/v"]
+editor/display_folded = true
+margin_top = 1044.0
+margin_right = 656.0
+margin_bottom = 1216.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/main_menu/v/exit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Exit"
+align = 1
+valign = 1
+
+[node name="inventory" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+collapsed = true
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/inventory/s"]
+margin_right = 656.0
+margin_bottom = 984.0
+custom_constants/separation = 55
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/inventory/s/v"]
+margin_right = 656.0
+margin_bottom = 114.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Inventory"
+align = 1
+valign = 1
+
+[node name="h" type="HBoxContainer" parent="c/game_menu/list_of_menus/m/inventory/s/v"]
+editor/display_folded = true
+margin_top = 169.0
+margin_right = 656.0
+margin_bottom = 369.0
+custom_constants/separation = 120
+alignment = 1
+
+[node name="weapon_slot" type="TextureButton" parent="c/game_menu/list_of_menus/m/inventory/s/v/h"]
+editor/display_folded = true
+margin_left = 68.0
+margin_right = 268.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+texture_normal = ExtResource( 22 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="icon" type="TextureRect" parent="c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot/m"]
+show_behind_parent = true
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 184.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 84, 84 )
+expand = true
+
+[node name="armor_slot" type="TextureButton" parent="c/game_menu/list_of_menus/m/inventory/s/v/h"]
+editor/display_folded = true
+margin_left = 388.0
+margin_right = 588.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+texture_normal = ExtResource( 22 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="icon" type="TextureRect" parent="c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot/m"]
+show_behind_parent = true
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 184.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 84, 84 )
+expand = true
+
+[node name="c" type="CenterContainer" parent="c/game_menu/list_of_menus/m/inventory/s/v"]
+margin_top = 424.0
+margin_right = 656.0
+margin_bottom = 984.0
+
+[node name="item_list" parent="c/game_menu/list_of_menus/m/inventory/s/v/c" instance=ExtResource( 23 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 328.0
+margin_top = 280.0
+margin_right = 328.0
+margin_bottom = 280.0
+rect_clip_content = true
+
+[node name="v2" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/inventory/s"]
+editor/display_folded = true
+margin_top = 996.0
+margin_right = 656.0
+margin_bottom = 1216.0
+alignment = 2
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/inventory/s/v2"]
+editor/display_folded = true
+margin_top = 120.0
+margin_right = 656.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/inventory/s/v2/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="merchant" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/merchant"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+collapsed = true
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/merchant/s"]
+margin_right = 656.0
+margin_bottom = 835.0
+custom_constants/separation = 55
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/merchant/s/v"]
+margin_right = 656.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Merchant"
+align = 1
+valign = 1
+
+[node name="label2" type="Label" parent="c/game_menu/list_of_menus/m/merchant/s/v"]
+margin_top = 144.0
+margin_right = 656.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Gold:"
+align = 1
+valign = 1
+
+[node name="c" type="CenterContainer" parent="c/game_menu/list_of_menus/m/merchant/s/v"]
+margin_top = 275.0
+margin_right = 656.0
+margin_bottom = 835.0
+
+[node name="merchant_list" parent="c/game_menu/list_of_menus/m/merchant/s/v/c" instance=ExtResource( 23 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 328.0
+margin_top = 280.0
+margin_right = 328.0
+margin_bottom = 280.0
+allow_cooldown = false
+
+[node name="v2" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/merchant/s"]
+editor/display_folded = true
+margin_top = 847.0
+margin_right = 656.0
+margin_bottom = 1216.0
+alignment = 2
+
+[node name="merchant" type="TextureButton" parent="c/game_menu/list_of_menus/m/merchant/s/v2"]
+editor/display_folded = true
+visible = false
+margin_right = 656.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/merchant/s/v2/merchant"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Buy"
+align = 1
+valign = 1
+
+[node name="inventory" type="TextureButton" parent="c/game_menu/list_of_menus/m/merchant/s/v2"]
+editor/display_folded = true
+visible = false
+margin_top = 48.0
+margin_right = 656.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/merchant/s/v2/inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Sell"
+align = 1
+valign = 1
+
+[node name="repair" type="TextureButton" parent="c/game_menu/list_of_menus/m/merchant/s/v2"]
+editor/display_folded = true
+visible = false
+margin_top = 152.0
+margin_right = 656.0
+margin_bottom = 252.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/merchant/s/v2/repair"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Repair"
+align = 1
+valign = 1
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/merchant/s/v2"]
+editor/display_folded = true
+margin_top = 269.0
+margin_right = 656.0
+margin_bottom = 369.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/merchant/s/v2/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="stats" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/stats"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+collapsed = true
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/stats/s"]
+margin_right = 656.0
+margin_bottom = 1064.0
+custom_constants/separation = 25
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/stats/s/v"]
+margin_right = 656.0
+margin_bottom = 114.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Stats"
+align = 1
+autowrap = true
+
+[node name="h" type="HBoxContainer" parent="c/game_menu/list_of_menus/m/stats/s/v"]
+margin_top = 139.0
+margin_right = 656.0
+margin_bottom = 339.0
+custom_constants/separation = 120
+alignment = 1
+
+[node name="weapon_slot" type="TextureButton" parent="c/game_menu/list_of_menus/m/stats/s/v/h"]
+editor/display_folded = true
+margin_left = 68.0
+margin_right = 268.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+texture_normal = ExtResource( 22 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="icon" type="TextureRect" parent="c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot/m"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 184.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 84, 84 )
+expand = true
+
+[node name="armor_slot" type="TextureButton" parent="c/game_menu/list_of_menus/m/stats/s/v/h"]
+editor/display_folded = true
+margin_left = 388.0
+margin_right = 588.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+texture_normal = ExtResource( 22 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="icon" type="TextureRect" parent="c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot/m"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 184.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( 84, 84 )
+expand = true
+
+[node name="c" type="CenterContainer" parent="c/game_menu/list_of_menus/m/stats/s/v"]
+editor/display_folded = true
+margin_top = 364.0
+margin_right = 656.0
+margin_bottom = 1064.0
+
+[node name="label" type="RichTextLabel" parent="c/game_menu/list_of_menus/m/stats/s/v/c"]
+margin_left = 68.0
+margin_right = 588.0
+margin_bottom = 700.0
+rect_min_size = Vector2( 520, 700 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+custom_colors/default_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+bbcode_enabled = true
+bbcode_text = "[color=red]Health: 1000[/color]
+[color=blue]Mana: 1000[/color]
+[color=purple]Xp: 10000 / 10000[/color]
+Level:100
+Gold: 1,450,00
+Strength:	
+Intellect:
+Agility:
+Armor:
+Damage:
+Attack Speed:
+Attack Range:"
+text = "Health: 1000
+Mana: 1000
+Xp: 10000 / 10000
+Level:100
+Gold: 1,450,00
+Strength:	
+Intellect:
+Agility:
+Armor:
+Damage:
+Attack Speed:
+Attack Range:"
+
+[node name="v2" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/stats/s"]
+editor/display_folded = true
+margin_top = 1072.0
+margin_right = 656.0
+margin_bottom = 1216.0
+size_flags_vertical = 3
+alignment = 2
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/stats/s/v2"]
+editor/display_folded = true
+margin_top = 44.0
+margin_right = 656.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/stats/s/v2/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="quest_log" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/quest_log"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+collapsed = true
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/quest_log/s"]
+margin_right = 656.0
+margin_bottom = 904.0
+custom_constants/separation = 35
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/quest_log/s/v"]
+margin_right = 656.0
+margin_bottom = 114.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Quest Log"
+align = 1
+autowrap = true
+
+[node name="filter" type="TextureButton" parent="c/game_menu/list_of_menus/m/quest_log/s/v"]
+editor/display_folded = true
+margin_top = 149.0
+margin_right = 656.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 300, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/quest_log/s/v/filter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Filter"
+align = 1
+valign = 1
+
+[node name="s" type="ScrollContainer" parent="c/game_menu/list_of_menus/m/quest_log/s/v"]
+margin_top = 284.0
+margin_right = 656.0
+margin_bottom = 904.0
+rect_min_size = Vector2( 620, 620 )
+scroll_horizontal_enabled = false
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/quest_log/s/v/s"]
+custom_constants/separation = 20
+
+[node name="v2" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/quest_log/s"]
+editor/display_folded = true
+margin_top = 912.0
+margin_right = 656.0
+margin_bottom = 1216.0
+size_flags_vertical = 3
+alignment = 2
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/quest_log/s/v2"]
+margin_top = 204.0
+margin_right = 656.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/quest_log/s/v2/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="about" parent="c/game_menu/list_of_menus/m" instance=ExtResource( 25 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="save_load" parent="c/game_menu/list_of_menus/m" instance=ExtResource( 26 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="dialogue" type="Container" parent="c/game_menu/list_of_menus/m"]
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+collapsed = true
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/dialogue/s"]
+margin_right = 656.0
+margin_bottom = 89.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Unit Name"
+align = 1
+autowrap = true
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/dialogue/s"]
+margin_top = 101.0
+margin_right = 656.0
+margin_bottom = 1217.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+collapsed = true
+
+[node name="label2" type="RichTextLabel" parent="c/game_menu/list_of_menus/m/dialogue/s/s"]
+margin_right = 656.0
+margin_bottom = 900.0
+rect_min_size = Vector2( 0, 900 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/bold_font = ExtResource( 27 )
+custom_fonts/normal_font = ExtResource( 6 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_constants/table_vseparation = 0
+custom_constants/table_hseparation = 0
+custom_constants/line_separation = 0
+bbcode_enabled = true
+scroll_active = false
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/dialogue/s/s"]
+margin_top = 912.0
+margin_right = 656.0
+margin_bottom = 1116.0
+size_flags_vertical = 7
+alignment = 2
+
+[node name="heal" type="TextureButton" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v"]
+editor/display_folded = true
+visible = false
+margin_right = 656.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v/heal"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Heal"
+align = 1
+valign = 1
+
+[node name="finish" type="TextureButton" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v"]
+editor/display_folded = true
+visible = false
+margin_top = 208.0
+margin_right = 656.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v/finish"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Complete"
+align = 1
+valign = 1
+
+[node name="accept" type="TextureButton" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v"]
+editor/display_folded = true
+visible = false
+margin_top = 208.0
+margin_right = 656.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v/accept"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Accept"
+align = 1
+valign = 1
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v"]
+editor/display_folded = true
+margin_top = 104.0
+margin_right = 656.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/dialogue/s/s/v/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="item_info" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/item_info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+collapsed = true
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/item_info/s"]
+margin_right = 656.0
+margin_bottom = 1092.0
+size_flags_vertical = 3
+custom_constants/separation = 24
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/v"]
+margin_right = 656.0
+margin_bottom = 89.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Fortify"
+align = 1
+autowrap = true
+
+[node name="c" type="HBoxContainer" parent="c/game_menu/list_of_menus/m/item_info/s/v"]
+margin_top = 113.0
+margin_right = 656.0
+margin_bottom = 1092.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+alignment = 1
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/item_info/s/v/c"]
+margin_left = 28.0
+margin_right = 628.0
+margin_bottom = 979.0
+rect_min_size = Vector2( 600, 0 )
+size_flags_vertical = 3
+custom_constants/separation = 24
+
+[node name="bg" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/v/c/v"]
+margin_left = 150.0
+margin_right = 450.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource( 28 )
+expand = true
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="icon" type="TextureRect" parent="c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg/m"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 284.0
+margin_bottom = 284.0
+rect_pivot_offset = Vector2( 134, 134 )
+expand = true
+
+[node name="c" type="Container" parent="c/game_menu/list_of_menus/m/item_info/s/v/c/v"]
+editor/display_folded = true
+margin_top = 324.0
+margin_right = 600.0
+margin_bottom = 979.0
+size_flags_vertical = 7
+
+[node name="label" type="RichTextLabel" parent="c/game_menu/list_of_menus/m/item_info/s/v/c/v/c"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/normal_font = ExtResource( 6 )
+custom_colors/default_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+custom_constants/table_vseparation = 0
+custom_constants/table_hseparation = 0
+custom_constants/line_separation = 0
+
+[node name="h" type="HBoxContainer" parent="c/game_menu/list_of_menus/m/item_info/s"]
+editor/display_folded = true
+margin_top = 1104.0
+margin_right = 656.0
+margin_bottom = 1216.0
+alignment = 1
+
+[node name="left" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h"]
+margin_left = 22.0
+margin_right = 134.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 112, 112 )
+texture_normal = ExtResource( 29 )
+texture_pressed = ExtResource( 30 )
+texture_disabled = ExtResource( 31 )
+expand = true
+stretch_mode = 5
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/item_info/s/h"]
+editor/display_folded = true
+margin_left = 138.0
+margin_right = 518.0
+margin_bottom = 112.0
+alignment = 2
+
+[node name="cast" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/cast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Cast"
+align = 1
+valign = 1
+
+[node name="use" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/use"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Use"
+align = 1
+valign = 1
+
+[node name="buy" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/buy"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Buy"
+align = 1
+valign = 1
+
+[node name="sell" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/sell"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Sell"
+align = 1
+valign = 1
+
+[node name="equip" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/equip"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Equip"
+align = 1
+valign = 1
+
+[node name="unequip" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/unequip"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Unequip"
+align = 1
+valign = 1
+
+[node name="drop" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+visible = false
+margin_right = 380.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/drop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Drop"
+align = 1
+valign = 1
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h/v"]
+editor/display_folded = true
+margin_top = 12.0
+margin_right = 380.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/item_info/s/h/v/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="right" type="TextureButton" parent="c/game_menu/list_of_menus/m/item_info/s/h"]
+margin_left = 522.0
+margin_right = 634.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 112, 112 )
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 33 )
+texture_disabled = ExtResource( 34 )
+expand = true
+stretch_mode = 5
+
+[node name="spell_book" type="Container" parent="c/game_menu/list_of_menus/m"]
+editor/display_folded = true
+visible = false
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 688.0
+margin_bottom = 1248.0
+
+[node name="s" type="VSplitContainer" parent="c/game_menu/list_of_menus/m/spell_book"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+collapsed = true
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/spell_book/s"]
+margin_right = 656.0
+margin_bottom = 871.0
+custom_constants/separation = 45
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/spell_book/s/v"]
+margin_right = 656.0
+margin_bottom = 89.0
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Spell Book"
+align = 1
+valign = 1
+
+[node name="m" type="MarginContainer" parent="c/game_menu/list_of_menus/m/spell_book/s/v"]
+editor/display_folded = true
+margin_top = 134.0
+margin_right = 656.0
+margin_bottom = 266.0
+custom_constants/margin_right = 0
+custom_constants/margin_left = 50
+
+[node name="v" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/spell_book/s/v/m"]
+editor/display_folded = true
+margin_left = 50.0
+margin_right = 656.0
+margin_bottom = 132.0
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/spell_book/s/v/m/v"]
+margin_right = 606.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 27 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Health:"
+valign = 1
+
+[node name="label2" type="Label" parent="c/game_menu/list_of_menus/m/spell_book/s/v/m/v"]
+margin_top = 68.0
+margin_right = 606.0
+margin_bottom = 132.0
+custom_fonts/font = ExtResource( 27 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Mana:"
+valign = 1
+
+[node name="c" type="CenterContainer" parent="c/game_menu/list_of_menus/m/spell_book/s/v"]
+margin_top = 311.0
+margin_right = 656.0
+margin_bottom = 871.0
+
+[node name="spell_list" parent="c/game_menu/list_of_menus/m/spell_book/s/v/c" instance=ExtResource( 23 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 328.0
+margin_top = 280.0
+margin_right = 328.0
+margin_bottom = 280.0
+ITEM_MAX = 30
+
+[node name="v2" type="VBoxContainer" parent="c/game_menu/list_of_menus/m/spell_book/s"]
+editor/display_folded = true
+margin_top = 883.0
+margin_right = 656.0
+margin_bottom = 1216.0
+alignment = 2
+
+[node name="back" type="TextureButton" parent="c/game_menu/list_of_menus/m/spell_book/s/v2"]
+editor/display_folded = true
+margin_top = 233.0
+margin_right = 656.0
+margin_bottom = 333.0
+rect_min_size = Vector2( 380, 100 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+expand = true
+stretch_mode = 5
+
+[node name="label" type="Label" parent="c/game_menu/list_of_menus/m/spell_book/s/v2/back"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0.0847059, 0.0847059, 0.0847059, 1 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="popup" parent="c/game_menu" instance=ExtResource( 35 )]
+[connection signal="draw" from="c/mini_map" to="c/mini_map" method="_on_mini_map_draw"]
+[connection signal="hide" from="c/mini_map" to="c/mini_map" method="_on_mini_map_hide"]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot1" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot2" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot3" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot4" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot5" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot6" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot7" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot8" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot9" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot10" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot11" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot12" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot13" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot14" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot15" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot16" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot17" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot18" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot19" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/p/h/g/hud_slot20" to="." method="_on_move_hud" binds= [ true ]]
+[connection signal="pressed" from="c/hp_mana/h/u/c/unit_hud" to="." method="_on_unit_hud_pressed"]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot1" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot2" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot3" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot4" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot5" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot6" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot7" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot8" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot9" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot10" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot11" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot12" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot13" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot14" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot15" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot16" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot17" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot18" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot19" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/hp_mana/h/u/h/g/hud_slot20" to="." method="_on_move_hud" binds= [ false ]]
+[connection signal="pressed" from="c/controls/m/left/v/1" to="c/controls/m/left/v/1" method="_on_shortcut_pressed"]
+[connection signal="shortcut_pressed" from="c/controls/m/left/v/1" to="." method="_on_hud_slot_pressed"]
+[connection signal="pressed" from="c/controls/m/left/v/2" to="c/controls/m/left/v/2" method="_on_shortcut_pressed"]
+[connection signal="shortcut_pressed" from="c/controls/m/left/v/2" to="." method="_on_hud_slot_pressed"]
+[connection signal="pressed" from="c/controls/m/left/v2/3" to="c/controls/m/left/v2/3" method="_on_shortcut_pressed"]
+[connection signal="shortcut_pressed" from="c/controls/m/left/v2/3" to="." method="_on_hud_slot_pressed"]
+[connection signal="button_down" from="c/controls/m/right/v2/spell_book/icon" to="." method="_on_hud_button_down" binds= [ "c/controls/m/right/v2/spell_book/icon" ]]
+[connection signal="button_up" from="c/controls/m/right/v2/spell_book/icon" to="." method="_on_hud_button_up" binds= [ "c/controls/m/right/v2/spell_book/icon" ]]
+[connection signal="pressed" from="c/controls/m/right/v2/spell_book/icon" to="." method="_on_spell_book_pressed"]
+[connection signal="button_down" from="c/controls/m/right/v/mini_map/icon" to="." method="_on_hud_button_down" binds= [ "c/controls/m/right/v/mini_map/icon" ]]
+[connection signal="button_up" from="c/controls/m/right/v/mini_map/icon" to="." method="_on_hud_button_up" binds= [ "c/controls/m/right/v/mini_map/icon" ]]
+[connection signal="pressed" from="c/controls/m/right/v/mini_map/icon" to="." method="_on_mini_map_pressed"]
+[connection signal="button_down" from="c/controls/m/right/v/pause/icon" to="." method="_on_hud_button_down" binds= [ "c/controls/m/right/v/pause/icon" ]]
+[connection signal="button_up" from="c/controls/m/right/v/pause/icon" to="." method="_on_hud_button_up" binds= [ "c/controls/m/right/v/pause/icon" ]]
+[connection signal="pressed" from="c/controls/m/right/v/pause/icon" to="." method="_on_pause_pressed" binds= [ false ]]
+[connection signal="draw" from="c/game_menu" to="." method="_on_game_menu_draw"]
+[connection signal="hide" from="c/game_menu" to="." method="_on_game_menu_hide"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/stats" to="." method="_on_stats_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/quest_log" to="." method="_on_quest_log_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/about" to="." method="_on_about_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/save_load" to="." method="_on_save_load_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/main_menu/v/exit" to="." method="_on_exit_pressed"]
+[connection signal="button_down" from="c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot" to="." method="_on_button_down" binds= [ "c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot/m/icon" ]]
+[connection signal="button_up" from="c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot" to="." method="_on_button_up" binds= [ "c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot/m/icon" ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/inventory/s/v/h/weapon_slot" to="." method="_on_weapon_slot_pressed"]
+[connection signal="button_down" from="c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot" to="." method="_on_button_down" binds= [ "c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot/m/icon" ]]
+[connection signal="button_up" from="c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot" to="." method="_on_button_up" binds= [ "c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot/m/icon" ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/inventory/s/v/h/armor_slot" to="." method="_on_armor_slot_pressed"]
+[connection signal="on_item_selected" from="c/game_menu/list_of_menus/m/inventory/s/v/c/item_list" to="." method="_on_bag_index_selected"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/inventory/s/v2/back" to="." method="_on_back_pressed"]
+[connection signal="draw" from="c/game_menu/list_of_menus/m/merchant" to="." method="_on_merchant_draw"]
+[connection signal="on_item_selected" from="c/game_menu/list_of_menus/m/merchant/s/v/c/merchant_list" to="." method="_on_bag_index_selected"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/merchant/s/v2/merchant" to="." method="_on_merchant_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/merchant/s/v2/inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/merchant/s/v2/repair" to="." method="_on_repair_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/merchant/s/v2/back" to="." method="_on_back_pressed"]
+[connection signal="button_down" from="c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot" to="." method="_on_button_down" binds= [ "c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot/m/icon" ]]
+[connection signal="button_up" from="c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot" to="." method="_on_button_up" binds= [ "c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot/m/icon" ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/stats/s/v/h/weapon_slot" to="." method="_on_weapon_slot_pressed"]
+[connection signal="button_down" from="c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot" to="." method="_on_button_down" binds= [ "c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot/m/icon" ]]
+[connection signal="button_up" from="c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot" to="." method="_on_button_up" binds= [ "c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot/m/icon" ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/stats/s/v/h/armor_slot" to="." method="_on_armor_slot_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/stats/s/v2/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/quest_log/s/v/filter" to="." method="_on_filter_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/quest_log/s/v2/back" to="." method="_on_back_pressed"]
+[connection signal="hide" from="c/game_menu/list_of_menus/m/dialogue" to="." method="_on_dialogue_hide"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/dialogue/s/s/v/heal" to="." method="_on_heal_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/dialogue/s/s/v/finish" to="." method="_on_finish_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/dialogue/s/s/v/accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/dialogue/s/s/v/back" to="." method="_on_back_pressed"]
+[connection signal="button_down" from="c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg" to="." method="_on_button_down" binds= [ "c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg/m/icon" ]]
+[connection signal="button_up" from="c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg" to="." method="_on_button_up" binds= [ "c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg/m/icon" ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/v/c/v/bg" to="." method="_on_add_to_hud_pressed"]
+[connection signal="draw" from="c/game_menu/list_of_menus/m/item_info/s/v/c/v/c/label" to="." method="_on_item_info_label_draw"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/left" to="." method="_on_sift_configure" binds= [ false ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/cast" to="." method="_on_cast_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/use" to="." method="_on_use_pressed" binds= [ false ]]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/sell" to="." method="_on_sell_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/equip" to="." method="_on_equip_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/unequip" to="." method="_on_unequip_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/drop" to="." method="_on_drop_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/v/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/item_info/s/h/right" to="." method="_on_sift_configure" binds= [ true ]]
+[connection signal="on_item_selected" from="c/game_menu/list_of_menus/m/spell_book/s/v/c/spell_list" to="." method="_on_spell_selected"]
+[connection signal="pressed" from="c/game_menu/list_of_menus/m/spell_book/s/v2/back" to="." method="_on_back_pressed"]

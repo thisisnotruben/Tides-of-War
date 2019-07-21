@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Curve" id=1]
+min_value = 0.99
+max_value = 2.0
+_data = [ Vector2( 0, 1.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 2 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 400, 400, 0 )
+flag_disable_z = true
+spread = 90.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 2 )
+color = Color( 0.580392, 0.815686, 0.835294, 0.8 )
+
+[node name="veil_fog" type="Particles2D"]
+visible = false
+position = Vector2( 400, 400 )
+rotation = -1.5708
+z_index = 1
+emitting = false
+amount = 400
+lifetime = 3.0
+preprocess = 1.0
+speed_scale = 0.75
+randomness = 1.0
+visibility_rect = Rect2( -400, -400, 800, 800 )
+local_coords = false
+process_material = SubResource( 3 )

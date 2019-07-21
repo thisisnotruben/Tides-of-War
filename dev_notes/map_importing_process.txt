@@ -1,0 +1,12 @@
+To import map:
+    1.) FROM TILED:
+            1.) export map command
+            2.) export tilesets command 
+    2.) FROM GODOT:
+            1.) open from asset folder map (with tmx extension), open as inherited
+            2.) save inherited to res://src/map/ as a .tscn file
+            3.) close map
+            4.) go to map_importer.tscn and for the "map_to_import variable" load the map with the tscn extension
+            5.) run by running the individual scene or press F6
+            6.) you should get "Error code: 0" in console when done with import process, if not report to Ruben
+            7.) open map and manually delete the zed/characters node

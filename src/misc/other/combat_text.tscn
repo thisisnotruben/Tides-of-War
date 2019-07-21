@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/misc/other/combat_text.gd" type="Script" id=1]
+[ext_resource path="res://asset/img/font/mago1_16.res" type="DynamicFont" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "label_fade"
+length = 1.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.35 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue"
+} ]
+}
+
+[node name="combat_text" type="Node2D" groups=[
+"combat_text",
+]]
+modulate = Color( 1, 0, 0, 1 )
+use_parent_material = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="label" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.5 )
+show_behind_parent = true
+use_parent_material = true
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/label_fade = SubResource( 1 )
+
+[node name="tween" type="Tween" parent="."]

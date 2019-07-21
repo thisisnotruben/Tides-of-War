@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/misc/other/target_dummy.gd" type="Script" id=1]
+[ext_resource path="res://asset/img/character/target_dummy.res" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 6, 13 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 6.0
+
+[node name="target_dummy" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="tween" type="Tween" parent="." index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="img" type="Sprite" parent="." index="1"]
+
+position = Vector2( -2, -14 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="select" type="TouchScreenButton" parent="." index="2"]
+
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -18, -29 )
+normal = ExtResource( 2 )
+pressed = null
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+_sections_unfolded = [ "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="head" type="Position2D" parent="." index="3"]
+
+position = Vector2( 0, -26 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="area" type="Area2D" parent="." index="4"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="body" type="CollisionShape2D" parent="area" index="0"]
+
+position = Vector2( 0, -13 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="body2" type="CollisionShape2D" parent="area" index="1"]
+
+position = Vector2( -12.5, -17.5 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="tween_completed" from="tween" to="." method="_on_tween_completed"]
+
+[connection signal="pressed" from="select" to="." method="_on_select_pressed"]
+
+
