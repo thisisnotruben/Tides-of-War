@@ -47,9 +47,11 @@ signal talk()
 #---Start of private methods---
 
 func _ready() -> void:
+	$ray.add_exception($area)
 	connect("talk", world_quests, "update_quest_unit", [self])
 	connect("died", world_quests, "update_quest_unit", [self])
 	randomize()
+
 
 func _on_tween_completed(object: Object, key: NodePath) -> void:
 	if object.get_scale() != Vector2(1.0, 1.0):
@@ -57,18 +59,20 @@ func _on_tween_completed(object: Object, key: NodePath) -> void:
 		$tween.interpolate_property(object, key, object.get_scale(), \
 		Vector2(1.0, 1.0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		$tween.start()
-	elif key == ":global_position" and (state == STATES.MOVING or state == STATES.RETURNING):
-#		When unit is done make a move, this allows him to move again
-		set_process(true)
 	elif $tween.get_pause_mode() == PAUSE_MODE_PROCESS:
 #		Condition when merchant/trainer are selected to let their
 #		animation run through it's course when game is paused
 		$tween.set_pause_mode(PAUSE_MODE_INHERIT)
+	elif key == ":global_position":
+#		When unit is done making a move, this allows him to move again
+		set_process(true)
 
 func _on_timer_timeout() -> void:
-	if npc and dead:
+	if dead:
 #		when NPC reaches spawn time
-		set_state(STATES.ALIVE)
+#		ceases all other operations for player
+		if npc:
+			set_state(STATES.ALIVE)
 	elif state == STATES.ATTACKING:
 		if target and not dead and not target.get("dead"):
 #			horizontally flips sprite according to enemy position
@@ -80,7 +84,6 @@ func _on_timer_timeout() -> void:
 				$img.set_flip_h(true)
 				missile_pos.x = abs(missile_pos.x) * -1
 			$img/missile.set_position(missile_pos)
-
 			$anim.play("attacking", -1, anim_speed)
 	else:
 #		when not fighting, unit regenerates health/mana
@@ -149,9 +152,11 @@ func set_dead(value: bool) -> void:
 		emit_signal("died")
 		set_process(false)
 		set_target(null)
+		$tween.remove_all()
 		$timer.stop()
 		$anim.play("dying")
 		set_process_unhandled_input(false)
+		path = PoolVector2Array()
 		yield($anim, "animation_finished")
 #		reset sprite and turn into a 'ghost' once animation is finished
 		$img.set_frame(0)
@@ -383,7 +388,7 @@ func take_damage(amount, type: String, foe, ignore_armor: bool=false) -> void:
 					text.set_text(type.capitalize())
 		add_child(text)
 	set_hp(-amount)
-	if foe is Node2D and amount > 0 and (state == STATES.ATTACKING or state == STATES.IDLE):
+	if not dead and amount > 0 and (state == STATES.ATTACKING or state == STATES.IDLE):
 		bump(get_direction(foe.get_global_position()).rotated(PI) / 4)
 
 func get_save_game() -> Dictionary:

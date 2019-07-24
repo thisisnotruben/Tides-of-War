@@ -14,6 +14,8 @@ const MULTIPLIER: float = 2.6
 const MAX_LEVEL: int = 10
 const XP_INTERVAL: int = 1000
 const MAX_XP: int = MAX_LEVEL * XP_INTERVAL
+const HP_MANA_RESPAWN_LOWER_LIMIT: float = 0.3
+const FLEE_DISTANCE: int = 112
 
 static func unit_make(level, unit_multiplier, int_stats=true):
 	var _stamina = (3 + level) * unit_multiplier

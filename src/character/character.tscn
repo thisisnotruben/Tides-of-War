@@ -61,6 +61,14 @@ collision_mask = 2
 
 [node name="distance" type="CollisionShape2D" parent="sight"]
 shape = SubResource( 2 )
+
+[node name="ray" type="RayCast2D" parent="."]
+enabled = true
+exclude_parent = false
+cast_to = Vector2( 18, 0 )
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
 [connection signal="tween_completed" from="tween" to="." method="_on_tween_completed"]
 [connection signal="pressed" from="select" to="." method="_on_select_pressed"]

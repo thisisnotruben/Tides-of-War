@@ -13,7 +13,7 @@ func _ready():
 
 func _process(delta):
 	if engaging and target:
-		if get_center_pos().distance_to(target.get_center_pos()) > 96 or target.dead:
+		if origin.distance_to(target.get_center_pos()) > Stats.FLEE_DISTANCE or target.dead:
 			set_state(STATES.RETURNING)
 			if patroller:
 				if get_global_position() != patrol_path[-1]:

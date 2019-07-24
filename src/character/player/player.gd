@@ -20,7 +20,6 @@ func _ready() -> void:
 	emit_signal("update_hud", "name", self, world_name, null)
 	emit_signal("update_hud", "hp", self, hp, hp_max)
 	emit_signal("update_hud", "mana", self, mana, mana_max)
-#	$ray.add_exception($area)
 
 func _unhandled_input(event) -> void:
 	if event is InputEventScreenTouch or Input.is_action_just_pressed("ui_click"):
@@ -74,8 +73,8 @@ func move_to(target_position: Vector2) -> void:
 			.move_to(target_position)
 			path.remove(0)
 		elif $ray.is_colliding():
-			printt($ray.get_collider().owner.name)
-			path = globals.current_scene.get_apath(get_global_position(), target_position)
+#			path = globals.current_scene.get_apath(get_global_position(), target_position)
+			path = PoolVector2Array()
 	else:
 		path.remove(0)
 
@@ -171,9 +170,7 @@ func set_dead(value: bool) -> void:
 		yield($anim, "animation_finished")
 #		spawn a grave to where you died and set the map veil
 		var grve = globals.grave.instance()
-		grve.deceased = self
-		grve.set_name("%s-%s" % [world_name, get_instance_id()])
-		get_parent().add_child(grve)
+		grve.set_grave(self, world_name, get_instance_id())
 		origin = grve.get_global_position()
 		globals.current_scene.set_veil()
 		path = PoolVector2Array()
@@ -185,13 +182,12 @@ func set_dead(value: bool) -> void:
 			var min_val: float = gravesites.keys()[0]
 			for grave in range(1, gravesites.size()):
 				min_val = min(min_val, gravesites.keys()[grave])
-			set_global_position(gravesites[min_val])
+			set_global_position(globals.current_scene.get_grid_position(gravesites[min_val]))
 		set_process_unhandled_input(true)
 		set_process(true)
 	else:
-#		spawn back to the world with a 30%-100% hp/mana
-		set_hp(hp_max * rand_range(0.3, 1.0))
-		set_mana(mana_max * rand_range(0.3, 1.0))
+		set_hp(hp_max * rand_range(Stats.HP_MANA_RESPAWN_LOWER_LIMIT, 1.0))
+		set_mana(mana_max * rand_range(Stats.HP_MANA_RESPAWN_LOWER_LIMIT, 1.0))
 		origin = Vector2()
 
 func get_save_game():

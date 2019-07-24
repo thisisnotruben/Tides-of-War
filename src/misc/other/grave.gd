@@ -20,6 +20,11 @@ func _on_deceased_area_exited(area: Area2D) -> void:
 	if area.get_owner() == deceased:
 		deceased.igm.get_node(@"c/osb").hide()
 
+func set_grave(unit: Character, unit_name: String, unit_id: int) -> void:
+	deceased = unit
+	set_name("%s-%s" % [unit_name, unit_id])
+	unit.get_parent().add_child(self)
+
 func revive() -> void:
 	globals.play_sample("click2")
 	$img/area.set_block_signals(true)

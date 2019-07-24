@@ -56,12 +56,14 @@ func set_veil(dead: bool=true) -> void:
 func set_units() -> void:
 	"""master function for set_rand & set_determined unit"""
 	for unit in $zed/z1.get_children():
-		if "character" in unit.get_filename() and unit.get("npc"):
+		if "character" in unit.get_filename():
 			unit.origin = get_grid_position(unit.get_global_position())
-			if globals.unit_meta[get_name()].has(unit.get_name()) or "<*>" in unit.get_name():
-				set_determined_unit(unit)
-			else:
-				set_randomized_unit(unit)
+			unit.set_global_position(unit.origin)
+			if unit.npc:
+				if globals.unit_meta[get_name()].has(unit.get_name()) or "<*>" in unit.get_name():
+					set_determined_unit(unit)
+				else:
+					set_randomized_unit(unit)
 
 func set_determined_unit(unit: Character) -> void:
 	var uname: String = unit.get_name()

@@ -129,9 +129,4 @@ editor_draw_drag_margin = true
 collision_mask = 2
 
 [node name="in_game_menu" parent="." index="11" instance=ExtResource( 3 )]
-
-[node name="ray" type="RayCast2D" parent="." index="12"]
-enabled = true
-cast_to = Vector2( 18, 0 )
-collision_mask = 2
 [connection signal="update_hud" from="." to="in_game_menu" method="update_hud"]

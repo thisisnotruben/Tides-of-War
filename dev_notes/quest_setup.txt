@@ -47,3 +47,33 @@ when talking to units, mostly aimed at generic names
                get spoken to twice and still count towards quest]]
     
 
+==========================================
+==========================================
+
+Dialogue for the quests are placed in res://meta/dialogue/
+The name if the XML file is the name of the quest it belongs to
+The XML tags are:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<dialogue>
+
+    <start>
+    </start>
+
+    <active>
+    </active>
+
+    <completed>
+    </completed>
+
+    <delivered>
+    </delivered>
+
+    <r_completed>
+    </r_completed>
+
+    <r_delivered>
+    </r_delivered>
+
+</dialogue>
+

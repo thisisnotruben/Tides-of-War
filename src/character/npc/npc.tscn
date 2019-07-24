@@ -111,11 +111,6 @@ script = ExtResource( 2 )
 anims/attacking = SubResource( 1 )
 anims/cast = SubResource( 2 )
 anims/moving = SubResource( 3 )
-
-[node name="ray" type="RayCast2D" parent="." index="11"]
-enabled = true
-cast_to = Vector2( 18, 0 )
-collision_mask = 2
 [connection signal="mouse_entered" from="area" to="." method="_on_area_mouse_entered"]
 [connection signal="mouse_exited" from="area" to="." method="_on_area_mouse_exited"]
 [connection signal="area_entered" from="sight" to="." method="_on_sight_area_entered"]
