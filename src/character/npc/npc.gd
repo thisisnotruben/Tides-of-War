@@ -133,7 +133,7 @@ func take_damage(amount, type, foe, ignore_armor=false):
 				most_dam = target_list[unit]
 		for unit in target_list:
 			if target_list[unit] == most_dam and not unit.npc:
-				var _xp = stats.unit_death_xp(level, stats.get_multiplier($img, npc), foe.level)
+				var _xp = Stats.unit_death_xp(level, Stats.get_multiplier($img, npc), foe.level)
 				if _xp > 0:
 					unit.set_xp(_xp)
 
@@ -205,7 +205,7 @@ func set_state(value, bypass: bool=false) -> void:
 
 func set_text(text: String) -> void:
 	if "%s" in text and type == TYPES.HEALER:
-		bbcode = bbcode % stats.healer_cost(globals.player.level)
+		bbcode = bbcode % Stats.healer_cost(globals.player.level)
 	else:
 		bbcode = text
 

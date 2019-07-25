@@ -87,7 +87,7 @@ func _on_timer_timeout() -> void:
 			$anim.play("attacking", -1, anim_speed)
 	else:
 #		when not fighting, unit regenerates health/mana
-		var regen_amount: int = stats.hp_mana_regen(level, stats.get_multiplier($img, npc))
+		var regen_amount: int = Stats.hp_mana_regen(level, Stats.get_multiplier($img, npc))
 		set_hp(regen_amount)
 		set_mana(regen_amount)
 
@@ -102,8 +102,8 @@ func set_target(value) -> void:
 	target = value
 
 func set_level(value) -> void:
-	level = int(clamp(value, 0.0, stats.MAX_LEVEL))
-	var _stats: Dictionary = stats.unit_make(level, stats.get_multiplier($img, npc))
+	level = int(clamp(value, 0.0, Stats.MAX_LEVEL))
+	var _stats: Dictionary = Stats.unit_make(level, Stats.get_multiplier($img, npc))
 	for stat in _stats:
 		set(stat, _stats[stat])
 
@@ -300,7 +300,7 @@ func cast() -> void:
 		$img.set_frame(0)
 		set_process(true)
 
-func attack(attack_table: Dictionary=stats.attack_table.melee, ignore_armor: bool=false) -> void:
+func attack(attack_table: Dictionary=Stats.attack_table.melee, ignore_armor: bool=false) -> void:
 	if target and not dead and not target.get("dead"):
 		var snd_idx: int = randi() % globals.weapon_type[weapon_type]
 		var play_sound: bool = true
@@ -557,7 +557,7 @@ func set_img(value: String, loaded: bool=false) -> void:
 	$select.set_position(Vector2(-target_bttn.x / 2.0, -target_bttn.y))
 	$area/body.set_position(Vector2(-0.5, -target_bttn.y / 2.0))
 	$sight/distance.set_position($area/body.get_position())
-	var _stats: Dictionary = stats.unit_make(level, stats.get_multiplier($img, npc))
+	var _stats: Dictionary = Stats.unit_make(level, Stats.get_multiplier($img, npc))
 	for stat in _stats:
 		set(stat, _stats[stat])
 	set_time(regen_time)

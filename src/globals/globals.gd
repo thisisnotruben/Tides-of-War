@@ -169,7 +169,7 @@ func play_sample(snd: String, speaker: Node=$snd) -> bool:
 		play_sample(snd, new_speaker)
 		return false
 
-func drop_loot(unit: Character, spawn_pos: Vector2, gold: int, drop_table: Dictionary=stats.drop_table):
+func drop_loot(unit: Character, spawn_pos: Vector2, gold: int, drop_table: Dictionary=Stats.drop_table):
 	randomize()
 	if randi() % 100 + 1 <= drop_table.drop:
 		var chance: int = randi() % 100 + 1

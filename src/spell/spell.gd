@@ -149,7 +149,7 @@ func make() -> void:
 	level = int(globals.spell_meta[world_name].level)
 	gold = int((3 * level + 10) * 6)
 	mana_cost = (6 * level + 16 + (level + 2) * \
-	stats.MULTIPLIER) * stats.MULTIPLIER * 0.3
+	Stats.MULTIPLIER) * Stats.MULTIPLIER * 0.3
 	mana_cost = int(round((mana_cost + mana_cost * 1.25) / 2 - 9))
 	spell_range = int(globals.spell_meta[world_name]["range"])
 	var cooldown_text: String = globals.spell_meta[world_name].cooldown
@@ -189,9 +189,9 @@ func make() -> void:
 		TYPES.PRECISE_SHOT:
 			attack_table = {"hit":90,"critical":100,"dodge":100, "parry":100}
 	if spell_range > 32:
-		attack_table = stats.attack_table.ranged
+		attack_table = Stats.attack_table.ranged
 	else:
-		attack_table = stats.attack_table.melee
+		attack_table = Stats.attack_table.melee
 	.make()
 
 func unmake() -> void:

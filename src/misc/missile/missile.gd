@@ -65,7 +65,7 @@ func set_spell(value):
 func fade():
 	$anim.play("fade")
 
-func attack(unit=target, ignore_armor=false, attack_table=stats.attack_table.ranged):
+func attack(unit=target, ignore_armor=false, attack_table=Stats.attack_table.ranged):
 	var dice_roll: int = randi() % 100 + 1
 	var damage: int = int(round(rand_range(user.min_damage, user.max_damage)))
 	var snd_idx: int = randi() % globals.weapon_type[weapon_type]

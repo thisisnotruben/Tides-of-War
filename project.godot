@@ -184,7 +184,6 @@ config/quit_on_go_back=false
 
 [autoload]
 
-stats="*res://src/globals/stats.gd"
 globals="*res://src/globals/globals.tscn"
 world_quests="*res://src/quest_system/quest_system.tscn"
 

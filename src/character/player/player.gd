@@ -78,7 +78,7 @@ func move_to(target_position: Vector2) -> void:
 	else:
 		path.remove(0)
 
-func attack(attack_table: Dictionary=stats.attack_table.melee, ignore_armor: bool=false) -> void:
+func attack(attack_table: Dictionary=Stats.attack_table.melee, ignore_armor: bool=false) -> void:
 	.attack(attack_table, ignore_armor)
 	if weapon:
 		weapon.take_damage()
@@ -138,21 +138,21 @@ func set_target(value):
 
 func set_xp(value, show_label=true, loaded=false):
 	xp += int(round(value))
-	if xp > stats.MAX_XP:
-		xp = stats.MAX_XP
-	elif xp > 0 and xp != stats.MAX_XP and show_label:
+	if xp > Stats.MAX_XP:
+		xp = Stats.MAX_XP
+	elif xp > 0 and xp != Stats.MAX_XP and show_label:
 		var text = globals.combat_text.instance()
 		text.type = "xp"
 		text.set_text("+%s" % globals.add_comma(value))
 		add_child(text)
-	var _level = stats.level_check(xp)
-	if level != _level and level < stats.MAX_LEVEL:
+	var _level = Stats.level_check(xp)
+	if level != _level and level < Stats.MAX_LEVEL:
 		level = _level
 		if not loaded:
 			globals.play_sample("level_up")
-		if level > stats.MAX_LEVEL:
-			level = stats.MAX_LEVEL
-		var _stats = stats.unit_make(level, stats.get_multiplier($img, npc))
+		if level > Stats.MAX_LEVEL:
+			level = Stats.MAX_LEVEL
+		var _stats = Stats.unit_make(level, Stats.get_multiplier($img, npc))
 		for stat in _stats:
 			set(stat, _stats[stat])
 

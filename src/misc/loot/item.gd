@@ -53,8 +53,8 @@ func configure_buff(consumer, expire=false):
 			consumer.mana_max += value
 			consumer.set_mana(consumer.mana_max * percent)
 		SUB_TYPES.AGILITY:
-			var regen_amount: float = stats.get_modified_regen(consumer.level, \
-			stats.get_multiplier(consumer.get_node(@"img"), consumer.npc), value)
+			var regen_amount: float = Stats.get_modified_regen(consumer.level, \
+			Stats.get_multiplier(consumer.get_node(@"img"), consumer.npc), value)
 			consumer.regen_time = regen_amount
 			if not consumer.attacking:
 				consumer.set_time(consumer.regen_time, false)
@@ -79,15 +79,15 @@ func take_damage(bypass=false, amount=-0.10):
 		obj_des = obj_des.replace(str(int(round(old_dur * 100))) + "%", str(int(round(durability * 100))) + "%")
 		if durability >= 0.5:
 			var old_str = {"min":str(min_value),"max":str(max_value),"value":str(value),"gold":str(gold)}
-			gold = stats.get_item_gold(level, get_type(), durability)
+			gold = Stats.get_item_gold(level, get_type(), durability)
 			if type == TYPES.WEAPON:
-				var _stats = stats.damage_item(get_type(), {"level":level,"durability":durability})
+				var _stats = Stats.damage_item(get_type(), {"level":level,"durability":durability})
 				min_value = _stats[0]
 				max_value = _stats[1]
 				obj_des = obj_des.replace(old_str["min"], str(min_value))
 				obj_des = obj_des.replace(old_str["max"], str(max_value))
 			elif type == TYPES.ARMOR:
-				value = stats.damage_item(get_type(), {"value":value, "durability":durability})
+				value = Stats.damage_item(get_type(), {"value":value, "durability":durability})
 				obj_des = obj_des.replace(old_str["value"], str(value))
 			obj_des = obj_des.replace(old_str["gold"], str(gold))
 
@@ -106,8 +106,8 @@ func make():
 		set_obj_name(globals.item_meta[key][str(level)][sub_key][0])
 	icon = load(path)
 	if type == TYPES.POTION:
-		var _stats = stats.get_item_stats(level, get_sub_type())
-		gold = stats.get_item_gold(level, get_sub_type(), durability)
+		var _stats = Stats.get_item_stats(level, get_sub_type())
+		gold = Stats.get_item_gold(level, get_sub_type(), durability)
 		set_duration(120.0)
 		stack_size = 5
 		match sub_type:
@@ -117,8 +117,8 @@ func make():
 			_:
 				value = _stats[0]
 	else:
-		var _stats = stats.get_item_stats(level, get_type())
-		gold = stats.get_item_gold(level, get_type(), durability)
+		var _stats = Stats.get_item_stats(level, get_type())
+		gold = Stats.get_item_gold(level, get_type(), durability)
 		match type:
 			TYPES.WEAPON, TYPES.FOOD:
 				min_value = _stats[0]

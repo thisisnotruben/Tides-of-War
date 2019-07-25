@@ -47,7 +47,7 @@ static func healer_cost(level):
 static func item_repair_cost(item_level):
 	return _make_int((3 * item_level + 1) * 3)
 
-func get_modified_regen(level, unit_multiplier, value):
+static func get_modified_regen(level, unit_multiplier, value):
 	var _agility = (1 + level) * unit_multiplier + value
 	var _regen_time = 60 - 60 * _agility * 0.01
 	return _make_int(_regen_time)
@@ -79,7 +79,7 @@ static func damage_item(item_type, item_stats):
 			min_value = item_stats.value * item_stats.durability
 	return [_make_int(min_value), _make_int(max_value)]
 
-func get_item_stats(level, item_type):
+static func get_item_stats(level, item_type):
 	var _stats = unit_make(level, MULTIPLIER, false)
 	var min_value = -1
 	var max_value = -1
@@ -110,7 +110,7 @@ func get_item_stats(level, item_type):
 			min_value = max_value / 2.0
 	return [_make_int(min_value), _make_int(max_value)]
 
-func get_multiplier(unit_sprite, npc):
+static func get_multiplier(unit_sprite, npc):
 	var _multiplier: float = 1.0
 	if npc:
 		match unit_sprite.get_texture().get_path().get_base_dir().get_file():
@@ -126,7 +126,7 @@ func get_multiplier(unit_sprite, npc):
 		_multiplier = MULTIPLIER
 	return _multiplier
 
-func level_check(xp):
+static func level_check(xp):
 	return _make_int((xp + XP_INTERVAL) / XP_INTERVAL - 1)
 
 static func _make_int(num):

@@ -61,7 +61,7 @@ func update():
 		for quest in quest_cat.get_children():
 			quest.change_state(quest_cat.get_name())
 
-func update_quest_item(item: Pickable, add: bool) -> void:
+func update_quest_item(item, add) -> void:
 	"""Searches active/completed quest nodes for quest item matches to
 	parameter 'item'. If match update quest."""
 	for quest_cat in [active_quests, completed_quests]:
@@ -74,7 +74,7 @@ func update_quest_item(item: Pickable, add: bool) -> void:
 				else:
 					_move_quest(quest, active_quests)
 
-func update_quest_unit(unit: Character) -> void:
+func update_quest_unit(unit) -> void:
 	"""Similar method as 'update_quest_item' but for units"""
 	for quest in active_quests.get_children():
 		if quest.is_part_of(unit) and quest.check_quest(unit):

@@ -209,10 +209,10 @@ func _on_repair_pressed(what):
 	if what == "all":
 		meta.weapon = meta.player.weapon
 		meta.vest = meta.player.vest
-		meta.amount = stats.item_repair_cost(meta.weapon.level) + stats.item_repair_cost(meta.vest.level)
+		meta.amount = Stats.item_repair_cost(meta.weapon.level) + Stats.item_repair_cost(meta.vest.level)
 	else:
 		meta[what] = meta.player.get(what)
-		meta.amount = stats.item_repair_cost(meta[what].level)
+		meta.amount = Stats.item_repair_cost(meta[what].level)
 	if meta.amount > meta.player.gold:
 		$m/error/label.set_text("Not Enough\nGold!")
 		$m/repair.hide()

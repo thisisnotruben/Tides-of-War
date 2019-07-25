@@ -76,7 +76,7 @@ Damage: %s - %s
 Attack speed: %s
 Attack range: %s""" % \
 	[get_owner().world_name, get_owner().hp, get_owner().hp_max, get_owner().mana, get_owner().mana_max, globals.add_comma(get_owner().xp), \
-	globals.add_comma(get_owner().level * stats.XP_INTERVAL), get_owner().level, globals.add_comma(get_owner().gold), \
+	globals.add_comma(get_owner().level * Stats.XP_INTERVAL), get_owner().level, globals.add_comma(get_owner().gold), \
 	get_owner().stamina, get_owner().intellect, get_owner().agility, get_owner().armor, \
 	get_owner().min_damage, get_owner().max_damage, get_owner().weapon_speed, get_owner().weapon_range]
 	stats_menu.get_node(@"s/v/c/label").set_bbcode(bbcode)
@@ -438,7 +438,7 @@ func _on_repair_pressed() -> void:
 	else:
 		popup.get_node(@"m/repair/repair_weapon").show()
 
-		text = "Weapon: %s" % stats.item_repair_cost(get_owner().weapon.get_level())
+		text = "Weapon: %s" % Stats.item_repair_cost(get_owner().weapon.get_level())
 	if not get_owner().vest:
 		popup.get_node(@"m/repair/repair_armor").hide()
 		popup.get_node(@"m/repair/repair_all").hide()
@@ -448,10 +448,10 @@ func _on_repair_pressed() -> void:
 			text += "Armor: %s"
 		else:
 			text += "\nArmor: %s"
-		text = text % stats.item_repair_cost(get_owner().vest.get_level())
+		text = text % Stats.item_repair_cost(get_owner().vest.get_level())
 	if get_owner().weapon and get_owner().vest:
-		text += "\nAll %s" % stats.item_repair_cost(get_owner().weapon.get_level()) \
-		+ stats.item_repair_cost(get_owner().vest.get_level())
+		text += "\nAll %s" % Stats.item_repair_cost(get_owner().weapon.get_level()) \
+		+ Stats.item_repair_cost(get_owner().vest.get_level())
 	popup.get_node(@"m/repair/label").set_text(text)
 	popup.show()
 
@@ -608,7 +608,7 @@ func _on_move_hud(player: bool=true) -> void:
 	$tween.start()
 
 func _on_heal_pressed() -> void:
-	var amount: int = stats.healer_cost(get_owner().level)
+	var amount: int = Stats.healer_cost(get_owner().level)
 	if get_owner().gold >= amount:
 		globals.play_sample("sell_buy")
 		get_owner().set_gold(-amount)
