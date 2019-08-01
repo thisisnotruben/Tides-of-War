@@ -14,7 +14,7 @@ func _ready() -> void:
 	if Directory.new().file_exists("res://asset/img/map/%s.png" % globals.current_scene.get_name()):
 		$map.set_texture(load("res://asset/img/map/%s.png" % globals.current_scene.get_name()))
 	else:
-		get_owner().get_node(@"c/controls/m/right/v/mini_map/icon"). \
+		get_owner().get_node(@"c/controls/right/mini_map/icon"). \
 		disconnect("pressed", get_owner(), "_on_mini_map_pressed")
 	set_owner(get_owner().get_owner())
 

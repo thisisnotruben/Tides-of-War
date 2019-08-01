@@ -39,11 +39,9 @@ func _process(delta):
 func _on_sight_area_entered(area):
 	area = area.get_owner()
 	if not dead and (not target or area.dead):
-		if not engaging and not area.npc and not enemy:
-			$select.show()
-		elif enemy != area.get("enemy"):
-			if not enemy and not area.npc:
-				return
+		if not enemy and not area.npc:
+			return
+		elif not engaging and enemy != area.get("enemy"):
 			set_target(area)
 			engaging = true
 			set_process(true)
@@ -52,8 +50,6 @@ func _on_sight_area_exited(area):
 	area = area.get_owner()
 	if not engaging:
 		set_target(null)
-		if not area.npc:
-			$select.hide()
 
 func _on_area_mouse_entered():
 	globals.player.set_process_unhandled_input(false)
@@ -65,12 +61,12 @@ func _on_select_pressed() -> void:
 	if globals.player.target == self:
 		globals.player.set_target(null)
 	elif not globals.player.dead:
+		globals.player.set_target(self)
 		$tween.interpolate_property($img, @":scale", $img.get_scale(), \
 		Vector2(1.03, 1.03), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 		$tween.start()
-		globals.player.set_target(self)
 		update_hud()
-		if not enemy and not engaging:
+		if not enemy and not engaging and $sight.overlaps_area(globals.player.get_node(@"area")):
 			if type == TYPES.MERCHANT or type == TYPES.TRAINER:
 				$tween.set_pause_mode(PAUSE_MODE_PROCESS)
 				if type == TYPES.MERCHANT:

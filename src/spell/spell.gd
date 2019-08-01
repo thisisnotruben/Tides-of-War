@@ -83,7 +83,9 @@ func _on_sight_body_exited(body: PhysicsBody2D) -> void:
 	body.set_z_index(0)
 	data.erase(body)
 
-#--- end osb type spells---
+#---end osb type spells---
+
+#---main methods---
 
 func cast(from_missile: bool=false):
 	casted = true
@@ -240,6 +242,7 @@ func configure_snd() -> void:
 		TYPES.FIREBALL, TYPES.SHADOW_BOLT, TYPES.FROST_BOLT:
 			globals.play_sample("%s_cast" % world_name, caster.get_node(@"snd"))
 
+#---End main methods---
 #---Support Functions---
 
 func set_time(time: float, set_duration: bool=true) -> void:
@@ -348,7 +351,7 @@ func hemorrhage() -> float:
 	set_time(12.0)
 	return 1.05
 
-func stomp():# -> float:
+func stomp() -> float:
 	if loaded:
 		for unit in data:
 			unit = globals.get_node(unit)
@@ -356,7 +359,6 @@ func stomp():# -> float:
 			unit.get_node(@"timer").stop()
 			unit.get_node(@"img").set_frame(0)
 	else:
-		return
 		## this here because code below gives error that I don't want to fix yet.
 		set_data([])
 		for unit in $choose_area_effect.get_overlapping_areas():
@@ -424,13 +426,14 @@ func precise_shot() -> float:
 func sniper_shot() -> float:
 	return 1.15
 
-func explosive_trap() -> void:
+func explosive_trap() -> float:
 	var loaded_mine: Resource = load("res://src/misc/missile/land_mine.scn")
 	var land_mine: LandMine = loaded_mine.instance()
 	land_mine.excluded_unit = caster
 	land_mine.set_global_position(caster.get_global_position())
 	land_mine.add_to_group(str(caster.get_instance_id()) + "-lm")
 	caster.get_parent().add_child(land_mine)
+	return 1.0
 
 func volley(anim_name: String = "") -> float:
 	var anim: AnimationPlayer = caster.get_node(@"anim")
@@ -475,7 +478,7 @@ func rejuvenate() -> float:
 	caster.set_hp(caster.hp * rand_range(1.1, 1.3))
 	return 1.0
 
-func siphon_mana():
+func siphon_mana() -> float:
 	var mana: int = int(round(caster.target.mana * 0.2))
 	caster.target.set_mana(-mana)
 	caster.set_mana(mana)
@@ -487,11 +490,12 @@ func siphon_mana():
 	caster.add_child(txt)
 	return 1.0
 
-func haste() -> void:
+func haste() -> float:
 	set_data([int(round(caster.max_vel * 0.10)), caster.anim_speed * 0.20])
 	caster.max_vel += data[0]
 	caster.anim_speed += data[1]
 	set_time(30.0)
+	return 1.0
 
 func slow() -> float:
 	set_data([caster.target,
@@ -508,7 +512,7 @@ func lightning_bolt() -> float:
 func mind_blast() -> float:
 	return 1.2
 
-func meteor(hit: bool=false):
+func meteor(hit: bool=false) -> float:
 	if not hit:
 		var ctrans: Transform2D = get_canvas_transform()
 		var min_pos: Vector2 = -ctrans.get_origin() / ctrans.get_scale()
@@ -528,3 +532,4 @@ func meteor(hit: bool=false):
 		for body in data:
 			body.take_damage(damage, "hit", caster)
 		unmake()
+	return 1.0

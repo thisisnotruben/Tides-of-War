@@ -256,6 +256,7 @@ func on_foot_step(value: bool) -> void:
 
 func move_to(target_position: Vector2) -> void:
 	"""main method for unit movement"""
+	$tween.stop_all()
 	set_process(false)
 	$tween.interpolate_property(self, @":global_position", get_global_position(), target_position, \
 	get_global_position().distance_to(target_position) / 16 * 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)

@@ -9,448 +9,181 @@
 [ext_resource path="res://asset/img/font/mago1_80.res" type="DynamicFont" id=7]
 
 [node name="popup" type="CenterContainer"]
-
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
 script = ExtResource( 1 )
-_sections_unfolded = [ "custom_constants" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="bg" type="TextureRect" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="bg" type="TextureRect" parent="."]
 margin_left = 360.0
 margin_top = 640.0
 margin_right = 360.0
 margin_bottom = 640.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 2 )
 expand = true
-stretch_mode = 0
 
-[node name="m" type="MarginContainer" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="m" type="MarginContainer" parent="."]
 margin_left = 310.0
 margin_top = 590.0
 margin_right = 410.0
 margin_bottom = 690.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/margin_right = 50
 custom_constants/margin_top = 50
 custom_constants/margin_left = 50
 custom_constants/margin_bottom = 50
 
-[node name="save_load" type="VBoxContainer" parent="m" index="0"]
-
+[node name="save_load" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
 margin_bottom = 546.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
-[node name="delete" type="TextureButton" parent="m/save_load" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="delete" type="TextureButton" parent="m/save_load"]
 margin_right = 380.0
 margin_bottom = 121.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
 
-[node name="label" type="Label" parent="m/save_load/delete" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/save_load/delete"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Delete"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="save" type="TextureButton" parent="m/save_load" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="save" type="TextureButton" parent="m/save_load"]
 margin_top = 125.0
 margin_right = 380.0
 margin_bottom = 246.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Textures", "Theme" ]
 
-[node name="label" type="Label" parent="m/save_load/save" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/save_load/save"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Save"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="load" type="TextureButton" parent="m/save_load" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="load" type="TextureButton" parent="m/save_load"]
 margin_top = 250.0
 margin_right = 380.0
 margin_bottom = 371.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="label" type="Label" parent="m/save_load/load" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/save_load/load"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Load"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="back" type="TextureButton" parent="m/save_load" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="back" type="TextureButton" parent="m/save_load"]
 margin_top = 375.0
 margin_right = 380.0
 margin_bottom = 496.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect" ]
 
-[node name="label" type="Label" parent="m/save_load/back" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/save_load/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Back"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="yes_no" type="VBoxContainer" parent="m" index="1"]
-
+[node name="yes_no" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
 margin_bottom = 404.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 5
 alignment = 1
-_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="label" type="Label" parent="m/yes_no" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="label" type="Label" parent="m/yes_no"]
 margin_right = 380.0
 margin_bottom = 102.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 6 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Buy?"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="yes" type="TextureButton" parent="m/yes_no" index="1"]
-
+[node name="yes" type="TextureButton" parent="m/yes_no"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 107.0
 margin_right = 380.0
 margin_bottom = 228.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/yes_no/yes" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/yes_no/yes"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Yes"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="no" type="TextureButton" parent="m/yes_no" index="2"]
-
+[node name="no" type="TextureButton" parent="m/yes_no"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 233.0
 margin_right = 380.0
 margin_bottom = 354.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="label" type="Label" parent="m/yes_no/no" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/yes_no/no"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "No"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="error" type="VBoxContainer" parent="m" index="2"]
-
+[node name="error" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
 margin_bottom = 330.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
-[node name="label" type="Label" parent="m/error" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="label" type="Label" parent="m/error"]
 margin_right = 380.0
 margin_bottom = 155.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
@@ -458,755 +191,325 @@ text = "Inventory
 Full!"
 align = 1
 valign = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Size Flags", "custom_fonts" ]
 
-[node name="okay" type="TextureButton" parent="m/error" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="okay" type="TextureButton" parent="m/error"]
 margin_top = 159.0
 margin_right = 380.0
 margin_bottom = 280.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 6
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/error/okay" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/error/okay"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Okay"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="exit" type="VBoxContainer" parent="m" index="3"]
-
+[node name="exit" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
 margin_bottom = 421.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
-[node name="exit_game" type="TextureButton" parent="m/exit" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="exit_game" type="TextureButton" parent="m/exit"]
 margin_right = 380.0
 margin_bottom = 121.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/exit/exit_game" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/exit/exit_game"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Exit Game"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
-[node name="exit_menu" type="TextureButton" parent="m/exit" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="exit_menu" type="TextureButton" parent="m/exit"]
 margin_top = 125.0
 margin_right = 380.0
 margin_bottom = 246.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/exit/exit_menu" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/exit/exit_menu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "To Menu"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="back" type="TextureButton" parent="m/exit" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="back" type="TextureButton" parent="m/exit"]
 margin_top = 250.0
 margin_right = 380.0
 margin_bottom = 371.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="label" type="Label" parent="m/exit/back" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/exit/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Back"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="filter_options" type="VBoxContainer" parent="m" index="4"]
-
+[node name="filter_options" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
 margin_bottom = 546.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
-[node name="all" type="TextureButton" parent="m/filter_options" index="0"]
-
+[node name="all" type="TextureButton" parent="m/filter_options"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 380.0
 margin_bottom = 121.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/filter_options/all" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/filter_options/all"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "All"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="active" type="TextureButton" parent="m/filter_options" index="1"]
-
+[node name="active" type="TextureButton" parent="m/filter_options"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 125.0
 margin_right = 380.0
 margin_bottom = 246.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/filter_options/active" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/filter_options/active"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Active"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="completed" type="TextureButton" parent="m/filter_options" index="2"]
-
+[node name="completed" type="TextureButton" parent="m/filter_options"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 250.0
 margin_right = 380.0
 margin_bottom = 371.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags", "Textures" ]
 
-[node name="label" type="Label" parent="m/filter_options/completed" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/filter_options/completed"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Completed"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="back" type="TextureButton" parent="m/filter_options" index="3"]
-
+[node name="back" type="TextureButton" parent="m/filter_options"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 375.0
 margin_right = 380.0
 margin_bottom = 496.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="label" type="Label" parent="m/filter_options/back" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/filter_options/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Back"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="add_to_slot" type="VBoxContainer" parent="m" index="5"]
-
+[node name="add_to_slot" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
-margin_bottom = 546.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_bottom = 671.0
 alignment = 1
 
-[node name="slot_1" type="TextureButton" parent="m/add_to_slot" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="slot_1" type="TextureButton" parent="m/add_to_slot"]
+editor/display_folded = true
 margin_right = 380.0
 margin_bottom = 121.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Textures", "Theme" ]
 
-[node name="label" type="Label" parent="m/add_to_slot/slot_1" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/add_to_slot/slot_1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Slot 1"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="slot_2" type="TextureButton" parent="m/add_to_slot" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="slot_2" type="TextureButton" parent="m/add_to_slot"]
+editor/display_folded = true
 margin_top = 125.0
 margin_right = 380.0
 margin_bottom = 246.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Textures", "Theme" ]
 
-[node name="label" type="Label" parent="m/add_to_slot/slot_2" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/add_to_slot/slot_2"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Slot 2"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="slot_3" type="TextureButton" parent="m/add_to_slot" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="slot_3" type="TextureButton" parent="m/add_to_slot"]
+editor/display_folded = true
 margin_top = 250.0
 margin_right = 380.0
 margin_bottom = 371.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="label" type="Label" parent="m/add_to_slot/slot_3" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/add_to_slot/slot_3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Slot 3"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="clear_slot" type="TextureButton" parent="m/add_to_slot" index="3"]
+[node name="slot_4" type="TextureButton" parent="m/add_to_slot"]
+editor/display_folded = true
+margin_top = 250.0
+margin_right = 380.0
+margin_bottom = 371.0
+rect_min_size = Vector2( 380, 121 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+expand = true
 
+[node name="label" type="Label" parent="m/add_to_slot/slot_4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+text = "Slot 4"
+align = 1
+valign = 1
+
+[node name="clear_slot" type="TextureButton" parent="m/add_to_slot"]
+editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 375.0
 margin_right = 380.0
 margin_bottom = 496.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="label" type="Label" parent="m/add_to_slot/clear_slot" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/add_to_slot/clear_slot"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Clear Slot"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="back" type="TextureButton" parent="m/add_to_slot" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="back" type="TextureButton" parent="m/add_to_slot"]
+editor/display_folded = true
 margin_top = 375.0
 margin_right = 380.0
 margin_bottom = 496.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect" ]
 
-[node name="label" type="Label" parent="m/add_to_slot/back" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/add_to_slot/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Back"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="repair" type="VBoxContainer" parent="m" index="6"]
-
+[node name="repair" type="VBoxContainer" parent="m"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 50.0
 margin_top = 50.0
 margin_right = 430.0
 margin_bottom = 816.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
-[node name="header" type="Label" parent="m/repair" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="header" type="Label" parent="m/repair"]
 margin_right = 380.0
 margin_bottom = 64.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "--Cost--"
 align = 1
 valign = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="label" type="Label" parent="m/repair" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="label" type="Label" parent="m/repair"]
 margin_top = 68.0
 margin_right = 380.0
 margin_bottom = 266.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
@@ -1214,263 +517,109 @@ text = "Weapon: 40
 Armor: 20
 All: 60"
 valign = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="repair_all" type="TextureButton" parent="m/repair" index="2"]
-
+[node name="repair_all" type="TextureButton" parent="m/repair"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 270.0
 margin_right = 380.0
 margin_bottom = 391.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Textures", "Theme" ]
 
-[node name="label" type="Label" parent="m/repair/repair_all" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/repair/repair_all"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "All"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="repair_weapon" type="TextureButton" parent="m/repair" index="3"]
-
+[node name="repair_weapon" type="TextureButton" parent="m/repair"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 395.0
 margin_right = 380.0
 margin_bottom = 516.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Textures", "Theme" ]
 
-[node name="label" type="Label" parent="m/repair/repair_weapon" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/repair/repair_weapon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Weapon"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="repair_armor" type="TextureButton" parent="m/repair" index="4"]
-
+[node name="repair_armor" type="TextureButton" parent="m/repair"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 520.0
 margin_right = 380.0
 margin_bottom = 641.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="label" type="Label" parent="m/repair/repair_armor" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/repair/repair_armor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Armor"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
-[node name="back" type="TextureButton" parent="m/repair" index="5"]
-
+[node name="back" type="TextureButton" parent="m/repair"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 645.0
 margin_right = 380.0
 margin_bottom = 766.0
 rect_min_size = Vector2( 380, 121 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 expand = true
-_sections_unfolded = [ "Rect" ]
 
-[node name="label" type="Label" parent="m/repair/back" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="label" type="Label" parent="m/repair/back"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 text = "Back"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-
 [connection signal="draw" from="." to="." method="_on_popup_draw"]
-
 [connection signal="hide" from="." to="." method="_on_popup_hide"]
-
 [connection signal="resized" from="m" to="." method="_on_m_resized"]
-
 [connection signal="pressed" from="m/save_load/delete" to="." method="_on_delete_pressed"]
-
 [connection signal="pressed" from="m/save_load/save" to="." method="_on_save_pressed"]
-
 [connection signal="pressed" from="m/save_load/load" to="." method="_on_load_pressed"]
-
 [connection signal="pressed" from="m/save_load/back" to="." method="_on_back_pressed"]
-
 [connection signal="pressed" from="m/yes_no/yes" to="." method="_on_yes_pressed"]
-
 [connection signal="pressed" from="m/yes_no/no" to="." method="_on_no_pressed"]
-
 [connection signal="draw" from="m/error" to="." method="_on_error_draw"]
-
 [connection signal="pressed" from="m/error/okay" to="." method="_on_okay_pressed"]
-
 [connection signal="pressed" from="m/exit/exit_game" to="." method="_on_exit_game_pressed"]
-
 [connection signal="pressed" from="m/exit/exit_menu" to="." method="_on_exit_menu_pressed"]
-
 [connection signal="pressed" from="m/exit/back" to="." method="_on_back_pressed"]
-
 [connection signal="pressed" from="m/filter_options/all" to="." method="_on_all_pressed"]
-
 [connection signal="pressed" from="m/filter_options/active" to="." method="_on_active_pressed"]
-
 [connection signal="pressed" from="m/filter_options/completed" to="." method="_on_completed_pressed"]
-
 [connection signal="pressed" from="m/filter_options/back" to="." method="_on_back_pressed"]
-
 [connection signal="pressed" from="m/add_to_slot/slot_1" to="." method="_on_slot_pressed" binds= [ 1 ]]
-
 [connection signal="pressed" from="m/add_to_slot/slot_2" to="." method="_on_slot_pressed" binds= [ 2 ]]
-
 [connection signal="pressed" from="m/add_to_slot/slot_3" to="." method="_on_slot_pressed" binds= [ 3 ]]
-
+[connection signal="pressed" from="m/add_to_slot/slot_4" to="." method="_on_slot_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="m/add_to_slot/clear_slot" to="." method="_on_clear_slot_pressed"]
-
 [connection signal="pressed" from="m/add_to_slot/back" to="." method="_on_back_pressed"]
-
 [connection signal="draw" from="m/repair" to="." method="_on_repair_draw"]
-
 [connection signal="hide" from="m/repair" to="." method="_on_repair_hide"]
-
 [connection signal="pressed" from="m/repair/repair_all" to="." method="_on_repair_pressed" binds= [ "all" ]]
-
 [connection signal="pressed" from="m/repair/repair_weapon" to="." method="_on_repair_pressed" binds= [ "weapon" ]]
-
 [connection signal="pressed" from="m/repair/repair_armor" to="." method="_on_repair_pressed" binds= [ "vest" ]]
-
 [connection signal="pressed" from="m/repair/back" to="." method="_on_back_pressed"]
-
-

@@ -76,7 +76,7 @@ func _on_back_pressed():
 		menu.quest_log.show()
 	elif $m/add_to_slot.is_visible():
 		menu.item_info.show()
-		menu.get_node(@"c/controls/m/right").show()
+		menu.get_node(@"c/controls/right").show()
 		if menu.item_info.get_node(@"s/h/v/back"). \
 		is_connected("pressed", menu, "hide_menu"):
 			sound_played = true
@@ -241,7 +241,7 @@ func _on_slot_pressed(index):
 	var bttn_t
 	hide()
 	globals.play_sample("click1")
-	menu.get_node(@"c/controls/m/right").show()
+	menu.get_node(@"c/controls/right").show()
 	if menu.selected:
 		selected_name = menu.selected.world_name
 	elif globals.player.spell:

@@ -124,7 +124,7 @@ func set_target(value):
 			"MERCHANT":
 				target.prep_items(igm, false, false)
 	if value:
-		igm.hp_mana.get_node(@"h/u").show()
+		igm.hp_mana.get_node(@"m/h/u").show()
 		value.connect("update_hud", igm, "update_hud")
 		value.update_hud()
 		match value.get_type():
@@ -133,7 +133,7 @@ func set_target(value):
 			"MERCHANT":
 				value.prep_items(igm, true, false)
 	else:
-		igm.hp_mana.get_node(@"h/u").hide()
+		igm.hp_mana.get_node(@"m/h/u").hide()
 	target = value
 
 func set_xp(value, show_label=true, loaded=false):

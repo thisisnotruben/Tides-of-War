@@ -19,11 +19,13 @@ onready var hp_mana = get_node(@"c/hp_mana")
 
 var selected = null
 var selected_index: int = -1
+var player: Character
 
 func _ready() -> void:
+	player = get_owner()
 	for item_list in [inventory_bag, spell_book]:
 		for slot in item_list.get_children():
-			for hud_slot in hp_mana.get_node(@"h/p/h/g").get_children():
+			for hud_slot in hp_mana.get_node(@"m/h/p/h/g").get_children():
 				slot.connect("cooldown", hud_slot, "cool_down")
 				hud_slot.connect("cooldown", slot, "cool_down")
 			for short_cut in get_tree().get_nodes_in_group("HUD-shortcut"):
@@ -36,7 +38,7 @@ func _ready() -> void:
 
 func _on_resume_pressed() -> void:
 	globals.play_sample("click2")
-	get_owner().set_buff()
+	player.set_buff()
 	hide_menu()
 
 func _on_inventory_pressed() -> void:
@@ -55,10 +57,10 @@ func _on_inventory_pressed() -> void:
 func _on_merchant_pressed() -> void:
 	globals.play_sample("click1")
 	merchant_bag.clear()
-	merchant.get_node(@"s/v/label").set_text(get_owner().target.world_name)
+	merchant.get_node(@"s/v/label").set_text(player.target.world_name)
 	merchant.get_node(@"s/v2/merchant").hide()
 	merchant.get_node(@"s/v2/inventory").show()
-	for item in get_owner().target.get_node(@"inventory").get_children():
+	for item in player.target.get_node(@"inventory").get_children():
 		item.setup_shop(false)
 
 func _on_stats_pressed() -> void:
@@ -75,10 +77,10 @@ Armor: %s
 Damage: %s - %s
 Attack speed: %s
 Attack range: %s""" % \
-	[get_owner().world_name, get_owner().hp, get_owner().hp_max, get_owner().mana, get_owner().mana_max, globals.add_comma(get_owner().xp), \
-	globals.add_comma(get_owner().level * Stats.XP_INTERVAL), get_owner().level, globals.add_comma(get_owner().gold), \
-	get_owner().stamina, get_owner().intellect, get_owner().agility, get_owner().armor, \
-	get_owner().min_damage, get_owner().max_damage, get_owner().weapon_speed, get_owner().weapon_range]
+	[player.world_name, player.hp, player.hp_max, player.mana, player.mana_max, globals.add_comma(player.xp), \
+	globals.add_comma(player.level * Stats.XP_INTERVAL), player.level, globals.add_comma(player.gold), \
+	player.stamina, player.intellect, player.agility, player.armor, \
+	player.min_damage, player.max_damage, player.weapon_speed, player.weapon_range]
 	stats_menu.get_node(@"s/v/c/label").set_bbcode(bbcode)
 	menu.hide()
 	stats_menu.show()
@@ -113,27 +115,27 @@ func _on_pause_pressed(slot_select: bool=false) -> void:
 func _on_spell_book_pressed() -> void:
 	globals.play_sample("turn_page")
 	spell_menu.get_node(@"s/v/m/v/label"). \
-	set_text("Health: %s / %s" % [get_owner().hp, get_owner().hp_max])
+	set_text("Health: %s / %s" % [player.hp, player.hp_max])
 	spell_menu.get_node(@"s/v/m/v/label2"). \
-	set_text("Mana: %s / %s" % [get_owner().mana, get_owner().mana_max])
+	set_text("Mana: %s / %s" % [player.mana, player.mana_max])
 	menu.hide()
 	$c/game_menu.show()
 	spell_menu.show()
 
 func _on_mini_map_pressed() -> void:
 	globals.play_sample("click5")
-	if get_owner().spell:
-		if get_owner().spell.get_sub_type() == "CHOOSE_AREA_EFFECT":
-			get_owner().spell.unmake()
+	if player.spell:
+		if player.spell.get_sub_type() == "CHOOSE_AREA_EFFECT":
+			player.spell.unmake()
 	if $c/mini_map.is_visible():
 		$c/mini_map.hide()
 	else:
 		$c/mini_map.show()
 
 func _on_unit_hud_pressed() -> void:
-	if get_owner().target:
+	if player.target:
 		globals.play_sample("click5")
-		get_owner().set_target(null)
+		player.set_target(null)
 
 func _on_back_pressed() -> void:
 	var sound_played: bool = false
@@ -165,7 +167,7 @@ func _on_back_pressed() -> void:
 			var sound_name: String = "click3"
 			if selected.is_class("Area2D"):
 				sound_name = snd_configure()
-			if not get_owner().get_node(@"inventory").get_children().has(selected) \
+			if not player.get_node(@"inventory").get_children().has(selected) \
 			or merchant.get_node(@"s/v/label").get_text() == "Inventory":
 				sound_name = sound_name.replace("on", "off")
 				merchant.show()
@@ -184,12 +186,12 @@ func _on_back_pressed() -> void:
 		else:
 			dialogue.get_node(@"s/s/v/accept").hide()
 			dialogue.get_node(@"s/s/v/finish").hide()
-			hp_mana.get_node(@"h/u").hide()
-			get_owner().set_target(null)
+			hp_mana.get_node(@"m/h/u").hide()
+			player.set_target(null)
 			hide_menu()
 	elif merchant.is_visible():
-		if get_owner().target:
-			if get_owner().target.get_type() == "TRAINER":
+		if player.target:
+			if player.target.get_type() == "TRAINER":
 				item_info.get_node(@"s/h/v/buy/label").set_text("Buy")
 				popup.get_node(@"m/yes_no/label").set_text("Buy?")
 				sound_played = globals.play_sample("spell_book_close")
@@ -202,7 +204,7 @@ func _on_back_pressed() -> void:
 		merchant.get_node(@"s/v2/inventory").show()
 		merchant.hide()
 		merchant_bag.clear()
-		get_owner().set_target(null)
+		player.set_target(null)
 		hide_menu()
 	if not sound_played:
 		globals.play_sample("click3")
@@ -212,7 +214,7 @@ func _on_spell_selected(index: int, sifting: bool) -> void:
 		globals.play_sample("spell_select")
 	selected = spell_book.get_item_metadata(index)
 	selected_index = index
-	if spell_book.is_cooling_down(index) or get_owner().dead:
+	if spell_book.is_cooling_down(index) or player.dead:
 		item_info_hide_except()
 	else:
 		item_info_hide_except(["cast"])
@@ -235,14 +237,14 @@ func _on_bag_index_selected(index: int, sifting: bool=false) -> void:
 		selected = inventory_bag.get_item_metadata(index)
 		match selected.get_type():
 			"WEAPON", "ARMOR":
-				if not get_owner().dead:
+				if not player.dead:
 					item_info.get_node(@"s/h/v/equip").show()
 			"FOOD", "POTION":
 				item_info.get_node(@"s/h/v/use/label"). \
 				set_text("%s" % "Eat" if selected.get_type() == "FOOD" else "Drink")
-				if not inventory_bag.is_cooling_down(index) and not get_owner().dead:
+				if not inventory_bag.is_cooling_down(index) and not player.dead:
 					item_info.get_node(@"s/h/v/use").show()
-		if not get_owner().dead:
+		if not player.dead:
 			item_info.get_node(@"s/h/v/drop").show()
 	else:
 		bag = merchant_bag
@@ -277,25 +279,25 @@ func _on_bag_index_selected(index: int, sifting: bool=false) -> void:
 		item_info.show()
 
 func _on_weapon_slot_pressed() -> void:
-	item_info_go(get_owner().weapon)
+	item_info_go(player.weapon)
 
 func _on_armor_slot_pressed() -> void:
-	item_info_go(get_owner().vest)
+	item_info_go(player.vest)
 
 func _on_equip_pressed() -> void:
 	item_info.hide()
 	if inventory_bag.get_item_count() < inventory_bag.ITEM_MAX:
 		match selected.get_type():
 			"WEAPON":
-				var weapon: Item = get_owner().weapon
+				var weapon: Item = player.weapon
 				if weapon:
 					weapon.unequip()
 			"ARMOR":
-				var vest: Item = get_owner().vest
+				var vest: Item = player.vest
 				if vest:
 					vest.unequip()
-	elif (selected.get_type() == "WEAPON" and get_owner().weapon) \
-	or (selected.get_type() == "ARMOR" and get_owner().vest):
+	elif (selected.get_type() == "WEAPON" and player.weapon) \
+	or (selected.get_type() == "ARMOR" and player.vest):
 		popup.get_node(@"m/error/label").set_text("Inventory\nFull!")
 		popup.get_node(@"m/error").show()
 		popup.show()
@@ -341,7 +343,7 @@ func _on_drop_pressed() -> void:
 func _on_use_pressed(slot_select: bool=false) -> void:
 	match selected.get_type():
 		"FOOD":
-			if get_owner().get_state(true) == "ATTACKING":
+			if player.get_state(true) == "ATTACKING":
 				popup.get_node(@"m/error/label").set_text("Cannot Eat\nIn Combat!")
 				popup.get_node(@"m/error").show()
 				if not get_tree().is_paused():
@@ -360,7 +362,7 @@ func _on_use_pressed(slot_select: bool=false) -> void:
 	if meta and selected.get_type() == "POTION":
 		inventory_bag.set_slot_cool_down(selected_index, meta.duration, 0.0)
 	inventory_bag.remove_item(selected_index)
-	selected.consume(get_owner(), 0.0)
+	selected.consume(player, 0.0)
 	selected_index = -1
 	selected = null
 	if item_info.get_node(@"s/h/v/back").is_connected("pressed", self, "hide_menu"):
@@ -378,23 +380,23 @@ func _on_accept_pressed() -> void:
 	dialogue.get_node(@"s/s/v/accept").hide()
 	dialogue.get_node(@"s/s/v/finish").hide()
 	dialogue.hide()
-	get_owner().set_target(null)
+	player.set_target(null)
 	hide_menu()
 
 func _on_finish_pressed() -> void:
 	var quest: Quest = world_quests.focused_quest
 	if quest.get_gold() > 0:
 		globals.play_sample("sell_buy")
-		get_owner().set_gold(quest.get_gold())
+		player.set_gold(quest.get_gold())
 		var text: CombatText = globals.combat_text.instance()
 		text.type = "gold"
 		text.set_text("+%s" % globals.add_comma(quest.get_gold()))
-		get_owner().add_child(text)
+		player.add_child(text)
 	var reward = quest.get_reward()
 	if reward:
 		globals.current_scene.get_node(@"zed/z1").add_child(reward)
 		var pos: Vector2 = globals.current_scene. \
-		get_grid_position(get_owner().get_global_position())
+		get_grid_position(player.get_global_position())
 		reward.set_global_position(pos)
 	world_quests.finish_focused_quest()
 	if world_quests.focused_quest:
@@ -407,10 +409,10 @@ func _on_finish_pressed() -> void:
 func _on_buy_pressed() -> void:
 	globals.play_sample("click2")
 	item_info.hide()
-	if get_owner().level < selected.level and selected.get_filename().get_file().get_basename() == "spell":
+	if player.level < selected.level and selected.get_filename().get_file().get_basename() == "spell":
 		popup.get_node(@"m/error/label").set_text("Can't Learn\nThis Yet!")
 		popup.get_node(@"m/error").show()
-	elif selected.gold <= get_owner().gold:
+	elif selected.gold <= player.gold:
 		if selected.get_filename().get_file().get_basename() == "item":
 			popup.get_node(@"m/yes_no/label").set_text("Buy?")
 		else:
@@ -432,43 +434,43 @@ func _on_repair_pressed() -> void:
 	globals.play_sample("click1")
 	popup.get_node(@"m/repair").show()
 	var text: String = ""
-	if not get_owner().weapon:
+	if not player.weapon:
 		popup.get_node(@"m/repair/repair_weapon").hide()
 		popup.get_node(@"m/repair/repair_all").hide()
 	else:
 		popup.get_node(@"m/repair/repair_weapon").show()
 
-		text = "Weapon: %s" % Stats.item_repair_cost(get_owner().weapon.get_level())
-	if not get_owner().vest:
+		text = "Weapon: %s" % Stats.item_repair_cost(player.weapon.get_level())
+	if not player.vest:
 		popup.get_node(@"m/repair/repair_armor").hide()
 		popup.get_node(@"m/repair/repair_all").hide()
 	else:
 		popup.get_node(@"m/repair/repair_armor").show()
-		if not get_owner().weapon:
+		if not player.weapon:
 			text += "Armor: %s"
 		else:
 			text += "\nArmor: %s"
-		text = text % Stats.item_repair_cost(get_owner().vest.get_level())
-	if get_owner().weapon and get_owner().vest:
-		text += "\nAll %s" % Stats.item_repair_cost(get_owner().weapon.get_level()) \
-		+ Stats.item_repair_cost(get_owner().vest.get_level())
+		text = text % Stats.item_repair_cost(player.vest.get_level())
+	if player.weapon and player.vest:
+		text += "\nAll %s" % Stats.item_repair_cost(player.weapon.get_level()) \
+		+ Stats.item_repair_cost(player.vest.get_level())
 	popup.get_node(@"m/repair/label").set_text(text)
 	popup.show()
 
 func _on_cast_pressed() -> void:
 	var show_popup: bool = false
-	if get_owner().mana >= selected.mana_cost:
-		if get_owner().target:
-			if selected.requires_target and not get_owner().target.enemy:
+	if player.mana >= selected.mana_cost:
+		if player.target:
+			if selected.requires_target and not player.target.enemy:
 				popup.get_node(@"m/error/label").set_text("Invalid\nTarget!")
 				popup.get_node(@"m/error").show()
 				show_popup = true
-			elif get_owner().unit_center_pos.distance_to(get_owner().target.get_center_pos()) > selected.spell_range \
+			elif player.unit_center_pos.distance_to(player.target.get_center_pos()) > selected.spell_range \
 			and selected.spell_range > 0 and selected.requires_target:
 				popup.get_node(@"m/error/label").set_text("Target Not\nIn Range!")
 				popup.get_node(@"m/error").show()
 				show_popup = true
-		elif not get_owner().target and selected.requires_target:
+		elif not player.target and selected.requires_target:
 			popup.get_node(@"m/error/label").set_text("Target\nRequired!")
 			popup.get_node(@"m/error").show()
 			show_popup = true
@@ -485,10 +487,10 @@ func _on_cast_pressed() -> void:
 		return
 	globals.play_sample("click2")
 	var spell = globals.spell.instance()
-	spell.get_obj(get_owner(), false)
+	spell.get_obj(player, false)
 	spell.set_type(selected.get_type(true))
 	spell.configure_spell()
-	get_owner().spell = spell
+	player.spell = spell
 	spell_book.set_slot_cool_down(selected_index, spell.cooldown, 0.0)
 	item_info.hide()
 	hide_menu()
@@ -505,9 +507,9 @@ func _on_filter_pressed() -> void:
 func _on_game_menu_draw() -> void:
 	get_tree().set_pause(true)
 	list_of_menus.show()
-	if get_owner().spell:
-		if get_owner().spell.get_sub_type() == "CHOOSE_AREA_EFFECT":
-			get_owner().spell.unmake()
+	if player.spell:
+		if player.spell.get_sub_type() == "CHOOSE_AREA_EFFECT":
+			player.spell.unmake()
 	for node in $c.get_children():
 		if node != $c/game_menu:
 			node.hide()
@@ -529,20 +531,20 @@ func _on_dialogue_hide() -> void:
 	dialogue.get_node(@"s/s/v/heal").hide()
 
 func _on_merchant_draw() -> void:
-	if get_owner().target:
-		if not (get_owner().weapon and get_owner().vest) \
-		or get_owner().target.get_type() == "TRAINER":
+	if player.target:
+		if not (player.weapon and player.vest) \
+		or player.target.get_type() == "TRAINER":
 			merchant.get_node(@"s/v2/repair").hide()
 			return
-		if get_owner().weapon:
-			if get_owner().weapon.durability < 1.0:
+		if player.weapon:
+			if player.weapon.durability < 1.0:
 				merchant.get_node(@"s/v2/repair").show()
 			else:
 				merchant.get_node(@"s/v2/repair").hide()
-		if get_owner().vest:
-			if get_owner().vest.durability < 1.0:
+		if player.vest:
+			if player.vest.durability < 1.0:
 				merchant.get_node(@"s/v2/repair").show()
-			elif not merchant.get_node(@"s/v2/repair").is_visible() or !get_owner().weapon:
+			elif not merchant.get_node(@"s/v2/repair").is_visible() or !player.weapon:
 				merchant.get_node(@"s/v2/repair").hide()
 
 func _on_sift_configure(right: bool=true) -> void:
@@ -564,7 +566,7 @@ func _on_sift_configure(right: bool=true) -> void:
 			_on_bag_index_selected(meta.index, true)
 		elif meta.bag.is_cooling_down(meta.index):
 			item_info.get_node(@"s/h/v/cast").hide()
-		elif not get_owner().dead:
+		elif not player.dead:
 			item_info.get_node(@"s/h/v/cast").show()
 	if meta.index <= 0:
 		meta.node.get_node(meta.left).set_disabled(true)
@@ -590,14 +592,14 @@ func _on_hud_button_up(path: String) -> void:
 	get_node(path).set_scale(Vector2(1.0, 1.0))
 
 func _on_move_hud(player: bool=true) -> void:
-	var meta: Dictionary = {"node":hp_mana.get_node(@"h/p/h/g"), "amount":Vector2(-34.0, 0.0)}
+	var meta: Dictionary = {"node":hp_mana.get_node(@"m/h/p/h/g"), "amount":Vector2(-34.0, 0.0)}
 	if player:
 		if meta.node.rect_size.x == 100:
 			meta.amount.x = -86.0
 		if meta.node.rect_position.x != 0:
 			meta.amount.x = 0.0
 	else:
-		meta.node = hp_mana.get_node(@"h/u/h/g")
+		meta.node = hp_mana.get_node(@"m/h/u/h/g")
 		meta.amount = Vector2(331.0, 0.0)
 		if meta.node.rect_size.x == 100:
 			meta.amount.x = 383.0
@@ -608,11 +610,11 @@ func _on_move_hud(player: bool=true) -> void:
 	$tween.start()
 
 func _on_heal_pressed() -> void:
-	var amount: int = Stats.healer_cost(get_owner().level)
-	if get_owner().gold >= amount:
+	var amount: int = Stats.healer_cost(player.level)
+	if player.gold >= amount:
 		globals.play_sample("sell_buy")
-		get_owner().set_gold(-amount)
-		get_owner().set_hp(get_owner().hp_max)
+		player.set_gold(-amount)
+		player.set_hp(player.hp_max)
 		_on_back_pressed()
 	else:
 		popup.get_node(@"m/error/label").set_text("Not Enough\nGold!")
@@ -638,7 +640,7 @@ func _on_add_to_hud_pressed() -> void:
 			if button.get_item().world_name == selected.world_name:
 				popup.get_node(@"m/add_to_slot/clear_slot").show()
 		count += 1
-	$c/controls/m/right.hide()
+	$c/controls/right.hide()
 	$c/controls.show()
 	popup.get_node(@"m/add_to_slot").show()
 	popup.show()
@@ -663,12 +665,12 @@ func _on_set_obj_in_menu(obj: Pickable, stack: bool, type: String) -> void:
 func _on_equip_item(obj: Item, on: bool) -> void:
 	match obj.get_type():
 		"WEAPON":
-			get_owner().weapon = obj if on else null
-			get_owner().min_damage += obj.min_value if on else -obj.min_value
-			get_owner().max_damage += obj.max_value if on else -obj.max_value
+			player.weapon = obj if on else null
+			player.min_damage += obj.min_value if on else -obj.min_value
+			player.max_damage += obj.max_value if on else -obj.max_value
 		"ARMOR":
-			get_owner().vest = obj if on else null
-			get_owner().armor += obj.value if on else -obj.value
+			player.vest = obj if on else null
+			player.armor += obj.value if on else -obj.value
 	var path: NodePath = NodePath("s/v/h/%s_slot/m/icon" % obj.get_type().to_lower())
 	inventory.get_node(path).set_texture(obj.icon if on else null)
 	stats_menu.get_node(path).set_texture(obj.icon if on else null)
@@ -686,10 +688,10 @@ func _on_equip_item(obj: Item, on: bool) -> void:
 
 func _on_drop_item(obj: Pickable) -> void:
 	inventory_bag.remove_item(inventory_bag.get_item_slot(obj, true))
-	get_owner().get_node(@"inventory").remove_child(obj)
+	player.get_node(@"inventory").remove_child(obj)
 	globals.current_scene.get_node(@"zed/z1").add_child(obj)
 	obj.set_owner(globals.current_scene)
-	obj.set_global_position(get_owner().get_global_position())
+	obj.set_global_position(player.get_global_position())
 
 func snd_configure(bypass: bool=false, off: bool=false) -> String:
 	var sound_name: String = ""
@@ -718,15 +720,15 @@ func snd_configure(bypass: bool=false, off: bool=false) -> String:
 func update_hud(type: String, who, value1, value2) -> void:
 	match type.to_upper():
 		"NAME":
-			if who != get_owner():
-				hp_mana.get_node(@"h/u/c/bg/m/v/label").set_text(value1)
+			if who != player:
+				hp_mana.get_node(@"m/h/u/c/bg/m/v/label").set_text(value1)
 				merchant.get_node(@"s/v/label").set_text(value1)
 			else:
-				hp_mana.get_node(@"h/p/c/bg/m/v/label").set_text(value1)
+				hp_mana.get_node(@"m/h/p/c/bg/m/v/label").set_text(value1)
 		"ICON":
-			var path: String = "h/p/h/g"
-			if who != get_owner():
-				path = "h/u/h/g"
+			var path: String = "m/h/p/h/g"
+			if who != player:
+				path = "m/h/u/h/g"
 			for slot in hp_mana.get_node(path).get_children():
 				if not slot.get_item():
 					value1.connect("unmake", slot, "set_item", [null, false, true])
@@ -735,27 +737,27 @@ func update_hud(type: String, who, value1, value2) -> void:
 					slot.show()
 					break
 		"ICON_HIDE":
-			var path: String = "h/p/h/g"
-			if who != get_owner():
-				path = "h/u/h/g"
+			var path: String = "m/h/p/h/g"
+			if who != player:
+				path = "m/h/u/h/g"
 			for slot in hp_mana.get_node(path).get_children():
 				if not slot.is_class("Container"):
 					slot.set_item(null, false, true)
 					slot.hide()
 		_:
-			var bar: String = "h/p/c/bg/m/v/%s_bar"
-			var lbl: String = "h/p/c/bg/m/v/%s_bar/label"
-			if who != get_owner():
-				bar = "h/u/c/bg/m/v/%s_bar"
-				lbl = "h/u/c/bg/m/v/%s_bar/label"
+			var bar: String = "m/h/p/c/bg/m/v/%s_bar"
+			var lbl: String = "m/h/p/c/bg/m/v/%s_bar/label"
+			if who != player:
+				bar = "m/h/u/c/bg/m/v/%s_bar"
+				lbl = "m/h/u/c/bg/m/v/%s_bar/label"
 			hp_mana.get_node(bar % type).set_value(100.0 * value1 / value2)
 			hp_mana.get_node(lbl % type).set_text("%s/%s" % [int(round(value1)), int(round(value2))])
 
 func get_save_game() -> Dictionary:
 	var save_dict: Dictionary = {"quest_names":[], "spells":[], "used_slots":[], "inventory":[]}
 	var dict: Dictionary = {}
-	var buffs: Array = get_owner().buffs.active
-	for other_buff in get_owner().buffs.pending:
+	var buffs: Array = player.buffs.active
+	for other_buff in player.buffs.pending:
 		buffs.append(other_buff)
 	for quest_slot in quest_log.get_node(@"s/v/s/v").get_children():
 		save_dict.quest_names.append(quest_slot.quest)
@@ -763,16 +765,16 @@ func get_save_game() -> Dictionary:
 		var slot: Slot = spell_book.get_item_slot(spell)
 		save_dict.spells.append([spell.get_type(true), slot.time, slot.get_node(@"tween").tell()])
 	var inventory: Array = inventory_bag.get_items(true)
-	if get_owner().weapon:
-		inventory.append(get_owner().weapon)
-	if get_owner().vest:
-		inventory.append(get_owner().vest)
+	if player.weapon:
+		inventory.append(player.weapon)
+	if player.vest:
+		inventory.append(player.vest)
 	for item in inventory:
 		save_dict.inventory.append({"type":item.get_type(true), \
 		"sub_type":item.get_sub_type(true),  "level":item.get_level(),
 		"gold":item.gold, "durability":item.durability, \
-		"equipped": true if item == get_owner().weapon \
-		or item == get_owner().vest else false})
+		"equipped": true if item == player.weapon \
+		or item == player.vest else false})
 	for buff in buffs:
 		dict = {"type":buff.get_type(true), "sub_type":buff.get_sub_type(true), "level":buff.get_level(),
 		"time":buff.get_time_left()}
@@ -788,9 +790,9 @@ func get_save_game() -> Dictionary:
 			elif spell_book.has_item(slot.get_item()):
 				dict.index = spell_book.get_item_slot(slot.item, true)
 				dict.bag = "spell_book"
-			elif get_owner().weapon == slot.get_item():
+			elif player.weapon == slot.get_item():
 				dict.equipped_item = "weapon"
-			elif get_owner().vest == slot.get_item():
+			elif player.vest == slot.get_item():
 				dict.equipped_item = "vest"
 			save_dict.used_slots.append(dict)
 	return save_dict
@@ -813,7 +815,7 @@ func set_save_game(data: Dictionary) -> void:
 				for spell_meta in data[attribute]:
 					var spll = globals.spell.instance()
 					spll.set_type(spell_meta[0])
-					spll.get_obj(get_owner(), true)
+					spll.get_obj(player, true)
 					spell_book.set_slot_cool_down( \
 					spell_book.get_item_slot(spll, true), spell_meta[1], spell_meta[2])
 			"inventory":
@@ -821,7 +823,7 @@ func set_save_game(data: Dictionary) -> void:
 					var itm: Item = globals.item.instance()
 					for item_attribute in item_dict:
 						itm.set(item_attribute, item_dict[item_attribute])
-					itm.get_obj(get_owner(), true)
+					itm.get_obj(player, true)
 					if item_dict.equipped:
 						selected = itm
 						selected.set_meta("loaded", true)
@@ -833,7 +835,7 @@ func set_save_game(data: Dictionary) -> void:
 				if itm.has("bag"):
 					selected = get(itm.bag).get_item_metadata(itm.index)
 				else:
-					selected = get_owner().get(itm.equipped_item)
+					selected = player.get(itm.equipped_item)
 				popup._on_slot_pressed(itm.slot)
 	selected = null
 	selected_index = -1
@@ -852,7 +854,7 @@ func item_info_go(selected_item: Pickable) -> void:
 			item_info_hide_except()
 		elif inventory.is_visible() or !selected:
 			inventory.hide()
-			if not get_owner().dead:
+			if not player.dead:
 				item_info_hide_except(["unequip"])
 		item_info.show()
 
@@ -884,10 +886,10 @@ func _on_hud_slot_pressed(slot: Slot, itm: Pickable) -> void:
 	elif inventory_bag.has_item(itm):
 		selected_index = inventory_bag.get_item_slot(itm, true)
 	if itm.get_filename().get_file().get_basename() == "item":
-		if not get_owner().dead and not slot.is_cooling_down \
+		if not player.dead and not slot.is_cooling_down \
 		and (itm.get_type() == "FOOD" or itm.get_type() == "POTION"):
 			_on_use_pressed(true)
-		elif get_owner().weapon == itm or get_owner().vest == itm:
+		elif player.weapon == itm or player.vest == itm:
 			item_info.get_node(@"s/h/v/back").disconnect("pressed",self, "_on_back_pressed")
 			item_info.get_node(@"s/h/v/back").connect("pressed", self, "hide_menu")
 			item_info_go(itm)
@@ -900,7 +902,7 @@ func _on_hud_slot_pressed(slot: Slot, itm: Pickable) -> void:
 			_on_bag_index_selected(selected_index, true)
 			itm.describe()
 			item_info.show()
-	elif slot.is_cooling_down or get_owner().dead:
+	elif slot.is_cooling_down or player.dead:
 		prep_item_info()
 		globals.play_sample("turn_page")
 		_on_spell_selected(selected_index, true)
@@ -923,3 +925,9 @@ func show_quest_text(quest: Quest) -> void:
 	dialogue.get_node(@"s/s/label2").set_bbcode(quest.format_with_objective_text())
 	quest_log.hide()
 	dialogue.show()
+
+func _on_unit_hud_draw():
+	hp_mana.set_size(Vector2(720.0, 185.0))
+
+func _on_unit_hud_hide():
+	hp_mana.set_size(Vector2(360.0, 185.0))

@@ -47,7 +47,7 @@ func add_item(item: Pickable, stack: bool=true) -> void:
 				curr_slot.cool_down(oitm, oitm.get_initial_time(), oitm.get_time_left())
 				return
 		# add cooldown to current slot, if similar items don't exist in bag, but in HUD
-		for oitm in get_owner().hp_mana.get_node(@"h/p/h/g").get_children():
+		for oitm in get_owner().hp_mana.get_node(@"m/h/p/h/g").get_children():
 			oitm = oitm.get_item()
 			if oitm:
 				if oitm.world_name == item.world_name:
