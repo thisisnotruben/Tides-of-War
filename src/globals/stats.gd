@@ -17,6 +17,8 @@ const MAX_XP: int = MAX_LEVEL * XP_INTERVAL
 const HP_MANA_RESPAWN_LOWER_LIMIT: float = 0.3
 const FLEE_DISTANCE: int = 128
 const SPEED: float = 0.5
+const MELEE_WEAPON_RANGE: int = 32 + 4
+const RANGE_WEAPON_RANGE: int = 64 + 4
 
 static func unit_make(level, unit_multiplier, int_stats=true):
 	var _stamina = (3 + level) * unit_multiplier

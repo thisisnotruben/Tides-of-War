@@ -76,8 +76,8 @@ func attack(unit=target, ignore_armor=false, attack_table=Stats.attack_table.ran
 		ignore_armor = spell.ignore_armor
 		attack_table = spell.attack_table
 		unit.set_spell(spell)
-		if spell.has_node(spell.spell_name):
-			play_sound = spell.get_node(spell.spell_name).play_sound
+		if spell.has_node(spell.world_name):
+			play_sound = spell.get_node(spell.world_name).play_sound
 	if dice_roll <= attack_table.hit:
 		unit.take_damage(damage, "hit", user, ignore_armor)
 		snd = "%s%s" % [weapon_type, snd_idx]
@@ -102,7 +102,7 @@ func make():
 		$img.set_offset(Vector2(-5.5, 0.0))
 		meta.size = "small"
 	if spell:
-		meta.sname = spell.get_name()
+		meta.sname = spell.world_name
 		var i: Resource = load("res://src/spell/effects/%s.tscn" % meta.sname)
 		if i != null:
 			var effect: SpellEffect = i.instance()

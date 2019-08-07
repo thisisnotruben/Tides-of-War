@@ -29,7 +29,7 @@ func _on_item_slot_button_up() -> void:
 
 func _on_tween_tween_completed(object: Object, key: NodePath) -> void:
 	if is_disabled():
-		set_item(null, false)
+		set_item(null, false, true)
 		hide()
 	move_child($count, 2)
 	is_cooling_down = false

@@ -20,7 +20,7 @@ var dead: bool = false
 var target setget set_target
 var spell#: Spell
 var weapon_speed: float = 1.3
-var weapon_range: int = 32
+var weapon_range: int = Stats.MELEE_WEAPON_RANGE
 var anim_speed: float = 1.0
 var stamina: int = 0
 var agility: int = 0
@@ -99,6 +99,11 @@ func _on_select_pressed() -> void:
 #---Start of setter/getter methods---
 
 func set_target(value) -> void:
+	if value:
+#		type checks variable during runtime
+		if not "character" in value.get_filename():
+			print("Setting incorrect target: %s; on unit %s." % [value.get_path(), get_path()])
+			return
 	target = value
 
 func set_level(value) -> void:
@@ -142,7 +147,11 @@ func set_spell(value, seek: float=0.0) -> void:
 			spll._on_timer_timeout()
 	if value.duration > 0.0:
 		spell_queue.append(value)
+		value.connect("unmake", self, "remove_from_spell_queue", [value])
 	emit_signal("update_hud", "icon", self, value, seek)
+
+func remove_from_spell_queue(value) -> void:
+	spell_queue.erase(value)
 
 func set_dead(value: bool) -> void:
 	dead = value
@@ -540,7 +549,7 @@ func set_img(value: String, loaded: bool=false) -> void:
 				"staff", "mace", "rock":
 					weapon_type = "club"
 				"bow":
-					weapon_range = 64
+					weapon_range = Stats.RANGE_WEAPON_RANGE
 #				"flail", "rock":
 #					pass
 		swing_type = parsed_img[idx + 1]

@@ -281,6 +281,7 @@ pointing/emulate_touch_from_mouse=true
 
 [logging]
 
+file_logging/enable_file_logging=true
 file_logging/log_path=""
 
 [rendering]

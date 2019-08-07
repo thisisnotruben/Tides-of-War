@@ -145,7 +145,7 @@ func _on_timer_timeout() -> void:
 		TYPES.FORTIFY:
 			caster.armor -= data
 		TYPES.CONCUSSIVE_SHOT, TYPES.FROST_BOLT, TYPES.SLOW:
-			data[0].max_vel += data[1]
+			data[0].anim_speed += data[1]
 			data[0].weapon_speed += data[2]
 	unmake()
 
@@ -169,7 +169,8 @@ func make() -> void:
 		obj_des += "\n-Range: %s" % spell_range
 	obj_des += "\n-Cooldown: %s\n\n-%s" % [cooldown_text, globals.spell_meta[world_name].des]
 	match type:
-		TYPES.INTIMIDATING_SHOUT, TYPES.FRENZY, TYPES.STOMP, TYPES.FORTIFY, TYPES.EXPLOSIVE_TRAP, TYPES.REJUVENATE, TYPES.HASTE, TYPES.METEOR:
+		TYPES.INTIMIDATING_SHOUT, TYPES.FRENZY, TYPES.STOMP, TYPES.FORTIFY, \
+		TYPES.EXPLOSIVE_TRAP, TYPES.REJUVENATE, TYPES.HASTE, TYPES.METEOR:
 			sub_type = SUB_TYPES.CASTING
 			requires_target = false
 			if type == TYPES.METEOR:
@@ -185,7 +186,7 @@ func make() -> void:
 				attack_table = {"hit":90,"critical":100,"dodge":100, "parry":100}
 		TYPES.PIERCING_SHOT:
 			ignore_armor = true
-	if spell_range > 32:
+	if spell_range > Stats.MELEE_WEAPON_RANGE:
 		attack_table = Stats.attack_table.ranged
 	else:
 		attack_table = Stats.attack_table.melee
@@ -203,6 +204,12 @@ func unmake() -> void:
 			caster.spell = null
 	.unmake()
 
+func _prep_sight() -> void:
+	$sight.disconnect("area_entered", self, "_on_sight_area_entered")
+	$sight.disconnect("area_exited", self, "_on_sight_area_exited")
+	$sight.set_block_signals(false)
+	$sight/distance.set_disabled(false)
+
 func configure_spell() -> void:
 	caster.set_state(caster.STATES.IDLE)
 	if type == TYPES.VOLLEY:
@@ -213,15 +220,14 @@ func configure_spell() -> void:
 	elif type == TYPES.SNIPER_SHOT:
 		set_data(_make_int(caster.weapon_range * 0.25))
 		caster.weapon_range += data
+	elif type == TYPES.EXPLOSIVE_ARROW:
+		_prep_sight()
 	else:
 		match sub_type:
 			SUB_TYPES.DAMAGE_MODIFIER:
 				caster.weapon_range = spell_range
 			SUB_TYPES.CASTING:
-				$sight.disconnect("area_entered", self, "_on_sight_area_entered")
-				$sight.disconnect("area_exited", self, "_on_sight_area_exited")
-				$sight.set_block_signals(false)
-				$sight/distance.set_disabled(false)
+				_prep_sight()
 				set_global_position(caster.get_global_position())
 				var anim: AnimationPlayer = caster.get_node(@"anim")
 				if anim.get_current_animation() == "cast":
@@ -256,8 +262,16 @@ func set_time(time: float, set_duration: bool=true) -> void:
 	if not loaded:
 		$timer.set_wait_time(time)
 	if set_duration:
-		duration = time
+		if count > 0:
+			duration = time * count
+		else:
+			duration = time
 	$timer.start()
+
+func get_time_left() -> float:
+	if count > 0:
+		return duration - (count * $timer.get_wait_time() - .get_time_left())
+	return $timer.get_wait_time() - $timer.get_time_left()
 
 func set_type(value):
 	.set_type(value)
@@ -408,8 +422,8 @@ func frenzy() -> float:
 #---Ranged---
 
 func searing_arrow() -> float:
-	set_count(5)
 	set_data(caster.target)
+	set_count(5)
 	set_time(15.0)
 	return 1.0
 
@@ -417,20 +431,19 @@ func concussive_shot() -> float:
 	set_data([caster.target, caster.anim_speed * 0.5, caster.weapon_speed * 0.5])
 	data[0].anim_speed -= data[1]
 	data[0].weapon_speed -= data[2]
-	set_time(5.0)
+	set_time(10.0)
 	return 1.1
 
 func piercing_shot() -> float:
 	return 1.1
 
 func stinging_shot() -> float:
-	set_count(15)
 	set_data(caster.target)
+	set_count(15)
 	set_time(2.0)
 	return 1.2
 
 func explosive_arrow() -> float:
-	set_data([])
 	for unit in $sight.get_overlapping_areas():
 		unit = unit.get_owner()
 		if unit == caster:

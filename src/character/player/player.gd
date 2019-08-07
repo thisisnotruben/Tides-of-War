@@ -16,7 +16,7 @@ func _init():
 
 func _ready() -> void:
 	globals.player = self
-	set_img("res://asset/img/character/human/spear-swing_medium-17.png")
+	set_img("res://asset/img/character/goblin/bow-null-16.png")
 	emit_signal("update_hud", "name", self, world_name, null)
 	emit_signal("update_hud", "hp", self, hp, hp_max)
 	emit_signal("update_hud", "mana", self, mana, mana_max)
@@ -58,9 +58,9 @@ func _on_anim_finished(anim_name: String) -> void:
 	if anim_name == "attacking" and spell:
 		match weapon_type:
 			"bow", "magic":
-				weapon_range = 64
+				weapon_range = Stats.RANGE_WEAPON_RANGE
 			_:
-				weapon_range = 32
+				weapon_range = Stats.MELEE_WEAPON_RANGE
 	elif anim_name == "cast":
 		set_process(true)
 
@@ -74,8 +74,9 @@ func move_to(target_position: Vector2) -> void:
 			move(target_position, Stats.map_anim_movement_speed(anim_speed))
 			path.remove(0)
 		elif $ray.is_colliding():
-#			path = globals.current_scene.get_apath(get_global_position(), target_position)
 			path = PoolVector2Array()
+		elif path:
+			path.remove(0)
 	else:
 		path.remove(0)
 

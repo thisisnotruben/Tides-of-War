@@ -67,14 +67,14 @@
     "cooldown": "0.05",
     "level": 1,
     "range": 64,
-    "des": "Shoot a flaming arrow at target that deals up to 25 damage in 1 min."
+    "des": "Shoot a flaming arrow at target that deals up to 25 damage in 75 sec."
   },
   "concussive_shot": {
     "icon": 1779,
     "cooldown": "0.10",
     "level": 2,
     "range": 64,
-    "des": "Hits the target for 10% damage, and dazes the target. Slowing movement and attack speed by 50% for 5 sec."
+    "des": "Hits the target for 10% damage, and dazes the target. Slowing movement and attack speed by 50% for 10 sec."
   },
   "piercing_shot": {
     "icon": 1341,

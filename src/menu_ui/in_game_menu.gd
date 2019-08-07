@@ -736,10 +736,7 @@ func update_hud(type: String, who, value1, value2) -> void:
 					value1.connect("unmake", slot, "set_item", [null, false, true])
 					slot.connect("hide", value1, "uncouple_slot", [slot])
 					slot.set_item(value1)
-					var time: float = value1.duration
-					if value1.count > 0:
-						time *= value1.count
-					slot.cool_down(value1, time, value2)
+					slot.cool_down(value1, value1.duration, value2)
 					slot.show()
 					break
 		"ICON_HIDE":

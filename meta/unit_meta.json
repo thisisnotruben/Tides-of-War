@@ -156,6 +156,30 @@
         },
         {
           "type": "frenzy"
+        },
+        {
+          "type": "searing_arrow"
+        },
+        {
+          "type": "concussive_shot"
+        },
+        {
+          "type": "piercing_shot"
+        },
+        {
+          "type": "stinging_shot"
+        },
+        {
+          "type": "explosive_arrow"
+        },
+        {
+          "type": "precise_shot"
+        },
+        {
+          "type": "explosive_trap"
+        },
+        {
+          "type": "volley"
         }
       ]
     },
