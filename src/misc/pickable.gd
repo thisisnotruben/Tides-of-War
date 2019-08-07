@@ -101,12 +101,6 @@ func _on_snd_finished() -> void:
 		call_deferred("get_obj", get_signal_connection_list("set_in_menu")[0]["target"].get_owner(), false)
 		set_pause_mode(PAUSE_MODE_INHERIT)
 
-func _on_sight_body_entered(body):
-	pass
-
-func _on_sight_body_exited(body):
-	pass
-
 func _on_timer_timeout():
 	pass
 
@@ -116,7 +110,7 @@ func describe() -> void:
 func setup_shop(stack: bool=true) -> void:
 	emit_signal("set_in_menu", self, stack, "merchant")
 
-func get_obj(unit, add_to_bag: bool=true) -> void: ###cyclic loading :Character
+func get_obj(unit, add_to_bag: bool=true) -> void:
 	if not unit.npc and not is_connected("describe_object", unit.get("igm"), "_on_describe_object"):
 		connect("describe_object", unit.igm, "_on_describe_object")
 		connect("set_in_menu", unit.igm, "_on_set_obj_in_menu")
@@ -221,7 +215,7 @@ func get_sub_type(get_int=false):
 func set_level(value):
 	level = int(value)
 
-func get_level():
+func get_level() -> int:
 	return level
 
 func set_data(value):
@@ -232,3 +226,8 @@ func get_data():
 
 func make():
 	pass
+
+func uncouple_slot(slot) -> void:
+	slot.disconnect("hide", self, "uncouple_slot")
+	disconnect("unmake", slot, "set_item")
+

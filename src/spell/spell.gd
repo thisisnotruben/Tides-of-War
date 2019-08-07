@@ -87,10 +87,10 @@ func _on_sight_body_exited(body: PhysicsBody2D) -> void:
 
 #---main methods---
 
-func cast(from_missile: bool=false):
+func cast(from_missile: bool=false) -> float:
 	casted = true
 #	damage is returned as a percentage
-	var damage = call(world_name)
+	var damage: float = call(world_name)
 	if not loaded:
 		caster.set_mana(-mana_cost)
 #		Determines which effect to instance based on spell type
@@ -105,11 +105,9 @@ func cast(from_missile: bool=false):
 			else:
 				caster.add_child(effect)
 				effect.set_owner(caster)
-			if type == TYPES.FRENZY or type == TYPES.BASH:
-#				spell duration determines when effect will end
-				connect("unmake", effect, "_on_timer_timeout")
 			effect.on_hit(self)
-
+			if type == TYPES.FRENZY:
+				connect("unmake", effect, "_on_timer_timeout")
 	if duration == 0 and sub_type != SUB_TYPES.CHOOSE_AREA_EFFECT:
 		set_name(str(get_instance_id()))
 		set_time(2.5, false)
@@ -118,7 +116,10 @@ func cast(from_missile: bool=false):
 func _on_timer_timeout() -> void:
 	match type:
 		TYPES.BASH:
-			data.set_process(true)
+			_unstun_unit(data)
+		TYPES.STOMP:
+			for unit in data:
+				_unstun_unit(unit)
 		TYPES.HEMORRHAGE, TYPES.STINGING_SHOT, TYPES.SEARING_ARROW, TYPES.FIREBALL:
 			data.take_damage(5, "hit", caster)
 			count -= 1
@@ -126,16 +127,18 @@ func _on_timer_timeout() -> void:
 				$timer.start()
 				return
 		TYPES.FRENZY:
-			caster.max_vel -= data[0]
-			caster.weapon_speed -= data[1]
-		TYPES.STOMP:
-			for unit in data:
-				unit.set_process(true)
+			caster.take_damage(5, "hit", self)
+			count -= 1
+			if count > 0:
+				$timer.start()
+				return
+			else:
+				caster.anim_speed -= data[0]
+				caster.weapon_speed -= data[1]
 		TYPES.INTIMIDATING_SHOUT:
 			for unit in data:
-				unit = get_node(unit)
-				unit.min_damage += data[unit][0]
-				unit.max_damage += data[unit][1]
+				get_node(unit).min_damage += data[unit][0]
+				get_node(unit).max_damage += data[unit][1]
 		TYPES.HASTE:
 			caster.max_vel -= data[0]
 			caster.anim_speed -= data[1]
@@ -152,20 +155,14 @@ func make() -> void:
 	gold = int((3 * level + 10) * 6)
 	mana_cost = (6 * level + 16 + (level + 2) * \
 	Stats.MULTIPLIER) * Stats.MULTIPLIER * 0.3
-	mana_cost = int(round((mana_cost + mana_cost * 1.25) / 2 - 9))
+	mana_cost = _make_int((mana_cost + mana_cost * 1.25) / 2 - 9)
 	spell_range = int(globals.spell_meta[world_name]["range"])
 	var cooldown_text: String = globals.spell_meta[world_name].cooldown
-	if "." in cooldown_text:
-		if cooldown_text[0] == "0":
-			cooldown = float(cooldown_text)
-			cooldown_text = "%s sec." % cooldown_text
-		else:
-			var rational: PoolStringArray = cooldown_text.split(".")
-			cooldown = float(int(rational[0]) * 60 + int(rational[1]) * 0.6)
-			cooldown_text = "%s min." % cooldown_text
-	else:
-		cooldown = float(cooldown_text) * 60
-		cooldown_text = "%s min." % cooldown_text
+	var rational: PoolStringArray = cooldown_text.split(".")
+	var minutes: float = float(rational[0]) * 60
+	var seconds: float = float("0." + rational[1]) * 100
+	cooldown = minutes + seconds
+	cooldown_text = "%s sec." % _make_int(cooldown)
 	icon = load("res://asset/img/icon/spell/%s_icon.res" % globals.spell_meta[world_name].icon)
 	obj_des = "-Mana Cost: %s" % mana_cost
 	if spell_range > 0:
@@ -188,13 +185,10 @@ func make() -> void:
 				attack_table = {"hit":90,"critical":100,"dodge":100, "parry":100}
 		TYPES.PIERCING_SHOT:
 			ignore_armor = true
-		TYPES.PRECISE_SHOT:
-			attack_table = {"hit":90,"critical":100,"dodge":100, "parry":100}
 	if spell_range > 32:
 		attack_table = Stats.attack_table.ranged
 	else:
 		attack_table = Stats.attack_table.melee
-	.make()
 
 func unmake() -> void:
 	set_process(false)
@@ -216,12 +210,25 @@ func configure_spell() -> void:
 		caster.get_node(@"timer").set_block_signals(true)
 		caster.get_node(@"anim").connect("animation_finished", self, "volley")
 		caster.get_node(@"anim").play("attacking", -1, 1.5)
+	elif type == TYPES.SNIPER_SHOT:
+		set_data(_make_int(caster.weapon_range * 0.25))
+		caster.weapon_range += data
 	else:
 		match sub_type:
 			SUB_TYPES.DAMAGE_MODIFIER:
 				caster.weapon_range = spell_range
 			SUB_TYPES.CASTING:
-				caster.get_node(@"anim").play("cast")
+				$sight.disconnect("area_entered", self, "_on_sight_area_entered")
+				$sight.disconnect("area_exited", self, "_on_sight_area_exited")
+				$sight.set_block_signals(false)
+				$sight/distance.set_disabled(false)
+				set_global_position(caster.get_global_position())
+				var anim: AnimationPlayer = caster.get_node(@"anim")
+				if anim.get_current_animation() == "cast":
+#					used to stack spells of type cast
+#					so they can all be executed in sequence
+					yield(anim, "animation_finished")
+				anim.play("cast")
 			SUB_TYPES.CHOOSE_AREA_EFFECT:
 				var osb: TextureRect = caster.igm.get_node(@"c/osb")
 				osb.set_position(Vector2(0.0, 180.0))
@@ -256,7 +263,7 @@ func set_type(value):
 	.set_type(value)
 	make()
 
-func set_count(value):
+func set_count(value: int) -> void:
 	if not loaded:
 		count = value
 
@@ -297,133 +304,146 @@ func get_data():
 	else:
 		return data
 
+func _make_int(value) -> int:
+	return int(round(value))
+
+func _stun_unit(unit: Character) -> void:
+	unit.set_process(false)
+	unit.get_node(@"timer").stop()
+	unit.get_node(@"anim").stop()
+	unit.get_node(@"img").set_frame(0)
+
+func _unstun_unit(unit: Character) -> void:
+	unit.set_process(false)
+	unit.set_state(unit.state, true)
+
 #---End Support Functions---
 
 #---Melee---
 
 func devastate() -> float:
-	set_data(caster.target)
 	return 1.1
 
 func intimidating_shout() -> float:
 	if loaded:
 		for unit in data:
-			globals.get_node(unit).min_damage -= data[unit][0]
-			globals.get_node(unit).max_damage -= data[unit][1]
+			unit = globals.get_node(unit)
+			unit.min_damage -= data[unit][0]
+			unit.max_damage -= data[unit][1]
 	else:
 		set_data({})
-#		for unit in $choose_area_effect.get_overlapping_areas():
-#			unit = unit.caster
-#			if unit != null:
-#				if unit.get_class() == "KinematicBody2D" and not unit.get("dead") and ((not caster.get("npc") and unit.get("enemy")) or (caster.get("enemy") != unit.get("enemy"))):
-#					var modified = [int(round(unit.min_damage * 0.20)), int(round(unit.max_damage * 0.20))]
-#					data[unit.get_path()] = modified
-#					unit.min_damage -= modified[0]
-#					unit.max_damage -= modified[1]
+		for unit in $sight.get_overlapping_areas():
+			unit = unit.get_owner()
+			if unit == caster:
+				continue
+			elif (not caster.npc and unit.get("enemy")) or (caster.get("enemy") != unit.get("enemy")):
+				var modified = [_make_int(unit.min_damage * 0.20), _make_int(unit.max_damage * 0.20)]
+				data[unit.get_path()] = modified
+				unit.min_damage -= modified[0]
+				unit.max_damage -= modified[1]
 	set_time(3.0)
 	return 1.0
 
 func cleave() -> float:
-	set_data(caster.target)
-	return 1.15
+	return rand_range(1.15, 1.2)
 
 func fortify() -> float:
-	set_data(int(round(caster.armor * 0.25)))
+	set_data(_make_int(caster.armor * 0.25))
 	caster.armor += data
 	set_time(60.0)
 	if loaded:
-		caster.set_spell(self, duration - $timer.wait_time)
+		caster.set_spell(self, duration - $timer.get_wait_time())
 	else:
 		caster.set_spell(self, 0.0)
 	return 1.0
 
 func bash() -> float:
 	set_data(caster.target)
-	data.set_process(false)
-	data.get_node(@"timer").stop()
-	data.get_node(@"img").set_frame(0)
+	_stun_unit(data)
 	set_time(5.0)
 	return 1.1
 
 func hemorrhage() -> float:
-	set_count(5)
+	"""This spell lasts for 60 sec, 5*15=60,
+	damage is done every 15 sec."""
 	set_data(caster.target)
-	set_time(12.0)
+	set_count(5)
+	set_time(15.0)
 	return 1.05
 
 func stomp() -> float:
 	if loaded:
 		for unit in data:
-			unit = globals.get_node(unit)
-			unit.set_process(false)
-			unit.get_node(@"timer").stop()
-			unit.get_node(@"img").set_frame(0)
+			_stun_unit(globals.get_node(unit))
 	else:
-		## this here because code below gives error that I don't want to fix yet.
 		set_data([])
-		for unit in $choose_area_effect.get_overlapping_areas():
-			unit = unit.caster
-			if unit == null:
+		for unit in $sight.get_overlapping_areas():
+			unit = unit.get_owner()
+			if unit == caster:
 				continue
-			elif not unit.get("dead") and \
-			((not caster.get("npc") and unit.get("enemy")) or (caster.get("enemy") != unit.get("enemy"))):
+			elif (not caster.npc and unit.get("enemy")) or (caster.get("enemy") != unit.get("enemy")):
 				unit.take_damage(10, "hit", caster)
-				if randi() % 100 + 1 > 50:
-					unit.set_process(false)
-					unit.get_node(@"timer").stop()
-					unit.get_node(@"img").set_frame(0)
+				if randi() % 100 + 1 > 20:
+					_stun_unit(unit)
 					data.append(unit)
 	set_time(3.0)
 	return 1.0
 
 func overpower() -> float:
-	set_data(caster.target)
 	return 1.15
 
 func frenzy() -> float:
-	set_data([int(round(caster.max_vel * 0.1)),
-			int(round(caster.weapon_speed * 0.1)),
-			caster.anim_speed * 0.2])
-	caster.max_vel += data[0]
+	"""Movement is derived from anim speed"""
+	set_count(5)
+	set_data([caster.anim_speed * 0.25, caster.weapon_speed * 0.5])
+	caster.anim_speed += data[0]
 	caster.weapon_speed += data[1]
-	caster.anim_speed += data[2]
-	set_time(30.0)
+	set_time(6.0)
+	if loaded:
+		caster.set_spell(self, duration - $timer.get_wait_time())
+	else:
+		caster.set_spell(self, 0.0)
 	return 1.0
 
 #---Ranged---
 
 func searing_arrow() -> float:
-	set_count(2)
+	set_count(5)
 	set_data(caster.target)
-	set_time(12.0)
-	return 1.05
+	set_time(15.0)
+	return 1.0
 
 func concussive_shot() -> float:
-	set_data([caster.target,
-	int(round(caster.target.max_vel * 0.5)),
-	int(round(caster.target.weapon_speed * 0.5))])
-	data[0].max_vel -= data[1]
+	set_data([caster.target, caster.anim_speed * 0.5, caster.weapon_speed * 0.5])
+	data[0].anim_speed -= data[1]
 	data[0].weapon_speed -= data[2]
-	set_time(10.0)
+	set_time(5.0)
 	return 1.1
 
 func piercing_shot() -> float:
-	return 1.05
+	return 1.1
 
 func stinging_shot() -> float:
-	set_count(5)
+	set_count(15)
 	set_data(caster.target)
-	set_time(3.0)
+	set_time(2.0)
 	return 1.2
 
 func explosive_arrow() -> float:
-	# make area damage here
-	return 1.1
+	set_data([])
+	for unit in $sight.get_overlapping_areas():
+		unit = unit.get_owner()
+		if unit == caster:
+			continue
+		elif (not caster.npc and unit.get("enemy")) or (caster.get("enemy") != unit.get("enemy")):
+			unit.take_damage(10, "hit", caster)
+	return 1.0
 
 func precise_shot() -> float:
-	return 1.1
+	return rand_range(1.1, 1.2)
 
 func sniper_shot() -> float:
+	caster.weapon_range -= data
 	return 1.15
 
 func explosive_trap() -> float:
@@ -467,8 +487,8 @@ func shadow_bolt() -> float:
 
 func frost_bolt() -> float:
 	set_data([caster.target,
-	int(round(caster.target.max_vel * 0.5)),
-	int(round(caster.target.weapon_speed * 0.5))])
+	_make_int(caster.target.max_vel * 0.5),
+	_make_int(caster.target.weapon_speed * 0.5)])
 	data[0].max_vel -= data[1]
 	data[0].weapon_speed -= data[2]
 	set_time(10.0)
@@ -479,7 +499,7 @@ func rejuvenate() -> float:
 	return 1.0
 
 func siphon_mana() -> float:
-	var mana: int = int(round(caster.target.mana * 0.2))
+	var mana: int = _make_int(caster.target.mana * 0.2)
 	caster.target.set_mana(-mana)
 	caster.set_mana(mana)
 	var txt: CombatText = globals.combat_text.instance()
@@ -491,7 +511,7 @@ func siphon_mana() -> float:
 	return 1.0
 
 func haste() -> float:
-	set_data([int(round(caster.max_vel * 0.10)), caster.anim_speed * 0.20])
+	set_data([_make_int(caster.max_vel * 0.10), caster.anim_speed * 0.20])
 	caster.max_vel += data[0]
 	caster.anim_speed += data[1]
 	set_time(30.0)
@@ -499,8 +519,8 @@ func haste() -> float:
 
 func slow() -> float:
 	set_data([caster.target,
-	int(round(caster.target.max_vel * 0.50)),
-	int(round(caster.target.weapon_speed * 0.50))])
+	_make_int(caster.target.max_vel * 0.50),
+	_make_int(caster.target.weapon_speed * 0.50)])
 	data[0].max_vel -= data[1]
 	data[0].weapon_speed -= data[2]
 	set_time(10.0)

@@ -4,166 +4,73 @@
 [ext_resource path="res://src/menu_ui/item_slot.gd" type="Script" id=2]
 [ext_resource path="res://asset/img/font/mago1_80.res" type="DynamicFont" id=3]
 
-[node name="item_slot" type="TextureButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="item_slot" type="TextureButton"]
 margin_right = 112.0
 margin_bottom = 112.0
 rect_min_size = Vector2( 112, 112 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 2 )
-_sections_unfolded = [ "Pause", "Rect", "Textures", "Visibility" ]
 
-[node name="tween" type="Tween" parent="." index="0"]
-
+[node name="tween" type="Tween" parent="."]
 pause_mode = 1
-repeat = false
-playback_process_mode = 1
-playback_speed = 1.0
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-_sections_unfolded = [ "Pause", "playback" ]
 
-[node name="m" type="MarginContainer" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="m" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/margin_right = 7
 custom_constants/margin_top = 7
 custom_constants/margin_left = 7
 custom_constants/margin_bottom = 7
-_sections_unfolded = [ "custom_constants" ]
 
-[node name="icon" type="TextureRect" parent="m" index="0"]
-
+[node name="icon" type="TextureRect" parent="m"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 105.0
 margin_bottom = 105.0
 rect_pivot_offset = Vector2( 49, 49 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 expand = true
-stretch_mode = 0
-_sections_unfolded = [ "Anchor", "Material", "Rect", "Size Flags", "Visibility" ]
 
-[node name="overlay" type="ColorRect" parent="m/icon" index="0"]
-
+[node name="overlay" type="ColorRect" parent="m/icon"]
 visible = false
 modulate = Color( 0, 0, 0, 0.75 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 98.0
 margin_bottom = 98.0
 rect_pivot_offset = Vector2( 49, 49 )
-rect_clip_content = false
 mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 color = Color( 0, 0, 0, 0.75 )
-_sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "Visibility" ]
 
-[node name="label" type="Label" parent="m" index="1"]
-
+[node name="label" type="Label" parent="m"]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 7.0
 margin_top = 24.0
 margin_right = 105.0
 margin_bottom = 88.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.8, 0.8, 0.8, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 16
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Mouse", "Rect", "Visibility", "custom_colors", "custom_constants", "custom_fonts" ]
 
-[node name="count" type="Label" parent="." index="2"]
-
+[node name="count" type="Label" parent="."]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 9.0
 margin_top = -10.0
 margin_right = 107.0
 margin_bottom = 54.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
 mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.8, 0.8, 0.8, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 16
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Mouse", "Rect", "Visibility", "custom_colors", "custom_constants" ]
-
 [connection signal="button_down" from="." to="." method="_on_item_slot_button_down"]
-
 [connection signal="button_up" from="." to="." method="_on_item_slot_button_up"]
-
 [connection signal="pressed" from="." to="." method="_on_item_slot_pressed"]
-
 [connection signal="tween_completed" from="tween" to="." method="_on_tween_tween_completed"]
-
 [connection signal="tween_step" from="tween" to="." method="_on_tween_tween_step"]
-
 [connection signal="draw" from="m/label" to="." method="_on_label_draw"]
-
 [connection signal="hide" from="m/label" to="." method="_on_label_hide"]
-
-

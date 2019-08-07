@@ -28,13 +28,14 @@ func _unhandled_input(event) -> void:
 		event = get_global_mouse_position()
 		if globals.current_scene.is_valid_move(event):
 			if state == STATES.MOVING and path and $tween.is_active():
-				var _path = globals.current_scene.get_apath(get_global_position(), event)
+				_reserved_path = globals.current_scene.reset_path(_reserved_path)
+				var _path = globals.current_scene.get_apath( \
+				globals.current_scene.get_grid_position(get_global_position()), event)
 				if _path[0] != path[0]:
 					$tween.remove(self, "global_position")
 				else:
 					_path.remove(0)
 				path = _path
-				_reserved_path = globals.current_scene.reset_path(_reserved_path)
 				set_process(true)
 			else:
 				path = globals.current_scene.get_apath(get_global_position(), event)
@@ -70,7 +71,7 @@ func move_to(target_position: Vector2) -> void:
 		$ray.look_at(target_position)
 		if target_position:
 			_reserved_path.append(target_position)
-			.move_to(target_position)
+			move(target_position, Stats.map_anim_movement_speed(anim_speed))
 			path.remove(0)
 		elif $ray.is_colliding():
 #			path = globals.current_scene.get_apath(get_global_position(), target_position)
@@ -93,7 +94,7 @@ func take_damage(amount, type, foe, ignore_armor=false) -> void:
 		if weapon:
 			weapon.take_damage(true)
 
-func set_state(value) -> void:
+func set_state(value, bypass: bool=false) -> void:
 	if state == value:
 		return
 	match value:

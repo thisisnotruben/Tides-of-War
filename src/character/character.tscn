@@ -55,6 +55,8 @@ collision_mask = 0
 shape = SubResource( 1 )
 
 [node name="sight" type="Area2D" parent="."]
+editor/display_folded = true
+visible = false
 monitorable = false
 collision_layer = 0
 collision_mask = 2

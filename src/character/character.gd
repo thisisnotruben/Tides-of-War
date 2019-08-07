@@ -31,7 +31,7 @@ var max_damage: int = 0
 var armor: int = 0
 var hp_max: int = 0
 var mana_max: int = 0
-var level: int = 5 setget set_level
+var level: int = 10 setget set_level
 var hp: int = 0 setget set_hp
 var mana: int = 0 setget set_mana
 var spell_queue = [] setget set_spell
@@ -140,7 +140,8 @@ func set_spell(value, seek: float=0.0) -> void:
 #		Remove duplicate spells unit has, and replace with freshest one
 		if spll.world_name == value.world_name:
 			spll._on_timer_timeout()
-	spell_queue.append(value)
+	if value.duration > 0.0:
+		spell_queue.append(value)
 	emit_signal("update_hud", "icon", self, value, seek)
 
 func set_dead(value: bool) -> void:
@@ -224,7 +225,7 @@ func get_type(get_int: bool=false):
 		return type
 	return globals.get_enum_key(TYPES, type)
 
-func set_state(value):
+func set_state(value, bypass: bool=false) -> void:
 	if typeof(value) == TYPE_STRING:
 		state = STATES[value.to_upper()]
 	else:
@@ -254,13 +255,18 @@ func on_foot_step(value: bool) -> void:
 		footprint.pos = step
 		globals.current_scene.get_node(@"ground").add_child(footprint)
 
-func move_to(target_position: Vector2) -> void:
+func move(target_position: Vector2, movement_modifier: float = Stats.SPEED) -> void:
 	"""main method for unit movement"""
 	$tween.stop_all()
 	set_process(false)
 	$tween.interpolate_property(self, @":global_position", get_global_position(), target_position, \
-	get_global_position().distance_to(target_position) / 16 * 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	get_global_position().distance_to(target_position) / 16 * movement_modifier, \
+	Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$tween.start()
+
+func move_to(target_position: Vector2):
+	"""abstract method for subclasses to make"""
+	pass
 
 func get_direction(pos: Vector2) -> Vector2:
 	"""return (inter)cardinal direction from unit to arguement"""
@@ -279,6 +285,8 @@ func get_direction(pos: Vector2) -> Vector2:
 
 func bump(direction: Vector2) -> void:
 	"""Animation when being strucked"""
+	if not direction:
+		return
 	set_process(false)
 	$tween.interpolate_property(self, @":global_position", get_global_position(), get_global_position() + direction, \
 	get_global_position().distance_to(get_global_position() + direction) / 10, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
@@ -303,6 +311,7 @@ func cast() -> void:
 
 func attack(attack_table: Dictionary=Stats.attack_table.melee, ignore_armor: bool=false) -> void:
 	if target and not dead and not target.get("dead"):
+		# range part
 		var snd_idx: int = randi() % globals.weapon_type[weapon_type]
 		var play_sound: bool = true
 		if weapon_type == "bow" or weapon_type == "magic":
@@ -325,17 +334,19 @@ func attack(attack_table: Dictionary=Stats.attack_table.melee, ignore_armor: boo
 			if play_sound:
 				globals.play_sample("%s%s" % [weapon_type, snd_idx])
 		else:
+			# melee part
 			var dice_roll: int = randi() % 100 + 1
 			var damage: float = rand_range(min_damage, max_damage)
 			var snd: String = ""
 			if spell:
 				if not spell.casted:
+					attack_table = spell.attack_table
 					if dice_roll <= attack_table.critical:
-						target.set_spell(spell)
 						ignore_armor = spell.ignore_armor
 						damage *= spell.cast()
-						if has_node(spell.spell_name):
-							play_sound = get_node(spell.spell_name).play_sound
+						target.set_spell(spell)
+						if has_node(spell.world_name):
+							play_sound = get_node(spell.world_name).play_sound
 					else:
 						set_mana(-spell.mana_cost)
 						spell.unmake()

@@ -285,7 +285,9 @@ func _on_slot_pressed(index):
 		for link in bttn_f.get_signal_connection_list("sync_slot"):
 			bttn_f.disconnect("sync_slot", link.target, "_on_sync_shortcut")
 		bttn_f.connect("sync_slot", bttn_t, "_on_sync_shortcut")
-		bttn_t.cool_down(bttn_f.get_item(), bttn_f.time, bttn_f.get_node(@"tween").tell())
+		var bttn_f_seek: float = bttn_f.get_node(@"tween").tell()
+		if bttn_f_seek > 0:
+			bttn_t.cool_down(bttn_f.get_item(), bttn_f.time, bttn_f_seek)
 
 func _on_clear_slot_pressed():
 	for button in get_tree().get_nodes_in_group("HUD-shortcut"):

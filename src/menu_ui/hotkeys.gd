@@ -78,6 +78,8 @@ func _input(event: InputEvent) -> void:
 							get_owner().popup._on_slot_pressed(2)
 						KEY_KP_3, KEY_3:
 							get_owner().popup._on_slot_pressed(3)
+						KEY_KP_4, KEY_4:
+							get_owner().popup._on_slot_pressed(4)
 				elif get_owner().popup.get_node(@"m/repair").is_visible():
 					match event_code:
 						KEY_A:

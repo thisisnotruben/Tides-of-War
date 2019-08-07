@@ -65,7 +65,6 @@ func _on_select_pressed() -> void:
 		$tween.interpolate_property($img, @":scale", $img.get_scale(), \
 		Vector2(1.03, 1.03), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 		$tween.start()
-		update_hud()
 		if not enemy and not engaging and $sight.overlaps_area(globals.player.get_node(@"area")):
 			if type == TYPES.MERCHANT or type == TYPES.TRAINER:
 				$tween.set_pause_mode(PAUSE_MODE_PROCESS)
@@ -110,7 +109,7 @@ func move_to(target_position):
 		if direction:
 			target_position = globals.current_scene.request_move(get_global_position(), direction)
 			if target_position:
-				.move_to(target_position)
+				move(target_position, Stats.map_anim_movement_speed(anim_speed))
 				path.remove(0)
 				set_process(false)
 			else:

@@ -465,7 +465,7 @@ func _on_cast_pressed() -> void:
 				popup.get_node(@"m/error/label").set_text("Invalid\nTarget!")
 				popup.get_node(@"m/error").show()
 				show_popup = true
-			elif player.unit_center_pos.distance_to(player.target.get_center_pos()) > selected.spell_range \
+			elif player.get_center_pos().distance_to(player.target.get_center_pos()) > selected.spell_range \
 			and selected.spell_range > 0 and selected.requires_target:
 				popup.get_node(@"m/error/label").set_text("Target Not\nIn Range!")
 				popup.get_node(@"m/error").show()
@@ -726,14 +726,20 @@ func update_hud(type: String, who, value1, value2) -> void:
 			else:
 				hp_mana.get_node(@"m/h/p/c/bg/m/v/label").set_text(value1)
 		"ICON":
+			if value1.duration == 0:
+				return
 			var path: String = "m/h/p/h/g"
 			if who != player:
 				path = "m/h/u/h/g"
 			for slot in hp_mana.get_node(path).get_children():
 				if not slot.get_item():
 					value1.connect("unmake", slot, "set_item", [null, false, true])
+					slot.connect("hide", value1, "uncouple_slot", [slot])
 					slot.set_item(value1)
-					slot.cool_down(value1, value1.duration, value2)
+					var time: float = value1.duration
+					if value1.count > 0:
+						time *= value1.count
+					slot.cool_down(value1, time, value2)
 					slot.show()
 					break
 		"ICON_HIDE":

@@ -173,6 +173,7 @@ stream = SubResource( 4 )
 
 [node name="sight" type="Area2D" parent="."]
 position = Vector2( 0, -6 )
+monitorable = false
 collision_layer = 0
 collision_mask = 2
 

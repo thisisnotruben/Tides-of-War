@@ -244,8 +244,13 @@ func get_patrol_path(world_name: String) -> PoolVector2Array:
 		return PoolVector2Array()
 	return patrol_paths[find_unit].points
 
-func occupy_origin_cell(cur_pos) -> Vector2:
-	var cell_point: int = calculate_point_index(_map.world_to_map(cur_pos))
-	astar.set_point_weight_scale(cell_point, ASTAR_OCCUPIED_WEIGHT)
-	var cell_pos: Vector3 = astar.get_point_position(cell_point)
-	return Vector2(cell_pos.x, cell_pos.y)
+func occupy_origin_cell(cur_pos: Vector2) -> Vector2:
+	cur_pos = _map.world_to_map(cur_pos)
+	if not cur_pos in obstacles and not is_outside_map_bounds(cur_pos):
+		var cell_point: int = calculate_point_index(cur_pos)
+		astar.set_point_weight_scale(cell_point, ASTAR_OCCUPIED_WEIGHT)
+		var cell_pos: Vector3 = astar.get_point_position(cell_point)
+		return Vector2(cell_pos.x, cell_pos.y)
+	print("Object incorrectly placed at\ngrid position: %s\nglobal position: %s\n" \
+	% [cur_pos, _map.map_to_world(cur_pos)])
+	return Vector2()

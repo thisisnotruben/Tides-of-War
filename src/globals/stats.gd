@@ -16,6 +16,7 @@ const XP_INTERVAL: int = 1000
 const MAX_XP: int = MAX_LEVEL * XP_INTERVAL
 const HP_MANA_RESPAWN_LOWER_LIMIT: float = 0.3
 const FLEE_DISTANCE: int = 128
+const SPEED: float = 0.5
 
 static func unit_make(level, unit_multiplier, int_stats=true):
 	var _stamina = (3 + level) * unit_multiplier
@@ -131,3 +132,8 @@ static func level_check(xp):
 
 static func _make_int(num):
 	return int(round(num))
+
+static func map_anim_movement_speed(anim_speed: float) -> float:
+	"""Returns movement speed mapped from animation speed"""
+	return SPEED * abs(2 - anim_speed)
+

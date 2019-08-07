@@ -11,18 +11,18 @@
     "cooldown": "0.45",
     "level": 2,
     "range": 0,
-    "des": "Unleash a terrifying roar, disorienting foes around you for 20 sec."
+    "des": "Unleash a terrifying roar, reducing damage to your foes by 20% for 5 sec."
   },
   "cleave": {
     "icon": 1242,
     "cooldown": "0.15",
     "level": 3,
     "range": 32,
-    "des": "Strikes all enemies in an area for a sweeping attack for 10% of damage."
+    "des": "Strikes opponent for 15%-20% damage with"
   },
   "fortify": {
     "icon": 1248,
-    "cooldown": "2",
+    "cooldown": "2.0",
     "level": 4,
     "range": 0,
     "des": "Temporarily increases your armor by 25%, reducing damage dealt to you for 60 sec."
@@ -39,14 +39,14 @@
     "cooldown": "1.50",
     "level": 6,
     "range": 32,
-    "des": "Tears open target, deals up to 25 damage in 1 min."
+    "des": "Tears open target dealing 5% damage initially, then deals up to 25 damage in 1 min."
   },
   "stomp": {
     "icon": 1253,
     "cooldown": "0.30",
     "level": 7,
     "range": 0,
-    "des": "Slams the ground, dealing damage to nearby enemy units with a 20% chance to stun for each unit."
+    "des": "Slams the ground, dealing 10 damage to nearby enemy units with a 20% chance to stun for 3 sec."
   },
   "overpower": {
     "icon": 1240,
@@ -57,24 +57,24 @@
   },
   "frenzy": {
     "icon": 1345,
-    "cooldown": "0.03",
+    "cooldown": "3.0",
     "level": 10,
     "range": 0,
-    "des": "Increases attack speed by 50% and movement by 25%, but deals 5 damage every 5 sec to you. Lasts 30 sec"
+    "des": "Increases attack speed by 50% and movement by 25%, but deals 5 damage every 5 sec to you. Lasts 120 sec."
   },
   "searing_arrow": {
     "icon": 1785,
     "cooldown": "0.05",
     "level": 1,
     "range": 64,
-    "des": "Shoot a flaming arrow at target that deals 5 damage for 15 sec."
+    "des": "Shoot a flaming arrow at target that deals up to 25 damage in 1 min."
   },
   "concussive_shot": {
     "icon": 1779,
     "cooldown": "0.10",
     "level": 2,
     "range": 64,
-    "des": "Dazes the target, slowing target's movement by 50% for 5 sec."
+    "des": "Hits the target for 10% damage, and dazes the target. Slowing movement and attack speed by 50% for 5 sec."
   },
   "piercing_shot": {
     "icon": 1341,
@@ -88,21 +88,21 @@
     "cooldown": "0.10",
     "level": 4,
     "range": 64,
-    "des": "Fire a poison tipped arrow that deals 5 damage every 2 sec for 30 sec."
+    "des": "Fire a poison tipped arrow dealing 20% damage and 5 damage every 2 sec for 30 sec."
   },
   "explosive_arrow": {
     "icon": 1245,
     "cooldown": "0.15",
     "level": 5,
     "range": 64,
-    "des": "Fire a dynamite tipped arrow at target. When detonated, damages all unit in blast radius"
+    "des": "Fire a dynamite tipped arrow at target. When detonated, damages all unit in blast radius by 10 damage"
   },
   "precise_shot": {
     "icon": 1243,
     "cooldown": "0.45",
     "level": 6,
     "range": 64,
-    "des": "Aimed shot that deals 10% damage with a +10% chance of a critical strike."
+    "des": "Aimed shot that deals 10%-20% damage."
   },
   "sniper_shot": {
     "icon": 1417,
@@ -120,7 +120,7 @@
   },
   "volley": {
     "icon": 1244,
-    "cooldown": "2",
+    "cooldown": "2.0",
     "level": 9,
     "range": 64,
     "des": "Rapidly launch 3 arrows at target dealing 5% damage each arrow."
@@ -162,7 +162,7 @@
   },
   "haste": {
     "icon": 1423,
-    "cooldown": "1",
+    "cooldown": "1.0",
     "level": 6,
     "range": 0,
     "des": "Increase your movement speed by 50% for 10 sec."
@@ -190,7 +190,7 @@
   },
   "meteor": {
     "icon": 1781,
-    "cooldown": "3",
+    "cooldown": "3.0",
     "level": 10,
     "range": 64,
     "des": "Rain down a meteror at target location, dealing 20% damage at target and 5% damage to units within the blast radius."

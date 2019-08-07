@@ -453,7 +453,6 @@ script = ExtResource( 1 )
 [node name="c" type="CanvasLayer" parent="."]
 
 [node name="hp_mana" type="Control" parent="c"]
-editor/display_folded = true
 margin_right = 360.0
 margin_bottom = 185.0
 
@@ -1000,6 +999,7 @@ __meta__ = {
 }
 
 [node name="controls" type="Control" parent="c"]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 1036.0
