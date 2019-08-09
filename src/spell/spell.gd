@@ -88,6 +88,8 @@ func _on_sight_body_exited(body: PhysicsBody2D) -> void:
 #---main methods---
 
 func cast(from_missile: bool=false) -> float:
+	if casted:
+		return 1.0
 	casted = true
 #	damage is returned as a percentage
 	var damage: float = call(world_name)
@@ -127,7 +129,7 @@ func _on_timer_timeout() -> void:
 				$timer.start()
 				return
 		TYPES.FRENZY:
-			caster.take_damage(5, "hit", self)
+			caster.take_damage(5, "hit", caster)
 			count -= 1
 			if count > 0:
 				$timer.start()
@@ -140,8 +142,7 @@ func _on_timer_timeout() -> void:
 				get_node(unit).min_damage += data[unit][0]
 				get_node(unit).max_damage += data[unit][1]
 		TYPES.HASTE:
-			caster.max_vel -= data[0]
-			caster.anim_speed -= data[1]
+			caster.anim_speed -= data[0]
 		TYPES.FORTIFY:
 			caster.armor -= data
 		TYPES.CONCUSSIVE_SHOT, TYPES.FROST_BOLT, TYPES.SLOW:
@@ -408,10 +409,10 @@ func overpower() -> float:
 
 func frenzy() -> float:
 	"""Movement is derived from anim speed"""
-	set_count(5)
 	set_data([caster.anim_speed * 0.25, caster.weapon_speed * 0.5])
 	caster.anim_speed += data[0]
 	caster.weapon_speed += data[1]
+	set_count(5)
 	set_time(6.0)
 	if loaded:
 		caster.set_spell(self, duration - $timer.get_wait_time())
@@ -460,9 +461,9 @@ func sniper_shot() -> float:
 	return 1.15
 
 func explosive_trap() -> float:
-	var loaded_mine: Resource = load("res://src/misc/missile/land_mine.scn")
+	var loaded_mine: Resource = load("res://src/misc/missile/land_mine.tscn")
 	var land_mine: LandMine = loaded_mine.instance()
-	land_mine.excluded_unit = caster
+	land_mine.excluded_area = caster.get_node(@"area")
 	land_mine.set_global_position(caster.get_global_position())
 	land_mine.add_to_group(str(caster.get_instance_id()) + "-lm")
 	caster.get_parent().add_child(land_mine)
@@ -490,19 +491,17 @@ func volley(anim_name: String = "") -> float:
 #---Magic---
 
 func fireball() -> float:
-	set_count(2)
 	set_data(caster.target)
-	set_time(12.0)
+	set_count(2)
+	set_time(15.0)
 	return 1.05
 
 func shadow_bolt() -> float:
 	return 1.12
 
 func frost_bolt() -> float:
-	set_data([caster.target,
-	_make_int(caster.target.max_vel * 0.5),
-	_make_int(caster.target.weapon_speed * 0.5)])
-	data[0].max_vel -= data[1]
+	set_data([caster.target, caster.target.anim_speed * 0.3, caster.target.weapon_speed * 0.3])
+	data[0].anim_speed -= data[1]
 	data[0].weapon_speed -= data[2]
 	set_time(10.0)
 	return 1.1
@@ -513,28 +512,34 @@ func rejuvenate() -> float:
 
 func siphon_mana() -> float:
 	var mana: int = _make_int(caster.target.mana * 0.2)
+#	remove target mana
+	print(mana)
 	caster.target.set_mana(-mana)
+#	transfer mana to caster
 	caster.set_mana(mana)
+#	add on-sceen text
 	var txt: CombatText = globals.combat_text.instance()
 	txt.type = "mana"
 	if mana + caster.mana > caster.mana_max:
-		mana -= mana + caster.mana - caster.mana_max
+		mana = mana - (mana + caster.mana - caster.mana_max)
 	txt.set_text("+%s" % mana)
 	caster.add_child(txt)
+	print(mana)
 	return 1.0
 
 func haste() -> float:
-	set_data([_make_int(caster.max_vel * 0.10), caster.anim_speed * 0.20])
-	caster.max_vel += data[0]
-	caster.anim_speed += data[1]
+	set_data([caster.anim_speed * 0.50])
+	caster.anim_speed += data[0]
 	set_time(30.0)
+	if loaded:
+		caster.set_spell(self, duration - $timer.get_wait_time())
+	else:
+		caster.set_spell(self, 0.0)
 	return 1.0
 
 func slow() -> float:
-	set_data([caster.target,
-	_make_int(caster.target.max_vel * 0.50),
-	_make_int(caster.target.weapon_speed * 0.50)])
-	data[0].max_vel -= data[1]
+	set_data([caster.target, caster.target.anim_speed * 0.50, caster.target.weapon_speed * 0.50])
+	data[0].anim_speed -= data[1]
 	data[0].weapon_speed -= data[2]
 	set_time(10.0)
 	return 1.0

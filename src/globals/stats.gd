@@ -137,5 +137,5 @@ static func _make_int(num):
 
 static func map_anim_movement_speed(anim_speed: float) -> float:
 	"""Returns movement speed mapped from animation speed"""
-	return SPEED * abs(2 - anim_speed)
+	return clamp(1 - SPEED * anim_speed, 0.01, 1.0)
 

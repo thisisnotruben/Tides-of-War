@@ -6,7 +6,7 @@ signal hit(spll)
 var spawn_pos: Vector2 = Vector2()
 var weapon_miss_type: String = ""
 var weapon_type: String = ""
-var target setget set_target
+var target: Character setget set_target
 var spell: Spell setget set_spell
 var user = null
 var instant_spawn: bool = false
@@ -14,58 +14,61 @@ var reverse: bool = false
 var rotate: bool = false
 var hit: bool = false
 
-func _ready():
+func _ready() -> void:
 	set_process(false)
 	randomize()
 
-func _process(delta: float):
-	if not hit and rotate:
+func _process(delta: float) -> void:
+	if rotate and not hit:
 		look_at(target.get_center_pos())
-	$tween.interpolate_property(self, @":global_position", get_global_position(), target.get_center_pos(), \
-	spawn_pos.distance_to(target.get_center_pos()) / user.weapon_range, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	$tween.start()
+	if reverse:
+		_move(target, user)
+	else:
+		_move(user, target)
 
-func _on_projectile_area_entered(area):
+func _on_projectile_area_entered(area: Area2D) -> void:
 	if area.get_owner() == target and not hit:
+		emit_signal("hit", spell)
 		set_z_index(1)
 		hit = true
-		emit_signal("hit", spell)
 		if $img.get_texture():
-			if not spell:
-				$anim.play("fade")
-			else:
+			if spell:
+				spell.get_effect().on_hit(spell)
 				$anim.play("img_fade")
+			else:
+				$anim.play("fade")
 		if not target.dead:
 			attack(target)
 
-func _on_anim_animation_finished(anim_name):
+func _on_anim_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade":
 		set_process(false)
 		$tween.remove_all()
 		queue_free()
 
-func set_target(value):
+func _move(from_unit: Character, to_unit: Character) -> void:
+	$tween.interpolate_property(self, @":global_position", get_global_position(), to_unit.get_center_pos(), \
+	spawn_pos.distance_to(to_unit.get_center_pos()) / from_unit.weapon_range, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	$tween.start()
+
+func set_target(value: Character) -> void:
 	target = value
 	spawn_pos = user.get_node(@"img/missile").get_global_position()
 	if rotate:
 		look_at(target.get_center_pos())
 	if instant_spawn:
-		show()
 		set_global_position(target.get_center_pos())
-	if reverse:
-		target = user
+	else:
 		set_process(true)
-	if not instant_spawn:
-		set_process(true)
-		show()
+	show()
 
-func set_spell(value):
+func set_spell(value) -> void:
 	spell = value
 
-func fade():
+func fade() -> void:
 	$anim.play("fade")
 
-func attack(unit=target, ignore_armor=false, attack_table=Stats.attack_table.ranged):
+func attack(unit=target, ignore_armor=false, attack_table=Stats.attack_table.ranged) -> void:
 	var dice_roll: int = randi() % 100 + 1
 	var damage: int = int(round(rand_range(user.min_damage, user.max_damage)))
 	var snd_idx: int = randi() % globals.weapon_type[weapon_type]
@@ -97,20 +100,25 @@ func make():
 	weapon_type = "arrow_hit_armor" # this for now till I get a new snd
 	weapon_miss_type = "arrow_pass" # this for now till I get a new snd
 	var meta: Dictionary = {"tex":"res://asset/img/missile-spell/%s.res", "size":"big",
-				"race":user.get_node(@"img").get_texture().get_path().get_base_dir().get_file()}
+	"race":user.get_node(@"img").get_texture().get_path().get_base_dir().get_file()}
+
 	if meta.race == "gnoll" or meta.race == "goblin":
 		$img.set_offset(Vector2(-5.5, 0.0))
 		meta.size = "small"
+
 	if spell:
 		meta.sname = spell.world_name
-		var i: Resource = load("res://src/spell/effects/%s.tscn" % meta.sname)
-		if i != null:
-			var effect: SpellEffect = i.instance()
+		var res_path: String = "res://src/spell/effects/%s.tscn" % meta.sname
+
+		if File.new().file_exists(res_path):
+			var r: Resource = load(res_path)
+			var effect: SpellEffect = r.instance()
 			connect("hit", effect, "on_hit")
 			if meta.sname != "slow":
 				effect.connect("unmake", self, "fade")
 			add_child(effect)
 			effect.set_owner(self)
+
 		match meta.sname:
 			"fireball", "shadow_bolt", "frost_bolt", "mind_blast", "slow", "siphon_mana":
 				$coll.set_shape(load("res://asset/img/missile-spell/spell_coll.res"))
@@ -131,6 +139,7 @@ func make():
 			_:
 				if "shot" in meta.sname or "arrow" in meta.sname or meta.sname == "volley":
 					meta.tex = meta.tex % "arrow_%s0"
+
 	else:
 		meta.tex = meta.tex % "arrow_%s0"
 	if "%s" in meta.tex and "arrow" in meta.tex:

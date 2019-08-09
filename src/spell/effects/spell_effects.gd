@@ -51,9 +51,9 @@ func _on_timer_timeout() -> void:
 			queue_free()
 
 func on_hit(spell=null) -> void:
+	effect = spell.world_name
 #	play the specific preloaded sound from the effect scene
 	$snd.play()
-
 #	bounce animation when hit
 	$tween.interpolate_property(self, @":scale", Vector2(0.75, 0.75), \
 	Vector2(1.0, 1.0), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
@@ -70,7 +70,7 @@ func on_hit(spell=null) -> void:
 			Color(1.0, 1.0, 1.0, 0.0), 0.65,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			if effect == "siphon_mana":
 				var caster: Character = get_owner()
-				caster.set_global_position(caster.target.get_node(@"img").get_global_position())
+				set_global_position(caster.target.get_center_pos())
 			elif effect == "meteor":
 				emit_signal("renamed", true) # not sure what this does
 
@@ -82,7 +82,7 @@ func on_hit(spell=null) -> void:
 
 		"slow":
 			var missile = get_owner()
-			missile.set_global_position(missile.target.get_node(@"img").get_global_position())
+			missile.set_global_position(missile.target.get_center_pos())
 #			when spell ends, this effect ends as well
 			spell.connect("unmake", self, "_on_timer_timeout")
 

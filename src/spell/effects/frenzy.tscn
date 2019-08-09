@@ -1,10 +1,11 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/spell/effects/effect_template.tscn" type="PackedScene" id=1]
-[ext_resource path="res://asset/snd/spell/frenzy_is.ogg" type="AudioStream" id=2]
+[ext_resource path="res://asset/snd/spell/frenzy.ogg" type="AudioStream" id=2]
 [ext_resource path="res://src/spell/effects/color_ramp.shader" type="Shader" id=3]
 [ext_resource path="res://asset/img/light/fire_gradient.res" type="Texture" id=4]
 [ext_resource path="res://asset/img/light/fire_scale.res" type="Texture" id=5]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 

@@ -95,7 +95,7 @@
     "cooldown": "0.15",
     "level": 5,
     "range": 64,
-    "des": "Fire a dynamite tipped arrow at target. When detonated, damages all unit in blast radius by 10 damage"
+    "des": "Fire a dynamite tipped arrow at target. When detonated, damages all units in blast radius by 10 damage"
   },
   "precise_shot": {
     "icon": 1243,
@@ -130,7 +130,7 @@
     "cooldown": "0.05",
     "level": 1,
     "range": 64,
-    "des": "Hurls a fiery ball that deals 10% of damage."
+    "des": "Hurls a fiery ball that deals 5% of damage and 10 damage over 30 sec."
   },
   "shadow_bolt": {
     "icon": 1782,

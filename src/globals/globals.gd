@@ -5,7 +5,8 @@ extends Node
 class_name Globals
 
 # for setting area collision layer/mask
-enum collision {WORLD, CHARACTERS, DEAD_CHARACTERS}
+const collision: Dictionary = {"WORLD": 1, "CHARACTERS": 2, \
+"DEAD_CHARACTERS": 3, "COMBUSTIBLE": 8}
 
 const combat_text = preload("res://src/misc/other/combat_text.tscn")
 const quest_entry = preload("res://src/menu_ui/quest_entry.tscn")

@@ -112,7 +112,40 @@
     "Darfu": {
       "world_name": "Darfu",
       "img": "orc/comm-4-10.png",
-      "enemy": false
+      "enemy": false,
+      "type": "trainer",
+      "spell": [
+        {
+          "type":"fireball"
+        },
+        {
+          "type":"shadow_bolt"
+        },
+        {
+          "type":"frost_bolt"
+        },
+        {
+          "type":"rejuvenate"
+        },
+        {
+          "type":"siphon_mana"
+        },
+        {
+          "type":"haste"
+        },
+        {
+          "type":"slow"
+        },
+        {
+          "type":"lightning_bolt"
+        },
+        {
+          "type":"mind_blast"
+        },
+        {
+          "type":"meteor"
+        }
+      ]
     },
     "Golag": {
       "world_name": "Golag",
@@ -180,6 +213,9 @@
         },
         {
           "type": "volley"
+        },
+        {
+          "type": "sniper_shot"
         }
       ]
     },

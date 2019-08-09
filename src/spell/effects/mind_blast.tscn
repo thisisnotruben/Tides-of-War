@@ -115,10 +115,6 @@ stream = ExtResource( 2 )
 
 visible = false
 
-[node name="light_color" parent="light" index="1"]
-
-material = SubResource( 1 )
-
 [node name="Particles2D2" type="Particles2D" parent="explode" index="0"]
 
 emitting = false

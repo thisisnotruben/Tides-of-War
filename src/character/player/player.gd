@@ -104,6 +104,7 @@ func set_state(value, bypass: bool=false) -> void:
 			$img.set_frame(0)
 			$img.set_flip_h(false)
 			set_time(regen_time)
+			engaging = false
 		STATES.MOVING:
 			$img.set_flip_h(false)
 			$anim.play("moving", -1, anim_speed)
@@ -111,6 +112,7 @@ func set_state(value, bypass: bool=false) -> void:
 		STATES.ATTACKING:
 			set_state(STATES.IDLE)
 			set_time(weapon_speed, true)
+			engaging = true
 		STATES.DEAD:
 			set_dead(true)
 		STATES.ALIVE:

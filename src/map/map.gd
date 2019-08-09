@@ -208,7 +208,7 @@ func request_move(cur_pos: Vector2, direction: Vector2) -> Vector2:
 	if astar.has_point(point):
 		if astar.get_point_weight_scale(point) != ASTAR_OCCUPIED_WEIGHT:
 			astar.set_point_weight_scale(calculate_point_index(cell_start), ASTAR_NORMAL_WEIGHT)
-			astar.set_point_weight_scale(calculate_point_index(cell_target), ASTAR_OCCUPIED_WEIGHT)
+			astar.set_point_weight_scale(point, ASTAR_OCCUPIED_WEIGHT)
 			return _map.map_to_world(cell_target) + _HALF_CELL_SIZE
 	return Vector2()
 

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/misc/other/combat_text.gd"
 }, {
+"base": "Node2D",
+"class": "Combustible",
+"language": "GDScript",
+"path": "res://src/misc/missile/combust.gd"
+}, {
 "base": "Sprite",
 "class": "Cursor",
 "language": "GDScript",
@@ -149,6 +154,7 @@ _global_script_class_icons={
 "BuffAnim": "",
 "Character": "",
 "CombatText": "",
+"Combustible": "",
 "Cursor": "",
 "DayTime": "",
 "FootStep": "",
@@ -278,6 +284,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_1="World"
 2d_physics/layer_2="Characters"
 2d_physics/layer_3="Dead Characters"
+2d_physics/layer_4="Combustible"
 
 [logging]
 

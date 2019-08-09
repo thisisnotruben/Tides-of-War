@@ -2,7 +2,6 @@ extends "res://src/character/character.gd"
 
 var patrol_path: PoolVector2Array = PoolVector2Array()
 var patroller: bool = false
-var engaging: bool = false
 export var enemy: bool = true
 var bbcode: String = ""  setget set_text
 

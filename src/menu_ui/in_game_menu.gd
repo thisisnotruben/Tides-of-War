@@ -123,10 +123,11 @@ func _on_spell_book_pressed() -> void:
 	spell_menu.show()
 
 func _on_mini_map_pressed() -> void:
+	if not $c/mini_map/map.get_texture():
+		return
 	globals.play_sample("click5")
-	if player.spell:
-		if player.spell.get_sub_type() == "CHOOSE_AREA_EFFECT":
-			player.spell.unmake()
+	if player.spell and player.spell.get_sub_type() == "CHOOSE_AREA_EFFECT":
+		player.spell.unmake()
 	if $c/mini_map.is_visible():
 		$c/mini_map.hide()
 	else:

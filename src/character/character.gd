@@ -17,6 +17,7 @@ var origin: Vector2 = Vector2()
 var path: PoolVector2Array = PoolVector2Array()
 var npc: bool = true
 var dead: bool = false
+var engaging: bool = false
 var target setget set_target
 var spell#: Spell
 var weapon_speed: float = 1.3
@@ -85,7 +86,7 @@ func _on_timer_timeout() -> void:
 				missile_pos.x = abs(missile_pos.x) * -1
 			$img/missile.set_position(missile_pos)
 			$anim.play("attacking", -1, anim_speed)
-	else:
+	elif not engaging and (hp < hp_max or mana < mana_max):
 #		when not fighting, unit regenerates health/mana
 		var regen_amount: int = Stats.hp_mana_regen(level, Stats.get_multiplier($img, npc))
 		set_hp(regen_amount)
@@ -128,6 +129,7 @@ func set_hp(value) -> void:
 	emit_signal("update_hud", "hp", self, hp, hp_max)
 
 func set_mana(value) -> void:
+	printt("character:", value)
 	mana += int(round(value))
 	if mana >= mana_max:
 		mana = mana_max
@@ -332,8 +334,6 @@ func attack(attack_table: Dictionary=Stats.attack_table.melee, ignore_armor: boo
 				if not spell.casted:
 					spell.configure_snd()
 					missile.spell = spell
-					set_mana(-spell.mana_cost)
-					spell.mana_cost = 0
 			missile.make()
 			if spell:
 				if missile.has_node(spell.get_name()):
@@ -393,24 +393,26 @@ func take_damage(amount, type: String, foe, ignore_armor: bool=false) -> void:
 	if state != STATES.ATTACKING:
 #		this is to stop regeneration when being attacked
 		$timer.stop()
-	if not foe.get("npc"):
-		if target_list.keys().has(foe):
-			target_list[foe] += amount
-		else:
-			target_list[foe] = amount
-	if npc and not foe.npc or !npc:
-		var text: CombatText = globals.combat_text.instance()
-		if amount > 0:
-			text.set_text("-%s" % amount)
-			text.type = type
-		else:
-			match type:
-				"dodge", "miss", "parry":
-					text.set_text(type.capitalize())
-		add_child(text)
+	if foe:
+		engaging = true
+		if not foe.get("npc"):
+			if target_list.keys().has(foe):
+				target_list[foe] += amount
+			else:
+				target_list[foe] = amount
+		if npc and not foe.get("npc") or !npc:
+			var text: CombatText = globals.combat_text.instance()
+			if amount > 0:
+				text.set_text("-%s" % amount)
+				text.type = type
+			else:
+				match type:
+					"dodge", "miss", "parry":
+						text.set_text(type.capitalize())
+			add_child(text)
+		if not dead and amount > 0 and (state == STATES.ATTACKING or state == STATES.IDLE):
+			bump(get_direction(foe.get_global_position()).rotated(PI) / 4)
 	set_hp(-amount)
-	if not dead and amount > 0 and (state == STATES.ATTACKING or state == STATES.IDLE):
-		bump(get_direction(foe.get_global_position()).rotated(PI) / 4)
 
 func get_save_game() -> Dictionary:
 	var save_dict: Dictionary = {
