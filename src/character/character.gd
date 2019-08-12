@@ -129,7 +129,6 @@ func set_hp(value) -> void:
 	emit_signal("update_hud", "hp", self, hp, hp_max)
 
 func set_mana(value) -> void:
-	printt("character:", value)
 	mana += int(round(value))
 	if mana >= mana_max:
 		mana = mana_max

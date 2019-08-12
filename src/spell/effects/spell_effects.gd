@@ -33,14 +33,15 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	emit_signal("unmake")
 	match effect:
-		"fortify", "frenzy", "intimidating_shout", "bash", "slow", "rejuvenate":
+		"fortify", "frenzy", "intimidating_shout", "bash", "slow", "divine_heal":
 #			fade out light to prepare to delete itself
 			fade_light(true)
-			if effect == "fortify":
-#				fade out effect entirely
-				$tween.interpolate_property(self, @":modulate", get_modulate(), \
-				Color(1.0, 1.0, 1.0, 0.0), 0.65,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-				$tween.start()
+			match effect:
+				"fortify", "bash", "divine_heal":
+#					fade out effect entirely
+					$tween.interpolate_property(self, @":modulate", get_modulate(), \
+					Color(1.0, 1.0, 1.0, 0.0), 0.65,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					$tween.start()
 #			kill all particles in effect and start timer, recursive here
 			for particle in $explode.get_children():
 				particle.set_emitting(false)
@@ -51,7 +52,10 @@ func _on_timer_timeout() -> void:
 			queue_free()
 
 func on_hit(spell=null) -> void:
-	effect = spell.world_name
+	if typeof(spell) == TYPE_OBJECT:
+		effect = spell.world_name
+	elif typeof(spell) == TYPE_STRING:
+		effect = spell
 #	play the specific preloaded sound from the effect scene
 	$snd.play()
 #	bounce animation when hit
@@ -61,7 +65,7 @@ func on_hit(spell=null) -> void:
 
 #	based on the spell, configure to where is belongs
 	match effect:
-		"haste", "hemorrhage", "overpower", "devastate", "cleave", "rejuvenate":
+		"haste", "hemorrhage", "overpower", "devastate", "cleave":
 			set_position((get_owner() as Character).get_node(@"img").get_position())
 
 		"frost_bolt", "fireball", "shadow_bolt", "lightning_bolt", "siphon_mana", "meteor":
@@ -74,7 +78,7 @@ func on_hit(spell=null) -> void:
 			elif effect == "meteor":
 				emit_signal("renamed", true) # not sure what this does
 
-		"fortify", "frenzy", "bash":
+		"fortify", "frenzy", "bash", "divine_heal":
 			set_position((get_owner() as Character).get_node(@"head").get_position())
 			if effect == "frenzy":
 #				moves to the back of the sprite (head)
@@ -99,13 +103,13 @@ func on_hit(spell=null) -> void:
 			effect.set_owner(unit.target)
 			spell.connect("unmake", effect, "_on_timer_timeout")
 			effect.get_node(@"snd").set_stream(null)
-			effect.on_hit()
+			effect.on_hit("bash")
 
 		"mind_blast":
 			var missile = get_owner()
 			missile.set_global_position(missile.target.get_node(@"head").get_global_position())
 
-		"explosive_arrow":
+		"explosive_arrow", "sniper_shot":
 			$light.show()
 
 #	start all cumulated tween animations

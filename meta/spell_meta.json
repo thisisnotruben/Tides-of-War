@@ -146,8 +146,8 @@
     "range": 64,
     "des": "Launches a bolt of frost at enemy. Deals 10% damage and slows target's movement by 30% for 10 sec."
   },
-  "rejuvenate": {
-    "icon": 1207,
+  "divine_heal": {
+    "icon": 1789,
     "cooldown": "0.30",
     "level": 4,
     "range": 0,

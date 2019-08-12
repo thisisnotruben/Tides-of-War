@@ -178,9 +178,9 @@ func set_state(value, bypass: bool=false) -> void:
 			$img.set_flip_h(false)
 			$img.set_frame(0)
 			set_time(regen_time)
-			$sight/distance.set_disabled(true)
-			$sight/distance.set_disabled(false)
 			engaging = false
+			for unit_area in $sight.get_overlapping_areas():
+				_on_sight_area_entered(unit_area)
 		STATES.ATTACKING:
 			set_time(weapon_speed / 2.0, true)
 		STATES.MOVING:

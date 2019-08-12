@@ -4,106 +4,49 @@
 [ext_resource path="res://asset/snd/spell/concussive_shot.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/spell/effects/color_ramp.shader" type="Shader" id=3]
 
-[sub_resource type="Gradient" id=3]
-
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 1 )
 colors = PoolColorArray( 0, 0.764706, 0.764706, 1 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-flags = 4
-gradient = SubResource( 3 )
-width = 2048
-
-[sub_resource type="ShaderMaterial" id=1]
-
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
-resource_name = "color_ramp"
-render_priority = 0
 shader = ExtResource( 3 )
 shader_param/color_speed = 1.0
 shader_param/scale_speed = 3.0
 shader_param/energy = 1.0
 shader_param/scale = Vector2( 0.8, 1 )
-shader_param/gradient = SubResource( 4 )
-_sections_unfolded = [ "Resource", "shader_param" ]
+shader_param/gradient = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=2]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 spread = 180.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 16.0
-initial_velocity_random = 0.0
 angular_velocity = 1.0
-angular_velocity_random = 0.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
-scale = 1.0
-scale_random = 0.0
 color = Color( 0, 0.768627, 0.768627, 1 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
 [node name="concussive_shot" instance=ExtResource( 1 )]
-
 play_sound = true
 light_fade_delay = 0.75
 
 [node name="snd" parent="." index="2"]
-
 stream = ExtResource( 2 )
 
 [node name="light" parent="." index="3"]
-
 visible = false
-material = SubResource( 1 )
+material = SubResource( 3 )
 scale = Vector2( 0.15, 0.15 )
-_sections_unfolded = [ "Material", "Transform", "Z Index" ]
 
 [node name="explode" type="Particles2D" parent="explode" index="0"]
-
 use_parent_material = true
 emitting = false
 amount = 24
 lifetime = 0.75
 one_shot = true
-preprocess = 0.0
-speed_scale = 1.0
 explosiveness = 0.8
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
-process_material = SubResource( 2 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Process Material", "Time" ]
-
-
+process_material = SubResource( 4 )

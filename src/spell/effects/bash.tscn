@@ -5,121 +5,55 @@
 [ext_resource path="res://src/spell/effects/color_ramp.shader" type="Shader" id=3]
 [ext_resource path="res://asset/img/missile-spell/cross.png" type="Texture" id=4]
 
-
-
-[sub_resource type="Gradient" id=5]
-
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
 colors = PoolColorArray( 0, 0.764706, 0.764706, 1 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-flags = 4
-gradient = SubResource( 5 )
-width = 2048
-
-[sub_resource type="ShaderMaterial" id=1]
-
+[sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
-resource_name = "color_ramp"
-render_priority = 0
 shader = ExtResource( 3 )
 shader_param/color_speed = 1.0
 shader_param/scale_speed = 1.0
 shader_param/energy = 0.25
 shader_param/scale = Vector2( 1, 1 )
-shader_param/gradient = SubResource( 6 )
-_sections_unfolded = [ "Resource", "shader_param" ]
+shader_param/gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=2]
-
+[sub_resource type="Curve" id=4]
 min_value = 0.5
-max_value = 1.0
-bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.499421, 0.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-flags = 4
-width = 2048
-curve = SubResource( 2 )
-
-[sub_resource type="ParticlesMaterial" id=4]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 spread = 0.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 24.0
-initial_velocity_random = 0.0
-angular_velocity = 0.0
-angular_velocity_random = 0.0
 orbit_velocity = 1.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
-scale = 1.0
-scale_random = 0.0
-scale_curve = SubResource( 3 )
+scale_curve = SubResource( 5 )
 color = Color( 0, 1, 1, 1 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Flags", "Gravity", "Initial Velocity", "Orbit Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="bash" index="0" instance=ExtResource( 1 )]
-
+[node name="bash" instance=ExtResource( 1 )]
 fade_light = false
 
 [node name="snd" parent="." index="2"]
-
 stream = ExtResource( 2 )
 
 [node name="light" parent="." index="3"]
-
-material = SubResource( 1 )
+material = SubResource( 3 )
 position = Vector2( 0, -3.5 )
 scale = Vector2( 0.08, 0.08 )
-_sections_unfolded = [ "Material", "Transform", "Z Index" ]
 
 [node name="dazed" type="Particles2D" parent="explode" index="0"]
-
 use_parent_material = true
 emitting = false
 amount = 5
-lifetime = 1.0
-one_shot = false
 preprocess = 10.0
 speed_scale = 0.65
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
-process_material = SubResource( 4 )
+process_material = SubResource( 6 )
 texture = ExtResource( 4 )
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Material", "Process Material", "Textures", "Time", "Transform" ]
-
-

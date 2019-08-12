@@ -125,7 +125,7 @@
           "type":"frost_bolt"
         },
         {
-          "type":"rejuvenate"
+          "type":"divine_heal"
         },
         {
           "type":"siphon_mana"
@@ -155,7 +155,37 @@
     "Mokral": {
       "world_name": "Mokral",
       "img": "orc/mace-swing_medium-17.png",
-      "enemy": false
+      "enemy": false,
+      "type": "trainer",
+      "spell": [
+        {
+          "type": "searing_arrow"
+        },
+        {
+          "type": "concussive_shot"
+        },
+        {
+          "type": "piercing_shot"
+        },
+        {
+          "type": "stinging_shot"
+        },
+        {
+          "type": "explosive_arrow"
+        },
+        {
+          "type": "precise_shot"
+        },
+        {
+          "type": "explosive_trap"
+        },
+        {
+          "type": "volley"
+        },
+        {
+          "type": "sniper_shot"
+        }
+      ]
     },
     "Bugdal": {
       "world_name": "Bugdal",
@@ -189,33 +219,6 @@
         },
         {
           "type": "frenzy"
-        },
-        {
-          "type": "searing_arrow"
-        },
-        {
-          "type": "concussive_shot"
-        },
-        {
-          "type": "piercing_shot"
-        },
-        {
-          "type": "stinging_shot"
-        },
-        {
-          "type": "explosive_arrow"
-        },
-        {
-          "type": "precise_shot"
-        },
-        {
-          "type": "explosive_trap"
-        },
-        {
-          "type": "volley"
-        },
-        {
-          "type": "sniper_shot"
         }
       ]
     },

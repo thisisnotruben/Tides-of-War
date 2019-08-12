@@ -248,6 +248,8 @@ func _on_bag_index_selected(index: int, sifting: bool=false) -> void:
 		if not player.dead:
 			item_info.get_node(@"s/h/v/drop").show()
 	else:
+		if not sifting:
+			globals.play_sample("spell_select")
 		bag = merchant_bag
 		merchant.hide()
 		selected = merchant_bag.get_item_metadata(index)
@@ -647,9 +649,13 @@ func _on_add_to_hud_pressed() -> void:
 	popup.show()
 
 func _on_describe_object(obj: Pickable, obj_des: String) -> void:
+	
 	if merchant_bag.has_item(obj) and selected.get_filename().get_file().get_basename() == "spell":
-		obj_des = obj_des.insert(obj_des.find_last("-") - 2, \
-		"\n-Required Level: %s\n-Gold: %s" % [obj.level, obj.gold])
+		var regex = RegEx.new()
+		regex.compile("-Level: (\\d*)\n")
+		var result = regex.search(obj_des).get_string()
+		obj_des = obj_des.insert(obj_des.find(result) + result.length(), "-Gold: %s\n" % obj.gold)
+		
 	item_info.get_node(@"s/v/label").set_text(obj.world_name.capitalize())
 	item_info.get_node(@"s/v/c/v/bg/m/icon").set_texture(obj.icon)
 	item_info.get_node(@"s/v/c/v/c/label").set_text(obj_des)

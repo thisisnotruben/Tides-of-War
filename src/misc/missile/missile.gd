@@ -33,7 +33,6 @@ func _on_projectile_area_entered(area: Area2D) -> void:
 		hit = true
 		if $img.get_texture():
 			if spell:
-				spell.get_effect().on_hit(spell)
 				$anim.play("img_fade")
 			else:
 				$anim.play("fade")

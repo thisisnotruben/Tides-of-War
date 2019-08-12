@@ -307,7 +307,6 @@ margin_right = 570.0
 margin_bottom = 1130.0
 
 [node name="popup" parent="." instance=ExtResource( 10 )]
-
 [connection signal="pressed" from="list_of_menus/m/main_menu/v/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="list_of_menus/m/main_menu/v/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="list_of_menus/m/main_menu/v/settings" to="." method="_on_settings_pressed"]

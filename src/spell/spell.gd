@@ -164,14 +164,14 @@ func make() -> void:
 	var seconds: float = float("0." + rational[1]) * 100
 	cooldown = minutes + seconds
 	cooldown_text = "%s sec." % _make_int(cooldown)
+	
 	icon = load("res://asset/img/icon/spell/%s_icon.res" % globals.spell_meta[world_name].icon)
-	obj_des = "-Mana Cost: %s" % mana_cost
-	if spell_range > 0:
-		obj_des += "\n-Range: %s" % spell_range
-	obj_des += "\n-Cooldown: %s\n\n-%s" % [cooldown_text, globals.spell_meta[world_name].des]
+	obj_des = "-Mana Cost: %s\n-Range: %s\n-Cooldown: %s\n-Level: %s\n\n-%s" % \
+	[mana_cost, spell_range, cooldown_text, level, globals.spell_meta[world_name].des]
+	
 	match type:
 		TYPES.INTIMIDATING_SHOUT, TYPES.FRENZY, TYPES.STOMP, TYPES.FORTIFY, \
-		TYPES.EXPLOSIVE_TRAP, TYPES.REJUVENATE, TYPES.HASTE, TYPES.METEOR:
+		TYPES.EXPLOSIVE_TRAP, TYPES.DIVINE_HEAL, TYPES.HASTE, TYPES.METEOR:
 			sub_type = SUB_TYPES.CASTING
 			requires_target = false
 			if type == TYPES.METEOR:
@@ -463,7 +463,7 @@ func sniper_shot() -> float:
 func explosive_trap() -> float:
 	var loaded_mine: Resource = load("res://src/misc/missile/land_mine.tscn")
 	var land_mine: LandMine = loaded_mine.instance()
-	land_mine.excluded_area = caster.get_node(@"area")
+	land_mine.excluded_unit_area = caster.get_node(@"area")
 	land_mine.set_global_position(caster.get_global_position())
 	land_mine.add_to_group(str(caster.get_instance_id()) + "-lm")
 	caster.get_parent().add_child(land_mine)
@@ -506,14 +506,13 @@ func frost_bolt() -> float:
 	set_time(10.0)
 	return 1.1
 
-func rejuvenate() -> float:
+func divine_heal() -> float:
 	caster.set_hp(caster.hp * rand_range(1.1, 1.3))
 	return 1.0
 
 func siphon_mana() -> float:
 	var mana: int = _make_int(caster.target.mana * 0.2)
 #	remove target mana
-	print(mana)
 	caster.target.set_mana(-mana)
 #	transfer mana to caster
 	caster.set_mana(mana)
@@ -524,7 +523,6 @@ func siphon_mana() -> float:
 		mana = mana - (mana + caster.mana - caster.mana_max)
 	txt.set_text("+%s" % mana)
 	caster.add_child(txt)
-	print(mana)
 	return 1.0
 
 func haste() -> float:
